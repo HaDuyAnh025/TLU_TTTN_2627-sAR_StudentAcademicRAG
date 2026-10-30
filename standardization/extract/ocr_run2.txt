@@ -1,0 +1,200 @@
+71 file, 2045 trang | trang cần OCR lần này: 959 | workers: 10 | dpi 250 | lang vie
+  [10/959] drive-file_1EDGaRVH5Vw5AS0ctSan4P1RmzIrw trang 8: tin cậy 92, 303 từ | đã 0.3 phút, còn ~28.7 phút
+  [12/959] drive-file_1EDGaRVH5Vw5AS0ctSan4P1RmzIrw trang 7: tin cậy 87, 338 từ | đã 0.3 phút, còn ~24.5 phút
+  [14/959] drive-file_1RSlnySgUWhKieJ4Bn3lqkFgQf-bF trang 9: tin cậy 82, 182 từ | đã 0.3 phút, còn ~21.5 phút
+  [20/959] drive-file_1dpCiWE1d2m2v4Uau2fe3LOY8MFYh trang 10: tin cậy 86, 200 từ | đã 0.5 phút, còn ~23.5 phút
+  [25/959] drive-file_1dpCiWE1d2m2v4Uau2fe3LOY8MFYh trang 14: tin cậy 94, 315 từ | đã 0.6 phút, còn ~22.0 phút
+  [30/959] drive-file_191r6YjlsZncA0AIgA1ASyO78oJTp trang 10: tin cậy 91, 194 từ | đã 0.7 phút, còn ~21.1 phút
+  [34/959] drive-file_191r6YjlsZncA0AIgA1ASyO78oJTp trang 15: tin cậy 95, 296 từ | đã 0.8 phút, còn ~20.8 phút
+  [40/959] drive-file_1KWafD7bhtbzzYHZtvLQCmxh4s46Z trang 10: tin cậy 86, 423 từ | đã 1.0 phút, còn ~22.9 phút
+  [43/959] drive-file_1KWafD7bhtbzzYHZtvLQCmxh4s46Z trang 15: tin cậy 91, 329 từ | đã 1.0 phút, còn ~22.2 phút
+  [50/959] drive-file_1cccBl2r2pxhjEOMi1H0MAS8wumnG trang 10: tin cậy 81, 398 từ | đã 1.2 phút, còn ~22.4 phút
+  [53/959] drive-file_1cccBl2r2pxhjEOMi1H0MAS8wumnG trang 14: tin cậy 87, 321 từ | đã 1.3 phút, còn ~21.7 phút
+  [60/959] drive-file_1uiBpLvwZ4tEfn9l9vJ6p5Nn88UdO trang 7: tin cậy 80, 238 từ | đã 1.5 phút, còn ~22.3 phút
+  [61/959] drive-file_1BWHCYS-47LbIsQ8Zh4kHEsGOggyz trang 9: tin cậy 86, 322 từ | đã 1.5 phút, còn ~22.0 phút
+  [70/959] drive-file_1uiBpLvwZ4tEfn9l9vJ6p5Nn88UdO trang 17: tin cậy 94, 299 từ | đã 1.7 phút, còn ~22.0 phút
+  [80/959] drive-file_1xJMe5xVPBKpYOtqUZHPuey7-cFq0 trang 12: tin cậy 85, 363 từ | đã 2.0 phút, còn ~21.4 phút
+  [85/959] drive-file_1O9DmxhkMBVTWwhRO8Easo9RbZGhz trang 10: tin cậy 85, 398 từ | đã 2.0 phút, còn ~21.0 phút
+  [90/959] drive-file_1AWp8WUMu_5arQveFuDn752ARxI0M trang 9: tin cậy 89, 401 từ | đã 2.2 phút, còn ~21.6 phút
+  [100/959] drive-file_1AWp8WUMu_5arQveFuDn752ARxI0M trang 15: tin cậy 88, 377 từ | đã 2.4 phút, còn ~20.8 phút
+  [110/959] drive-file_1PyLzakSJ16FEV_YQONX2gFSLtcv0 trang 17: tin cậy 86, 177 từ | đã 2.6 phút, còn ~19.9 phút
+  [111/959] drive-file_1PyLzakSJ16FEV_YQONX2gFSLtcv0 trang 16: tin cậy 84, 206 từ | đã 2.6 phút, còn ~19.8 phút
+  [120/959] drive-file_1sFyaboCqopbql-I4l9IwlptCMaVf trang 10: tin cậy 93, 281 từ | đã 2.8 phút, còn ~19.5 phút
+  [130/959] drive-file_1sFyaboCqopbql-I4l9IwlptCMaVf trang 20: tin cậy 93, 244 từ | đã 2.9 phút, còn ~18.8 phút
+  [133/959] drive-file_1sFyaboCqopbql-I4l9IwlptCMaVf trang 25: tin cậy 94, 339 từ | đã 3.1 phút, còn ~19.1 phút
+  [140/959] drive-file_14mmWw9rAR68IFzgrMo2g-G0O3bMT trang 15: tin cậy 74, 345 từ | đã 3.2 phút, còn ~18.6 phút
+  [148/959] drive-file_14mmWw9rAR68IFzgrMo2g-G0O3bMT trang 21: tin cậy 73, 315 từ | đã 3.4 phút, còn ~18.5 phút
+  [150/959] drive-file_1aeh5oXkfSPlTISO9lR43FloqqGMt trang 10: tin cậy 72, 251 từ | đã 3.4 phút, còn ~18.4 phút
+  [160/959] drive-file_1aeh5oXkfSPlTISO9lR43FloqqGMt trang 13: tin cậy 79, 462 từ | đã 3.6 phút, còn ~18.0 phút
+  [169/959] drive-file_1aeh5oXkfSPlTISO9lR43FloqqGMt trang 27: tin cậy 90, 163 từ | đã 3.7 phút, còn ~17.5 phút
+  [170/959] drive-file_1euXTrL80HTJsjTllC7kWaryw-Qp_ trang 9: tin cậy 90, 262 từ | đã 3.8 phút, còn ~17.8 phút
+  [178/959] drive-file_1euXTrL80HTJsjTllC7kWaryw-Qp_ trang 8: tin cậy 80, 546 từ | đã 3.9 phút, còn ~17.2 phút
+  [180/959] drive-file_1WtaOcWnduXF-1MSJmyCkFXFWioVC trang 7: tin cậy 66, 161 từ | đã 4.0 phút, còn ~17.2 phút
+  [190/959] drive-file_1WtaOcWnduXF-1MSJmyCkFXFWioVC trang 17: tin cậy 76, 401 từ | đã 4.2 phút, còn ~17.1 phút
+  [200/959] drive-file_1WtaOcWnduXF-1MSJmyCkFXFWioVC trang 27: tin cậy 83, 281 từ | đã 4.4 phút, còn ~16.7 phút
+  [210/959] drive-file_1YIX5rfv1aofrVpGWT7oyetszoijE trang 12: tin cậy 67, 450 từ | đã 4.7 phút, còn ~16.8 phút
+  [212/959] drive-file_1WtaOcWnduXF-1MSJmyCkFXFWioVC trang 31: tin cậy 79, 530 từ | đã 4.7 phút, còn ~16.7 phút
+  [220/959] drive-file_1YIX5rfv1aofrVpGWT7oyetszoijE trang 40: tin cậy 92, 295 từ | đã 4.9 phút, còn ~16.6 phút
+  [226/959] drive-file_1YIX5rfv1aofrVpGWT7oyetszoijE trang 41: tin cậy 95, 480 từ | đã 5.1 phút, còn ~16.5 phút
+  [230/959] drive-file_1vb2uqNBaKpGbEiAKwGGF-HZFdTBS trang 15: tin cậy 94, 288 từ | đã 5.2 phút, còn ~16.4 phút
+  [240/959] drive-file_1vb2uqNBaKpGbEiAKwGGF-HZFdTBS trang 42: tin cậy 88, 334 từ | đã 5.5 phút, còn ~16.3 phút
+  [242/959] drive-file_1vb2uqNBaKpGbEiAKwGGF-HZFdTBS trang 41: tin cậy 90, 396 từ | đã 5.5 phút, còn ~16.2 phút
+  [250/959] drive-file_1jkKsHnhJgK62toTW9nQwf4rrlRm7 trang 20: tin cậy 76, 210 từ | đã 5.7 phút, còn ~16.1 phút
+  [258/959] drive-file_1jkKsHnhJgK62toTW9nQwf4rrlRm7 trang 44: tin cậy 86, 199 từ | đã 5.8 phút, còn ~15.9 phút
+  [260/959] drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUknm trang 12: tin cậy 68, 351 từ | đã 5.9 phút, còn ~15.9 phút
+  [270/959] drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUknm trang 18: tin cậy 73, 522 từ | đã 6.1 phút, còn ~15.6 phút
+  [280/959] drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUknm trang 31: tin cậy 67, 406 từ | đã 6.3 phút, còn ~15.3 phút
+  [290/959] drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUknm trang 40: tin cậy 87, 575 từ | đã 6.7 phút, còn ~15.4 phút
+  [296/959] drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUknm trang 46: tin cậy 85, 456 từ | đã 6.8 phút, còn ~15.3 phút
+  [300/959] drive-file_196IJrjAFyY-aKHJ6P344ghH3CLcU trang 9: tin cậy 76, 371 từ | đã 6.9 phút, còn ~15.2 phút
+  [310/959] drive-file_196IJrjAFyY-aKHJ6P344ghH3CLcU trang 23: tin cậy 93, 481 từ | đã 7.3 phút, còn ~15.3 phút
+  [320/959] drive-file_196IJrjAFyY-aKHJ6P344ghH3CLcU trang 35: tin cậy 92, 258 từ | đã 7.6 phút, còn ~15.1 phút
+  [330/959] drive-file_196IJrjAFyY-aKHJ6P344ghH3CLcU trang 45: tin cậy 88, 319 từ | đã 7.9 phút, còn ~15.1 phút
+  [338/959] drive-file_196IJrjAFyY-aKHJ6P344ghH3CLcU trang 49: tin cậy 92, 449 từ | đã 8.1 phút, còn ~14.9 phút
+  [340/959] drive-file_1xd9HkEMC14R5n2fr7Z43iFyzDV6L trang 12: tin cậy 79, 200 từ | đã 8.2 phút, còn ~14.9 phút
+  [350/959] drive-file_1xd9HkEMC14R5n2fr7Z43iFyzDV6L trang 18: tin cậy 86, 325 từ | đã 8.4 phút, còn ~14.6 phút
+  [360/959] drive-file_1xd9HkEMC14R5n2fr7Z43iFyzDV6L trang 51: tin cậy 95, 383 từ | đã 8.7 phút, còn ~14.5 phút
+  [370/959] drive-file_1G7U1LgT03GvIt2j-P7UUXdkazUqM trang 19: tin cậy 74, 77 từ | đã 9.0 phút, còn ~14.3 phút
+  [380/959] drive-file_1xd9HkEMC14R5n2fr7Z43iFyzDV6L trang 59: tin cậy 75, 668 từ | đã 9.2 phút, còn ~14.0 phút
+  [390/959] drive-file_1G7U1LgT03GvIt2j-P7UUXdkazUqM trang 63: tin cậy 93, 222 từ | đã 9.4 phút, còn ~13.7 phút
+  [400/959] drive-file_1fKx4AnuiV2MDmzOIvgfINrsJwT8T trang 22: tin cậy 71, 74 từ | đã 9.7 phút, còn ~13.5 phút
+  [410/959] drive-file_1fKx4AnuiV2MDmzOIvgfINrsJwT8T trang 25: tin cậy 72, 249 từ | đã 9.9 phút, còn ~13.2 phút
+  [420/959] drive-file_1fKx4AnuiV2MDmzOIvgfINrsJwT8T trang 58: tin cậy 92, 398 từ | đã 10.2 phút, còn ~13.1 phút
+  [423/959] drive-file_1fKx4AnuiV2MDmzOIvgfINrsJwT8T trang 57: tin cậy 92, 503 từ | đã 10.2 phút, còn ~13.0 phút
+  [430/959] drive-file_1kxFUud_1SMqwiUjl4ixogih0Wwgy trang 54: tin cậy 93, 405 từ | đã 10.5 phút, còn ~12.9 phút
+  [440/959] drive-file_1kxFUud_1SMqwiUjl4ixogih0Wwgy trang 63: tin cậy 92, 455 từ | đã 10.8 phút, còn ~12.7 phút
+  [450/959] drive-file_1snVCOx3a_FVACFTiPAJcfk3ASUse trang 22: tin cậy 71, 227 từ | đã 11.0 phút, còn ~12.4 phút
+  [460/959] drive-file_1snVCOx3a_FVACFTiPAJcfk3ASUse trang 56: tin cậy 84, 355 từ | đã 11.3 phút, còn ~12.2 phút
+  [470/959] drive-file_1snVCOx3a_FVACFTiPAJcfk3ASUse trang 64: tin cậy 93, 393 từ | đã 11.5 phút, còn ~12.0 phút
+  [473/959] drive-file_1snVCOx3a_FVACFTiPAJcfk3ASUse trang 66: tin cậy 94, 371 từ | đã 11.6 phút, còn ~11.9 phút
+  [480/959] drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe6K trang 15: tin cậy 71, 324 từ | đã 11.7 phút, còn ~11.7 phút
+  [490/959] drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe6K trang 28: tin cậy 70, 225 từ | đã 11.9 phút, còn ~11.4 phút
+  [500/959] drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe6K trang 60: tin cậy 83, 196 từ | đã 12.1 phút, còn ~11.1 phút
+  [510/959] drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe6K trang 69: tin cậy 81, 214 từ | đã 12.3 phút, còn ~10.9 phút
+  [519/959] drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe6K trang 68: tin cậy 89, 483 từ | đã 12.5 phút, còn ~10.6 phút
+  [520/959] drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAKre trang 19: tin cậy 93, 207 từ | đã 12.6 phút, còn ~10.6 phút
+  [530/959] drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAKre trang 27: tin cậy 72, 147 từ | đã 12.7 phút, còn ~10.3 phút
+  [540/959] drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAKre trang 61: tin cậy 91, 105 từ | đã 12.9 phút, còn ~10.0 phút
+  [550/959] drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAKre trang 69: tin cậy 90, 186 từ | đã 13.1 phút, còn ~9.7 phút
+  [553/959] drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAKre trang 70: tin cậy 93, 220 từ | đã 13.1 phút, còn ~9.7 phút
+  [560/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 16: tin cậy 70, 270 từ | đã 13.3 phút, còn ~9.5 phút
+  [570/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 25: tin cậy 65, 322 từ | đã 13.5 phút, còn ~9.2 phút
+  [580/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 65: tin cậy 95, 152 từ | đã 13.8 phút, còn ~9.0 phút
+  [590/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 67: tin cậy 87, 505 từ | đã 14.0 phút, còn ~8.8 phút
+  [600/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 73: tin cậy 83, 575 từ | đã 14.2 phút, còn ~8.5 phút
+  [601/959] drive-file_1XAXHMGdsaJSIXlbUKBS1x8EChoBB trang 75: tin cậy 83, 459 từ | đã 14.3 phút, còn ~8.5 phút
+  [610/959] drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoEIX trang 19: tin cậy 89, 352 từ | đã 14.4 phút, còn ~8.3 phút
+  [620/959] drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoEIX trang 29: tin cậy 80, 212 từ | đã 14.6 phút, còn ~8.0 phút
+  [630/959] drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoEIX trang 58: tin cậy 80, 356 từ | đã 14.8 phút, còn ~7.8 phút
+  [640/959] drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoEIX trang 71: tin cậy 81, 234 từ | đã 15.0 phút, còn ~7.5 phút
+  [643/959] drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoEIX trang 76: tin cậy 86, 91 từ | đã 15.1 phút, còn ~7.4 phút
+  [650/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 16: tin cậy 74, 212 từ | đã 15.2 phút, còn ~7.2 phút
+  [654/959] drive-file_1-d8pil8h8N5C4IY88TdWjEuuIEy5 trang 34: tin cậy 90, 448 từ | đã 15.3 phút, còn ~7.1 phút
+  [660/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 56: tin cậy 88, 155 từ | đã 15.5 phút, còn ~7.0 phút
+  [670/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 60: tin cậy 82, 266 từ | đã 15.7 phút, còn ~6.8 phút
+  [680/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 77: tin cậy 92, 108 từ | đã 15.9 phút, còn ~6.5 phút
+  [690/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 79: tin cậy 94, 384 từ | đã 16.1 phút, còn ~6.3 phút
+  [694/959] drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfkuVm trang 83: tin cậy 94, 348 từ | đã 16.2 phút, còn ~6.2 phút
+  [700/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 19: tin cậy 93, 185 từ | đã 16.3 phút, còn ~6.0 phút
+  [710/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 26: tin cậy 63, 292 từ | đã 16.6 phút, còn ~5.8 phút
+  [720/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 60: tin cậy 93, 277 từ | đã 16.8 phút, còn ~5.6 phút
+  [730/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 72: tin cậy 92, 97 từ | đã 16.9 phút, còn ~5.3 phút
+  [740/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 80: tin cậy 91, 261 từ | đã 17.2 phút, còn ~5.1 phút
+  [746/959] drive-file_1u8L6T37cxm-JxXTsUW7d99jRfta6 trang 85: tin cậy 89, 76 từ | đã 17.2 phút, còn ~4.9 phút
+  [750/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 15: tin cậy 86, 93 từ | đã 17.3 phút, còn ~4.8 phút
+  [760/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 23: tin cậy 94, 217 từ | đã 17.5 phút, còn ~4.6 phút
+  [770/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 35: tin cậy 69, 109 từ | đã 17.6 phút, còn ~4.3 phút
+  [780/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 62: tin cậy 95, 164 từ | đã 17.8 phút, còn ~4.1 phút
+  [790/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 72: tin cậy 95, 428 từ | đã 18.1 phút, còn ~3.9 phút
+  [800/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 84: tin cậy 86, 143 từ | đã 18.4 phút, còn ~3.7 phút
+  [810/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 86: tin cậy 94, 487 từ | đã 18.6 phút, còn ~3.4 phút
+  [816/959] drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5kc trang 88: tin cậy 93, 619 từ | đã 18.7 phút, còn ~3.3 phút
+  [820/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 21: tin cậy 94, 200 từ | đã 18.8 phút, còn ~3.2 phút
+  [830/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 25: tin cậy 73, 210 từ | đã 18.9 phút, còn ~2.9 phút
+  [840/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 63: tin cậy 94, 316 từ | đã 123.3 phút, còn ~17.5 phút
+  [850/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 72: tin cậy 93, 314 từ | đã 123.7 phút, còn ~15.9 phút
+  [860/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 82: tin cậy 88, 341 từ | đã 123.9 phút, còn ~14.3 phút
+  [869/959] drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1qKo trang 90: tin cậy 93, 383 từ | đã 124.3 phút, còn ~12.9 phút
+  [870/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 11: tin cậy 79, 361 từ | đã 124.3 phút, còn ~12.7 phút
+  [880/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 13: tin cậy 80, 370 từ | đã 124.5 phút, còn ~11.2 phút
+  [890/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 58: tin cậy 87, 38 từ | đã 124.8 phút, còn ~9.7 phút
+  [900/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 60: tin cậy 95, 390 từ | đã 125.2 phút, còn ~8.2 phút
+  [910/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 69: tin cậy 95, 403 từ | đã 125.6 phút, còn ~6.8 phút
+  [920/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 84: tin cậy 95, 206 từ | đã 125.9 phút, còn ~5.3 phút
+  [930/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 91: tin cậy 95, 362 từ | đã 126.2 phút, còn ~3.9 phút
+  [940/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 99: tin cậy 94, 241 từ | đã 126.4 phút, còn ~2.6 phút
+  [950/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 114: tin cậy 94, 190 từ | đã 126.7 phút, còn ~1.2 phút
+  [959/959] drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQbX trang 118: tin cậy 94, 391 từ | đã 126.8 phút, còn ~0.0 phút
+  -> tb-2223 | drive-file_1MUfEOtTtLuwj6_6qELakiOmmzV: ok, 2569 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2248 | drive-file_11jygfqPkTkT-Ijkvnaa1HAkBfS: ok, 4991 ký tự | OCR tesseract vie dpi=250; tin cậy TB 86; 0 trang < 60; 0 trang tự xoay
+  -> tb-2284 | drive-file_1OkYI0H__0tmOFHaMvZVrsMJAu7: ok, 8148 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2281 | drive-file_1Q0FM6LZT2K29545yQl2yoXT4V-: ok, 122928 ký tự | OCR tesseract vie dpi=250; tin cậy TB 94; 0 trang < 60; 0 trang tự xoay
+  -> tb-2235 | drive-file_1ChWKdZQpK_DieKNr5xI8RODxR2: ok, 3280 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1NRnDBd9PHkz3KDcCDTgoI9anH6: ok, 3801 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1OCTr0BNp1FGzPN-8i-cgrjFeLX: ok, 3801 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2235 | drive-file_1QAhEqNJpGkIRy-mK97QAu8QhDW: ok, 3280 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2235 | drive-file_1kHQTq2HIzYDO1-bXB78PCHrhkW: ok, 5222 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_18D037aaB-FOH_54XvmjtW9UZ-p: ok, 14018 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1Zfui1GyeZ5112xQngmLRa5Xj_l: ok, 14154 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1mHqWyt5_F402__55Dt5TDhAkeh: ok, 11923 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1DwSBSkZaeDgHMPix1uO0HUmXYp: ok, 14495 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1HUyZSmovfzOj2ddtLg-stKHlW_: ok, 13554 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1NJdaHZe4CVl8y3OSDGGekAEbzz: ok, 14880 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1Qvkbn7EBdxSJDq8Yty7mtsHTe7: ok, 15755 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1RRLYzPndB3glV-OQpFEVHD4kfB: ok, 16043 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1aoqbpAVK1G4QLgmVdoeERIJosD: ok, 14087 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1m3gtP4Uw3m4xQvE51dNa18_nOM: ok, 13726 ký tự | OCR tesseract vie dpi=250; tin cậy TB 91; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1nCku0P4mm8W7rYY5RbyIeskme2: ok, 13595 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1qMAUKItzREeLPmBYR3Pcb2G1Yq: ok, 14835 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_11PtcJyGcFWocpsAhC0q_s-tcw6: ok, 15420 ký tự | OCR tesseract vie dpi=250; tin cậy TB 92; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1Cn1vCm4RdtXJ_KLCd8G9esUtPI: ok, 15758 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1UgcKdT-gicw_gBcdEjNdAQZeau: ok, 15444 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1b9u6FyWyA8N8uRBITxgxnkqYDz: ok, 17580 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1f7iBPMmWyDWbpva3FwcatuIm_w: ok, 15365 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1k0ZGpbA4mvGF_aa5Ld8aApgM2r: ok, 15013 ký tự | OCR tesseract vie dpi=250; tin cậy TB 91; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_11k67QHFw6H_5GlsfyCFtRlbimu: ok, 18477 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1eog7t60hYnGvO8hFNnpJ0mKk2D: ok, 16412 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1r-SQ2ZMe3A4MtgaFPJu_ZoP0Rl: ok, 18998 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1xI-hJiq980GJ3piXLS6NNUe655: ok, 17244 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1x_uD59dOS9VLerX7X1A0lb_QOe: ok, 17522 ký tự | OCR tesseract vie dpi=250; tin cậy TB 91; 0 trang < 60; 0 trang tự xoay
+  -> tb-2234 | drive-file_1DRnTcbuldf0hA-e6TZzL9q6hiW: ok, 19535 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 0 trang < 60; 0 trang tự xoay
+  -> tb-2235 | drive-file_1EDGaRVH5Vw5AS0ctSan4P1RmzI: ok, 17395 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 0 trang < 60; 8 trang tự xoay
+  -> tb-2235 | drive-file_1RSlnySgUWhKieJ4Bn3lqkFgQf-: ok, 12230 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 0 trang < 60; 5 trang tự xoay
+  -> tb-2235 | drive-file_1dpCiWE1d2m2v4Uau2fe3LOY8MF: ok, 16578 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 9 trang tự xoay
+  -> tb-2235 | drive-file_191r6YjlsZncA0AIgA1ASyO78oJ: ok, 17039 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 9 trang tự xoay
+  -> tb-2235 | drive-file_1KWafD7bhtbzzYHZtvLQCmxh4s4: ok, 22176 ký tự | OCR tesseract vie dpi=250; tin cậy TB 86; 0 trang < 60; 9 trang tự xoay
+  -> tb-2235 | drive-file_1cccBl2r2pxhjEOMi1H0MAS8wum: ok, 19559 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 9 trang tự xoay
+  -> tb-2234 | drive-file_1emvFJ0cLX_088kvrRNYB2BYznj: ok, 18324 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 0 trang tự xoay
+  -> tb-2235 | drive-file_1BWHCYS-47LbIsQ8Zh4kHEsGOgg: ok, 22853 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 7 trang tự xoay
+  -> tb-2235 | drive-file_1uiBpLvwZ4tEfn9l9vJ6p5Nn88U: ok, 19678 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 12 trang tự xoay
+  -> tb-2235 | drive-file_1xJMe5xVPBKpYOtqUZHPuey7-cF: ok, 21779 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 7 trang tự xoay
+  -> tb-2235 | drive-file_1O9DmxhkMBVTWwhRO8Easo9RbZG: ok, 24116 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 0 trang < 60; 8 trang tự xoay
+  -> tb-2235 | drive-file_1AWp8WUMu_5arQveFuDn752ARxI: ok, 27973 ký tự | OCR tesseract vie dpi=250; tin cậy TB 86; 0 trang < 60; 13 trang tự xoay
+  -> tb-2235 | drive-file_1PyLzakSJ16FEV_YQONX2gFSLtc: ok, 27913 ký tự | OCR tesseract vie dpi=250; tin cậy TB 84; 0 trang < 60; 12 trang tự xoay
+  -> tb-2235 | drive-file_1sFyaboCqopbql-I4l9IwlptCMa: ok, 29605 ký tự | OCR tesseract vie dpi=250; tin cậy TB 91; 0 trang < 60; 20 trang tự xoay
+  -> tb-2235 | drive-file_14mmWw9rAR68IFzgrMo2g-G0O3b: ok, 32021 ký tự | OCR tesseract vie dpi=250; tin cậy TB 82; 0 trang < 60; 15 trang tự xoay
+  -> tb-2235 | drive-file_1aeh5oXkfSPlTISO9lR43FloqqG: ok, 37903 ký tự | OCR tesseract vie dpi=250; tin cậy TB 85; 0 trang < 60; 21 trang tự xoay
+  -> tb-2235 | drive-file_1euXTrL80HTJsjTllC7kWaryw-Q: ok, 38570 ký tự | OCR tesseract vie dpi=250; tin cậy TB 83; 0 trang < 60; 9 trang tự xoay
+  -> tb-2235 | drive-file_1WtaOcWnduXF-1MSJmyCkFXFWio: ok, 54551 ký tự | OCR tesseract vie dpi=250; tin cậy TB 79; 1 trang < 60; 29 trang tự xoay
+  -> tb-2234 | drive-file_1YIX5rfv1aofrVpGWT7oyetszoi: ok, 102008 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 16 trang tự xoay
+  -> tb-2234 | drive-file_1vb2uqNBaKpGbEiAKwGGF-HZFdT: ok, 86626 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 4 trang < 60; 14 trang tự xoay
+  -> tb-2234 | drive-file_1jkKsHnhJgK62toTW9nQwf4rrlR: ok, 87864 ký tự | OCR tesseract vie dpi=250; tin cậy TB 87; 2 trang < 60; 17 trang tự xoay
+  -> tb-2234 | drive-file_1DGTJw3pwAw8uW7ULKCfQpOIjUk: ok, 77122 ký tự | OCR tesseract vie dpi=250; tin cậy TB 79; 2 trang < 60; 37 trang tự xoay
+  -> tb-2234 | drive-file_196IJrjAFyY-aKHJ6P344ghH3CL: ok, 82098 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 43 trang tự xoay
+  -> tb-2234 | drive-file_1xd9HkEMC14R5n2fr7Z43iFyzDV: ok, 98184 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 1 trang < 60; 31 trang tự xoay
+  -> tb-2234 | drive-file_1G7U1LgT03GvIt2j-P7UUXdkazU: ok, 93546 ký tự | OCR tesseract vie dpi=250; tin cậy TB 84; 3 trang < 60; 17 trang tự xoay
+  -> tb-2234 | drive-file_1fKx4AnuiV2MDmzOIvgfINrsJwT: ok, 108050 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 29 trang tự xoay
+  -> tb-2234 | drive-file_1kxFUud_1SMqwiUjl4ixogih0Ww: ok, 101968 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 20 trang tự xoay
+  -> tb-2234 | drive-file_1snVCOx3a_FVACFTiPAJcfk3ASU: ok, 100038 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 34 trang tự xoay
+  -> tb-2234 | drive-file_1MSWE-XjNafoxHKrhWiWtsLOBHe: ok, 108523 ký tự | OCR tesseract vie dpi=250; tin cậy TB 84; 1 trang < 60; 38 trang tự xoay
+  -> tb-2234 | drive-file_1D22hn0Z6IB2o4AOWi2y0mBFNAK: ok, 95747 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 41 trang tự xoay
+  -> tb-2234 | drive-file_1XAXHMGdsaJSIXlbUKBS1x8ECho: ok, 116809 ký tự | OCR tesseract vie dpi=250; tin cậy TB 86; 2 trang < 60; 41 trang tự xoay
+  -> tb-2234 | drive-file_1y4Wq6obzavl8ROsbTrZ9Vt7FoE: ok, 98262 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 47 trang tự xoay
+  -> tb-2234 | drive-file_1-d8pil8h8N5C4IY88TdWjEuuIE: ok, 122927 ký tự | OCR tesseract vie dpi=250; tin cậy TB 89; 0 trang < 60; 1 trang tự xoay
+  -> tb-2234 | drive-file_1AfTqVuvmCM0Pb1juDkKFrRsfku: ok, 130785 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 48 trang tự xoay
+  -> tb-2234 | drive-file_1u8L6T37cxm-JxXTsUW7d99jRft: ok, 116430 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 1 trang < 60; 51 trang tự xoay
+  -> tb-2234 | drive-file_1uDR242Gu7f7bOeEGpI8-hTLYH5: ok, 129531 ký tự | OCR tesseract vie dpi=250; tin cậy TB 90; 0 trang < 60; 63 trang tự xoay
+  -> tb-2234 | drive-file_1c0ntpxXgZwRSuc7CE0FL2t8s1q: ok, 129302 ký tự | OCR tesseract vie dpi=250; tin cậy TB 91; 0 trang < 60; 61 trang tự xoay
+  -> tb-2234 | drive-file_14UDjHCZ3Rc7Kqs_-0_ESI1ZvTQ: ok, 171374 ký tự | OCR tesseract vie dpi=250; tin cậy TB 88; 5 trang < 60; 88 trang tự xoay
+Bản ghi theo trạng thái trích xuất: {'no_attachment': 59, 'ok': 81, 'partial': 1}
+Trích xuất: {'ok': 149}

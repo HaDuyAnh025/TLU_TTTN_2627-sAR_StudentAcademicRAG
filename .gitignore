@@ -1,0 +1,18 @@
+# Dữ liệu lớn / có thể tái tạo bằng chương trình
+standardization/extract/raw_files/
+standardization/extract/ocr/
+standardization/extract/tessdata/
+standardization/extract/text_ocr_raw/
+
+# Chữ trích từ file đính kèm: có danh sách sinh viên (họ tên, mã SV) và số điện thoại GVHD
+standardization/extract/text/
+standardization/extract/text_fixed/
+standardization/extract/normalize_changes.csv
+standardization/data/crawl_v2_extracted.json
+standardization/data/crawl_v2_clean.json
+
+# Môi trường, cache
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
