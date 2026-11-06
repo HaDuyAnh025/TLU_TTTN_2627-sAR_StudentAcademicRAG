@@ -1,0 +1,18 @@
+[
+  {"id": "dkhp-1", "category": "dang_ky_hoc_phan", "text": "Khi nào mở đăng ký học học kỳ I năm học 2026 - 2027?"},
+  {"id": "dkhp-2", "category": "dang_ky_hoc_phan", "text": "Đăng ký học phần trên Cổng thông tin sinh viên như thế nào?"},
+  {"id": "dkhp-3", "category": "dang_ky_hoc_phan", "text": "Mỗi học kỳ được đăng ký tối đa bao nhiêu tín chỉ?"},
+  {"id": "hp-1", "category": "hoc_phi", "text": "Học phí đại học chính quy năm học 2026 - 2027 là bao nhiêu?"},
+  {"id": "hp-2", "category": "hoc_phi", "text": "Học phí học lại, học cải thiện điểm được tính thế nào?"},
+  {"id": "hp-3", "category": "hoc_phi", "text": "Hạn nộp học phí học kỳ I là khi nào?"},
+  {"id": "tn-1", "category": "tot_nghiep", "text": "Điều kiện xét tốt nghiệp đại học chính quy là gì?"},
+  {"id": "tn-2", "category": "tot_nghiep", "text": "Chuẩn đầu ra ngoại ngữ để được tốt nghiệp là gì?"},
+  {"id": "tn-3", "category": "tot_nghiep", "text": "Khi nào nộp hồ sơ xét tốt nghiệp đợt 3 năm 2026?"},
+  {"id": "hb-1", "category": "hoc_bong", "text": "Làm sao để được miễn, giảm học phí?"},
+  {"id": "hb-2", "category": "hoc_bong", "text": "Hồ sơ đề nghị miễn, giảm học phí gồm những gì?"},
+  {"id": "tt-1", "category": "thu_tuc", "text": "Làm thế nào để xin giấy xác nhận sinh viên?"},
+  {"id": "tt-2", "category": "thu_tuc", "text": "Thủ tục chuyển ngành đào tạo như thế nào?"},
+  {"id": "tt-3", "category": "thu_tuc", "text": "Phòng Đào tạo liên hệ qua email và số điện thoại nào?"},
+  {"id": "lt-1", "category": "lich_thi", "text": "Lịch thi học kỳ I năm học 2026 - 2027 xem ở đâu?"},
+  {"id": "lt-2", "category": "lich_thi", "text": "Lệ phí thi lại là bao nhiêu và nộp khi nào?"}
+]

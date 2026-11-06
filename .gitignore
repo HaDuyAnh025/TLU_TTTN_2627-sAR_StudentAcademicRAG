@@ -16,3 +16,9 @@ standardization/data/crawl_v2_clean.json
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+.pytest_cache/
+*.db
+.env
+#antigrabity 
+.antigravity/
+.antigravitycli/

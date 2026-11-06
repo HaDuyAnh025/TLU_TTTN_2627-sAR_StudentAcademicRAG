@@ -1,0 +1,3 @@
+# Mô hình embedding cho /search (nặng, cần torch).
+# Trong Docker, torch bản CPU được cài riêng trước file này (xem Dockerfile).
+sentence-transformers==3.3.1

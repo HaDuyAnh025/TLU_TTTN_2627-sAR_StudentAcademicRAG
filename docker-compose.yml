@@ -1,0 +1,82 @@
+# sAR - Student Academic RAG: môi trường phát triển (T3-06)
+#   copy .env.example .env      (Windows)  |  cp .env.example .env  (Linux/macOS)
+#   docker compose up -d --build
+#   API docs: http://localhost:8000/docs   |   Qdrant UI: http://localhost:6333/dashboard
+name: sar
+
+services:
+  api:
+    build:
+      context: ./backend
+      args:
+        INSTALL_ML: ${INSTALL_ML:-true}
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-sar}:${POSTGRES_PASSWORD:-sar_password}@postgres:5432/${POSTGRES_DB:-sar}
+      REDIS_URL: redis://redis:6379/0
+      QDRANT_URL: http://qdrant:6333
+      HF_HOME: /models # cache mô hình HuggingFace, không phải tải lại mỗi lần build
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/app # sửa code là tự reload
+      - ./crawl_2:/data/crawl_2:ro
+      - ./standardization/data:/data/standardization:ro
+      - hf_models:/models
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sar_password}
+      POSTGRES_DB: ${POSTGRES_DB:-sar}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sar} -d ${POSTGRES_DB:-sar}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    ports:
+      - "${QDRANT_PORT:-6333}:6333" # REST + dashboard
+      - "6334:6334" # gRPC
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  pg_data:
+  qdrant_data:
+  redis_data:
+  hf_models:

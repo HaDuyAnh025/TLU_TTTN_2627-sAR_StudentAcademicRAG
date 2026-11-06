@@ -1,0 +1,11 @@
+# Thư viện lõi của API (T3-06, T3-07, T3-08)
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+pydantic-settings==2.6.1
+SQLAlchemy==2.0.36
+psycopg[binary]==3.2.3
+alembic==1.14.0
+qdrant-client==1.12.1
+redis==5.2.1
+numpy>=1.26,<3
