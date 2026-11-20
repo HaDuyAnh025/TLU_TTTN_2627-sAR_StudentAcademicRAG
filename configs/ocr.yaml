@@ -1,0 +1,116 @@
+# Cấu hình benchmark OCR (scripts/ocr_benchmark.py). Chỉnh ở đây, không sửa code.
+
+# Công cụ cần so sánh. Dạng "tên" hoặc "tên:biến thể". Công cụ chưa cài sẽ bị bỏ qua kèm lý do.
+engines:
+  - tesseract
+  - rapidocr:ppocrv5     # model Latin PP-OCRv5 (chạy bằng onnxruntime)
+  - rapidocr:ppocrv4     # model Latin PP-OCRv3/v4
+  - vietocr:vgg_transformer   # dò dòng PP-OCR + nhận dạng VietOCR (tiếng Việt)
+  - vietocr:vgg_seq2seq       # bản nhanh hơn của VietOCR
+  - paddleocr_vl              # VLM nhỏ đọc cả trang → Markdown (cần GPU)
+  # - easyocr            # pip install easyocr (nặng, kéo theo torch)
+
+tesseract:
+  cmd: null              # null = tự tìm (PATH, C:\Program Files\Tesseract-OCR)
+  lang: vie+eng
+  psm: 3                 # 3 = tự phân vùng trang; thử 6 cho khối chữ đơn
+  tessdata_dir: null     # null = ~/.sar-ocr/tessdata (tạo bởi lệnh `setup`)
+  tessdata_variant: best # best (chính xác hơn) | fast (nhẹ hơn)
+
+vietocr:
+  device: auto           # auto = cuda nếu có GPU, ngược lại cpu
+  batch_size: 32
+  pad: 3
+
+paddleocr_vl:
+  model: PaddlePaddle/PaddleOCR-VL
+  device: auto
+  allow_cpu: false
+  max_new_tokens: 2048
+  prompt: "OCR:"
+
+easyocr:
+  langs: [vi, en]
+  gpu: false
+
+# Số luồng CPU mỗi tiến trình (null = mặc định thư viện). Trên máy thuê container hay báo 80 luồng nhưng chỉ được cấp ~10 CPU:
+# đặt khoảng (số CPU được cấp / số tiến trình), ví dụ 3.
+cpu_threads: null
+
+render_dpi: 200          # DPI khi dựng trang PDF thành ảnh
+
+# Xoay ảnh về thẳng trước khi OCR (dò thử 0/90/180/270 bằng công cụ nhanh nhất).
+orientation:
+  enabled: true
+  engine: rapidocr:ppocrv5   # công cụ dùng để dò hướng (nếu không có sẽ dùng công cụ đầu tiên)
+  max_side: 1400             # thu nhỏ ảnh khi dò để chạy nhanh
+
+sample:
+  seed: 42
+  big_stratum_pages: 100     # nhóm có từ ngần này trang trở lên là "nhóm lớn"
+  per_big_stratum: 3         # số trang lấy từ mỗi nhóm lớn
+  per_small_stratum: 1       # số trang lấy từ mỗi nhóm nhỏ
+  text_portrait: 3           # trang dọc có lớp text (dùng làm đáp án tự động)
+  text_landscape: 3          # trang ngang có lớp text, ưu tiên trang có bảng
+  max_images: 5              # số file ảnh (jpg/png) lấy vào mẫu
+  # Thêm tay các trang khó (dấu mộc, chữ ký, bảng...). Dạng "tên_file.pdf#chỉ_số_trang" (đếm từ 0).
+  manual_pages: []
+  # Thông báo có tiêu đề chứa từ khóa này được ưu tiên (thường chứa bảng).
+  table_keywords: [lịch thi, thời khóa biểu, học phí, danh sách, kế hoạch, bảng, mức thu]
+
+# ----------------------------------------------------------------------------
+# Pipeline OCR toàn bộ dữ liệu (scripts/ingest.py --stage extract / verify / vlm)
+pipeline:
+  # CPU: vgg_seq2seq (~9 giây/trang). Máy có GPU NVIDIA: đổi sang vietocr:vgg_transformer và đặt vietocr.device: cuda.
+  base_engine: vietocr:vgg_seq2seq         # OCR nền cho mọi trang scan
+  crosscheck_engine: rapidocr:ppocrv5      # đọc số tốt nhất → đối chiếu chuỗi số
+  crosscheck_min_numbers: 8                # chỉ đối chiếu khi trang có từ ngần này chuỗi số
+  text_layer_min_chars: 50                 # trang có ≥ ngần này ký tự text → dùng lớp text, không OCR
+  out_dir: data/interim/extract
+
+# Điều kiện gắn cờ trang để chuyển cho VLM xem lại
+flags:
+  min_dpi: 150                  # ảnh scan thấp hơn → low_dpi
+  min_mean_conf: 0.80           # độ tin cậy OCR nền thấp hơn → low_conf
+  number_mismatch_ratio: 0.15   # tỷ lệ chuỗi số khác nhau giữa hai công cụ → number_mismatch
+  table_gap_lines: 8            # số dòng có khoảng cột lớn → table_suspected (trang dọc)
+  table_gap_lines_landscape: 4  # ngưỡng cho trang ngang
+  min_chars_scan: 80            # trang scan đọc được quá ít chữ → low_text
+  garble_ratio: 0.25            # tỷ lệ ký tự lạ → garbled
+
+vlm:
+  provider: openai              # anthropic (khóa ANTHROPIC_API_KEY) | openai (khóa OPENAI_API_KEY); khóa đặt trong môi trường hoặc file .env, KHÔNG ghi vào code/config
+  model: claude-sonnet-5-5      # mô hình dùng khi provider = anthropic
+  openai:
+    model: "gpt-5.4-mini"                   # ĐIỀN tên mô hình OpenAI có hỗ trợ ảnh mà bạn muốn dùng (bắt buộc khi provider = openai)
+    detail: high                # high = đọc chữ nhỏ tốt hơn nhưng tốn token ảnh hơn; low = rẻ hơn
+  max_tokens: 4096              # với mô hình có "suy luận", nên tăng (ví dụ 8000) vì token suy luận cũng tính vào giới hạn này
+  max_side: 1800                # thu nhỏ ảnh gửi đi (pixel, cạnh dài)
+  prompt: |
+    Đây là một trang tài liệu hành chính của trường đại học (tiếng Việt). Hãy chép lại TOÀN BỘ nội dung trang thành Markdown.
+    Quy tắc bắt buộc:
+    - Giữ nguyên từng chữ, dấu tiếng Việt, và đặc biệt từng con số (ngày, giờ, tiền, mã học phần); không làm tròn, không suy đoán.
+    - Bảng phải được xuất thành bảng Markdown (| cột | cột |), giữ đúng thứ tự cột và hàng; ô gộp thì lặp lại giá trị; ô trống để trống.
+    - Chữ không đọc được ghi là [?]; không tự bịa nội dung.
+    - Bỏ qua dấu mộc, chữ ký, số trang. Không thêm lời bình luận, chỉ trả về nội dung trang.
+
+# Gói kiểm tra tay (scripts/ingest.py --stage review-pack)
+review:
+  seed: 42
+  max_pages_per_file: 3        # tránh một file dài chi phối kết quả
+  image_dpi: 130
+  sizes:                       # số trang lấy từ mỗi nhóm (tổng mặc định 100; giảm nếu ít thời gian)
+    G1_ocr_khong_co: 40        # OCR không cờ
+    G2_ocr_nghi_sai: 20        # OCR nghi sai nội dung
+    G3_ocr_chi_bang: 15        # OCR chỉ nghi bảng
+    G4_ocr_chi_dpi: 5          # OCR chỉ DPI thấp
+    G5_text_binh_thuong: 10    # lớp text PDF bình thường
+    G6_text_nghi_hong: 10      # lớp text PDF nghi hỏng (tỷ lệ chữ có dấu < 0,12)
+
+# Quy tắc để LLM TỰ SỬA (scripts/ingest.py --stage corrections-build). Chỗ không đủ điều kiện sẽ chờ người sửa tay.
+corrections:
+  auto_min_confidence: cao          # LLM phải tự đánh giá chắc chắn ở mức này
+  require_single_exact_match: true  # đoạn gốc phải khớp nguyên văn và xuất hiện đúng 1 lần trong văn bản OCR
+  numbers_need_corroboration: true  # lỗi số liệu: chuỗi số LLM đọc phải trùng với công cụ OCR thứ hai (RapidOCR)
+  max_len_ratio: 2.0                # đoạn sau sửa không dài/ngắn quá bất thường so với đoạn gốc
+  auto_audit_n: 20                  # số chỗ LLM đã tự sửa đưa vào để bạn kiểm tra mẫu

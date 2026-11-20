@@ -1,0 +1,67 @@
+# Nguồn cần crawl (chỉ trang công khai, tiếng Việt). Chỉnh ở đây, không sửa code.
+base_url: https://thanglong.edu.vn
+lang_prefix: /vi
+
+crawl:
+  delay_seconds: 1.0          # nghỉ giữa các lần mở trang (lịch sự với máy chủ)
+  page_timeout_ms: 60000
+  user_agent: "sAR-academic-rag-crawler/0.1 (student project; polite, 1 req/s)"
+  download_files: true        # tải PDF/DOCX/XLSX đính kèm vào data/raw/files
+  max_file_mb: 60
+  media_base: https://media-cms.thanglong.edu.vn   # host công khai chứa file đính kèm của trang
+  # Danh sách thông báo: /vi/thong-bao có ~190 trang, bấm "trang sau" lần lượt.
+  announcements_max_pages: 200   # chặn trên số trang danh sách
+  announcements_since_year: 2024 # chỉ lấy thông báo từ năm này trở đi (null = tất cả)
+
+# Trang tĩnh: crawl nguyên trang, gán chủ đề cố định.
+static_pages:
+  - { topic: chuong_trinh_dao_tao, path: /vi/dao-tao/dai-hoc-chinh-quy }
+  - { topic: chuong_trinh_dao_tao, path: /vi/dao-tao/sau-dai-hoc }
+  - { topic: chuong_trinh_dao_tao, path: /vi/dao-tao/lien-ket-quoc-te }
+  - { topic: chuong_trinh_dao_tao, path: /vi/dao-tao/lien-thong }
+  - { topic: lien_he_to_chuc,      path: /vi/gioi-thieu }       # có mục Cơ cấu tổ chức, Công khai
+  - { topic: lien_he_to_chuc,      path: /vi/co-cau-to-chuc }
+  - { topic: lien_he_to_chuc,      path: /vi/lien-he }
+  - { topic: quy_che_dao_tao,      path: /vi/cong-khai }
+  - { topic: quy_che_dao_tao,      path: /vi/sinh-vien-hien-tai/tai-lieu-hoc-tap }
+
+# Từ trang tĩnh, đi theo thêm các link khớp mẫu này (1 bước). Chủ đề kế thừa trang gốc.
+follow_patterns:
+  - /vi/nganh-hoc/
+
+# Thông báo: giữ lại nếu tiêu đề chứa MỘT trong các từ khóa (không phân biệt hoa/thường, dấu).
+# Thứ tự = độ ưu tiên khi một thông báo khớp nhiều chủ đề.
+announcement_topics:
+  mon_thay_the:
+    - môn thay thế
+    - học phần thay thế
+    - học phần tương đương
+    - môn tương đương
+  thoi_khoa_bieu:
+    - thời khóa biểu
+    - tkb
+    - lịch học
+  lich_thi_ke_hoach_hoc_phi:
+    - lịch thi
+    - kế hoạch
+    - học phí
+    - lệ phí
+    - thi lại
+    - lịch kiểm tra
+    - tiến độ
+  chuong_trinh_dao_tao:
+    - chương trình đào tạo
+    - khung chương trình
+    - chương trình học
+  quy_che_dao_tao:
+    - quy chế
+    - quy định
+    - quy trình
+    - đăng ký học
+    - đăng ký môn
+    - bảo vệ
+    - đồ án tốt nghiệp
+    - khóa luận
+    - chuyển ngành
+    - chuyển chuyên ngành
+    - xét tốt nghiệp

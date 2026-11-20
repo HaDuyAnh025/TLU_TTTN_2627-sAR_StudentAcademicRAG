@@ -1,0 +1,29 @@
+# Stopword tiếng Việt cho BM25 (sau khi tách từ bằng pyvi, chữ thường). Mỗi dòng một từ; dòng bắt đầu bằng # là chú thích.
+# Danh sách NGẮN, cố ý: không bỏ "không", "tối_đa", "tối_thiểu", số, mã học phần.
+và
+của
+là
+các
+những
+một
+có
+cho
+trong
+với
+theo
+để
+được
+này
+đó
+khi
+thì
+mà
+tại
+từ
+về
+bởi
+như
+hoặc
+cũng
+đã
+sẽ

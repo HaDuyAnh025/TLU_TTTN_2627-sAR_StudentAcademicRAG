@@ -1,0 +1,29 @@
+# Embedding + index Qdrant (module src/rag/embedding). Chỉnh ở đây, không sửa code.
+openai:
+  models:
+    small: {name: text-embedding-3-small, dim: 1536}
+    large: {name: text-embedding-3-large, dim: 3072}
+  batch_size: 256              # số input mỗi request
+  max_tokens_per_request: 250000
+  price_per_1m_tokens:         # TỰ ĐIỀN theo bảng giá OpenAI hiện tại (USD / 1 triệu token); null thì chỉ báo token, không quy ra tiền
+    small: 0.02
+    large: 0.13
+  max_cost_usd: 1              # vượt thì dừng trước khi gọi API (chỉ kiểm được khi đã điền giá)
+cache_dir: data/cache/embeddings   # SQLite: <cache_dir>/<tên mô hình>/cache.sqlite, khóa = sha256(model + "\n" + embed_text)
+usage_log: data/processed/embedding_usage.jsonl
+qdrant:
+  url: http://localhost:6333
+  collections: {c1: sar_c1, c2: sar_c2, c3: sar_c3, c2_novlm: sar_c2_novlm}
+  parents_path: data/index/c3_parents.sqlite
+  upsert_batch: 256
+chunks:                        # file chunk của từng cấu hình (excluded_chunks.jsonl KHÔNG bao giờ được liệt kê ở đây)
+  c1: data/processed/chunks/c1_chunks.jsonl
+  c2: data/processed/chunks/c2_chunks.jsonl
+  c3: data/processed/chunks/c3_chunks.jsonl
+  c2_novlm: data/processed/chunks/c2_novlm_chunks.jsonl
+c3_parents: data/processed/chunks/c3_parents.jsonl
+bm25:
+  k1: 1.2
+  b: 0.75
+  stopwords: configs/stopwords_vi.txt   # danh sách ngắn; KHÔNG bỏ số và mã học phần
+  stats_path: data/index/bm25_stats.json

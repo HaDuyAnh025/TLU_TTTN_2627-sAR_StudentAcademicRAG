@@ -1,0 +1,20 @@
+playwright
+PyYAML
+pymupdf
+pillow
+numpy
+pytesseract
+rapidocr
+onnxruntime
+rapidfuzz
+# easyocr   # tùy chọn, nặng (kéo theo torch)
+
+pydantic
+tiktoken
+pytest
+
+# Embedding + Qdrant
+openai
+qdrant-client==1.20.*   # cùng dòng 1.20.x với server qdrant/qdrant:v1.20.0 (deploy/qdrant/docker-compose.yml)
+pyvi
+sentence-transformers   # CrossEncoder cho reranker BAAI/bge-reranker-v2-m3

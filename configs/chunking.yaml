@@ -1,0 +1,35 @@
+# Tham số chunking (module src/rag/chunking). Chỉnh ở đây, không sửa code.
+encoding: cl100k_base
+tiktoken_cache_dir: data/cache/tiktoken   # cache vocab; tải 1 lần, sau đó chạy offline
+max_tokens: 512
+min_tokens: 50
+fixed_overlap: 50
+recursive_overlap_ratio: 0.15
+table_small_max_tokens: 512
+note_inline_max_tokens: 80
+# Lớp bảng do VLM đọc lại (data/interim/table_vlm/<doc_id>.json, tạo bởi scripts/run_table_vlm.py). Cờ này chỉ quyết định loader có dùng
+# lớp đó thay cho trang tương ứng trong clean/ hay không (trang need_review không bao giờ được dùng). false = chạy như trước, để so sánh.
+use_table_vlm: true
+table_vlm:
+  min_match_rate: 0.8      # tỉ lệ số/mã trong bản VLM trùng với OCR cũ; thấp hơn -> need_review
+  max_tokens: 12000        # trần token ra (mô hình suy luận: gồm cả token suy luận)
+  render_dpi: 200
+  prompt: |
+    Đây là một trang tài liệu hành chính của trường đại học (tiếng Việt). Hãy chép lại TOÀN BỘ nội dung trang thành Markdown.
+    Quy tắc bắt buộc:
+    - Mọi bảng phải xuất thành bảng Markdown: dòng tiêu đề `| cột | cột |`, dòng phân cách `|---|---|`, rồi từng dòng dữ liệu; mọi dòng có cùng số cột.
+    - Ô gộp (nhiều dòng/cột): lặp lại giá trị của ô gộp ở mọi dòng/cột mà nó phủ; ô thực sự trống để trống.
+    - Giữ nguyên từng chữ, dấu tiếng Việt và từng con số, mã học phần; không làm tròn, không sửa, không suy đoán.
+    - Chữ hoặc số không đọc được: ghi đúng `[?]`; tuyệt đối không tự bịa nội dung.
+    - Chỉ dùng văn bản thuần: không in đậm/nghiêng (không dùng ** hay *), không dùng thẻ HTML như <br>; xuống dòng trong một ô thì nối bằng dấu cách.
+    - Bỏ qua dấu mộc, chữ ký, số trang. Không thêm lời bình luận, chỉ trả về nội dung trang.
+paths:
+  clean_dir: data/interim/clean
+  manifest: data/raw/manifest.jsonl
+  doc_meta: configs/doc_meta.yaml
+  aliases: configs/aliases.yaml
+  out_dir: data/processed
+  table_vlm_dir: data/interim/table_vlm
+  table_vlm_check: data/processed/table_vlm_check.csv
+  table_vlm_fixes: configs/table_vlm_fixes.yaml
+  nganh: configs/nganh.yaml

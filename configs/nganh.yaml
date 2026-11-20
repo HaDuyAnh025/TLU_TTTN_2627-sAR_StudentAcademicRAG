@@ -1,0 +1,222 @@
+# Danh mục ngành chuẩn (do scripts/make_nganh_yaml.py dựng từ dữ liệu; NGƯỜI DUYỆT rồi mới dùng, sửa tay được).
+# ma: mã ngành (7 chữ số + chữ cái tùy chọn = chương trình riêng của cùng mã); ten: tên chuẩn; bac_dao_tao: dai_hoc | sau_dai_hoc;
+# ma_nganh_goc: mã ngành gốc của chương trình riêng (7340101A -> 7340101); các mục khác null.
+# aliases: biến thể gặp trong dữ liệu KÈM MÃ (kể cả lỗi OCR). Tên không có mã được ghép bằng so khớp tên chuẩn hóa/difflib >= 0.85
+# lúc chunking; những tên dưới ngưỡng KHÔNG tự thành alias (xem nganh_unmatched.md).
+nganh:
+- ma: '7210205'
+  ten: Thanh nhạc
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7340101'
+  ten: Quản trị kinh doanh
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7340115'
+  ten: Marketing
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7340201'
+  ten: Tài chính – Ngân hàng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Tài chính - Ngân hàng
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7340301'
+  ten: Kế toán
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Kế toàn
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7380107'
+  ten: Luật kinh tế
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7460112'
+  ten: Toán ứng dụng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7480101'
+  ten: Khoa học máy tính
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7480102'
+  ten: Mạng máy tính và truyền thông dữ liệu
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7480104'
+  ten: Hệ thống thông tin
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7480201'
+  ten: Công nghệ thông tin
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Công nghệ thống tin
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7480207'
+  ten: Trí tuệ nhân tạo
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7510605'
+  ten: Logistics và quản lý chuỗi cung ứng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Logistics & Quản lý chuỗi cung ứng
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7720301'
+  ten: Điều dưỡng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7720401'
+  ten: Dinh dưỡng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7720701'
+  ten: Y tế công cộng
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7720802'
+  ten: Quản lý bệnh viện
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7220201'
+  ten: Ngôn ngữ Anh
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7220204'
+  ten: Ngôn ngữ Trung Quốc
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7220209'
+  ten: Ngôn ngữ Nhật
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7220210'
+  ten: Ngôn ngữ Hàn Quốc
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7310106'
+  ten: Kinh tế quốc tế
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7310630'
+  ten: Việt Nam học
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: THÔNG-TIN-DANH-MỤC-NGÀNH-ĐÀO-TẠO (danh mục chính thức)
+- ma: '7320104'
+  ten: Truyền thông đa phương tiện
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 10
+- ma: '7210403'
+  ten: Thiết kế đồ họa
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 11
+- ma: '7340122'
+  ten: Thương mại điện tử
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 23
+- ma: 7340101A
+  ten: Quản trị kinh doanh định hướng chuẩn nghề nghiệp quốc tế
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: '7340101'
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 26
+- ma: 7340301A
+  ten: Kế toán định hướng chứng chỉ quốc tế ACCA
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: '7340301'
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 27
+- ma: '7810103'
+  ten: Quản trị dịch vụ du lịch và lữ hành
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Quản trị dịch vụ du lịch & lữ hành
+  nguon: tờ rơi drive-195f57wS… trang 44
+- ma: '7810201'
+  ten: Quản trị khách sạn
+  bac_dao_tao: dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: tờ rơi drive-195f57wS… trang 45
+- ma: '8340101'
+  ten: Quản trị kinh doanh
+  bac_dao_tao: sau_dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: QĐ drive-1-3_TJmC… (Tên/Mã ngành đào tạo)
+- ma: '8340201'
+  ten: Tài chính – Ngân hàng
+  bac_dao_tao: sau_dai_hoc
+  ma_nganh_goc: null
+  aliases:
+  - Tài chính - Ngân hàng
+  nguon: QĐ drive-1aiyo8on… (Tên/Mã ngành đào tạo)
+- ma: '8720301'
+  ten: Điều dưỡng
+  bac_dao_tao: sau_dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: QĐ drive-1Hj9q0nJ… (Tên/Mã ngành đào tạo)
+- ma: '9340101'
+  ten: Quản trị kinh doanh
+  bac_dao_tao: sau_dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: QĐ drive-1hx5Zxv4… (tiến sĩ)
+- ma: '8720802'
+  ten: Quản lý bệnh viện
+  bac_dao_tao: sau_dai_hoc
+  ma_nganh_goc: null
+  aliases: []
+  nguon: QĐ drive-1SSfomBw… (Tên/Mã ngành đào tạo)

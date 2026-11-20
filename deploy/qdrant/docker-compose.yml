@@ -1,0 +1,12 @@
+# Qdrant local cho RAG. Chạy: docker compose -f deploy/qdrant/docker-compose.yml up -d
+# Ghim phiên bản server cùng dòng với qdrant-client trong requirements.txt (1.20.x). KHÔNG dùng `latest`.
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.20.0
+    container_name: sar-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST
+      - "6334:6334"   # gRPC
+    volumes:
+      - ../../data/index/qdrant:/qdrant/storage

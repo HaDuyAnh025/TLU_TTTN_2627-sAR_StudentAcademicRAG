@@ -1,0 +1,16 @@
+# Bản khóa theo máy Windows đã chạy thành công (torch/torchvision/vietocr cài riêng trong setup_ubuntu.sh)
+transformers>=5.14
+accelerate
+huggingface_hub
+safetensors
+pymupdf==1.28.2
+pillow
+numpy
+PyYAML==6.0.3
+rapidocr==3.10.0
+onnxruntime==1.31.0
+rapidfuzz==3.14.6
+einops==0.8.2
+gdown
+pdfplumber==0.11.10
+anthropic

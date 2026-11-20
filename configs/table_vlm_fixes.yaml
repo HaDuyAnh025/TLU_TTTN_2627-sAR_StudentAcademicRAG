@@ -1,0 +1,270 @@
+# Sửa tay trang table_vlm/ sau khi người soát xác nhận (file này do giao diện table-vlm-review-ui ghi; vẫn sửa tay được).
+# Loader áp dụng SAU khi đọc table_vlm/, CHỈ các mục có trang_thai: da_xac_nhan (de_xuat = chưa dùng). `find` phải khớp ĐÚNG 1 lần
+# trong văn bản trang (sau khi chuẩn hóa dòng/gắn header), không thì loader báo lỗi.
+#   fixes:        sửa chuỗi trong trang VLM
+#   force_accept: dùng lại trang need_review
+#   force_reject: loại trang VLM đang dùng (quay về OCR cũ)
+fixes:
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 2
+  find: '| GE12 | Tiếng Anh sơ cấp 2 |'
+  replace: '| GE112 | Tiếng Anh sơ cấp 2 |'
+  ly_do: GE121 có tiên quyết GE112; sơ cấp 1 là GE111
+  trang_thai: de_xuat
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 8
+  find: GE112, GE111>4,0
+  replace: GE112, GE111≥4,0
+  ly_do: các trang khác đều ghi ≥4,0
+  trang_thai: de_xuat
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 7
+  find: '| BA14 | Kỹ năng lãnh đạo | 2 | BA102 | 30 | 1.5 |'
+  replace: '| BA414 | Kỹ năng lãnh đạo | 2 | BA102 | 30 | 1.5 |'
+  ly_do: ''
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:46:49'
+  ghi_chu: ''
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 2
+  find: '| GE12 | Tiếng Anh sơ cấp 2 | 2 | GE111 | 54 | 1.6 |'
+  replace: '| GE112 | Tiếng Anh sơ cấp 2 | 2 | GE111 | 54 | 1.6 |'
+  ly_do: ''
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:47:07'
+  ghi_chu: Đang sai "| GE12 | Tiếng Anh sơ cấp 2 | 2 | GE111 | 54 | 1.6 |" chuyển thành "| GE112 | Tiếng Anh sơ cấp 2 | 2 | GE111 | 54 | 1.6 |"
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 20
+  find: Học phí dự kiến/01 học kỳ
+  replace: '| Học phí dự kiến/01 học kỳ |'
+  ly_do: ''
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:49:31'
+  ghi_chu: ''
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 41
+  find: Học phí dự kiến/01 học kỳ
+  replace: '| Học phí dự kiến/01 học kỳ |'
+  ly_do: ''
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:50:00'
+  ghi_chu: ''
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 24
+  find: '| Học phí dự kiến/01 học kỳ |  |  |  |'
+  replace: '| Học phí dự kiến/01 học kỳ |'
+  ly_do: ''
+  trang_thai: tu_choi
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:50:53'
+  ghi_chu: ''
+  ly_do_tu_choi: quy tắc table_title xử lý được dòng nhãn; mục sửa làm bảng lệch cột
+- doc_id: drive-1aiyo8onSpCrWgVESDG2w9Q2VKyvB9lfc
+  page_1based: 71
+  find: '|  |  | toàn cầu hoá và công nghệ thông qua các học phần về fintech, phân tích dữ liệu, ngân hàng số, chuyển đổi số doanh nghiệp… với các ứng dụng công nghệ trong lĩnh vực tài chính – ngân hàng
+    như học máy, blockchain, điện toán đám mây, công nghệ 5G … * Mục tiêu cụ thể - Phân tích và vận dụng được những kiến thức toàn diện, chuyên sâu về kinh tế, tiền tệ, hoạt động ngân hàng và thị trường
+    tài chính và kiến thức liên ngành có liên quan vào thực tiễn - Thể hiện được các kỹ năng phù hợp để quản lý các vấn đề thực tiễn thuộc lĩnh vực tài chính - ngân hàng hiệu quả - Thể hiện được năng lực
+    tự chủ và trách nhiệm để quản lý tốt các hoạt động chuyên môn trong tổ chức và thích ứng nhanh với sự thay đổi trong | - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực
+    tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học sự hiểu biết sâu sắc về những thách thức của ngân hàng hiện đại phải đối mặt. Trang bị cho sinh
+    viên các kiến thức để thành công và phát triển trong một môi trường đòi hỏi khắt khe và cạnh tranh quốc tế. Nó đặt nền tảng cho trình độ chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị
+    cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người học không chỉ những kiến thức chuyên sâu về học thuật mà
+    còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng chỉ nâng cao về Ngân hàng và Lãnh đạo trong thời đại
+    kỹ thuật số. Do đó, người học trong chương trình này sẽ được nhận Chứng chỉ này sau khi tốt nghiệp và do đó đáp ứng các yêu cầu học tập để trở thành một chuyên viên ngân hàng chuyên nghiệp. | lực tự
+    chủ hoạt động nghiên cứu và các hoạt động chuyên môn, thích ứng nhanh với những thay đổi trong môi trường hoạt động trong lĩnh vực Tài chính – Ngân hàng. | “phương pháp nghiên cứu”, “phương pháp định
+    tính”, “phương pháp định lượng”, “phân tích dữ liệu”, “các chủ đề nghiên cứu đương đại trong chuyên ngành”, “quản trị tài chính nâng cao”, “ứng dụng công nghệ”… * Mục tiêu cụ thể - Người học vận dụng
+    được những kiến thức toàn diện, chuyên sâu trong lĩnh vực Tài chính – Ngân hàng; - Thể hiện được các kỹ năng phù hợp trong nghiên cứu và quản lý các vấn đề thực tiễn thuộc lĩnh vực tài | * Mục tiêu
+    cụ thể - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học kiến thức
+    chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho
+    người học không chỉ những kiến thức chuyên sâu về học thuật mà còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan
+    đến Chứng chỉ nâng cao |'
+  replace: '| TT | Nội dung so sánh | Chương trình đào tạo Trường Đại học Thăng Long | Chương trình đào tạo Trường Keele University | Giống nhau | Khác nhau | Khác nhau | |---|---|---|---|---|---|---| |  |  |
+    toàn cầu hoá và công nghệ thông qua các học phần về fintech, phân tích dữ liệu, ngân hàng số, chuyển đổi số doanh nghiệp… với các ứng dụng công nghệ trong lĩnh vực tài chính – ngân hàng như học máy,
+    blockchain, điện toán đám mây, công nghệ 5G … * Mục tiêu cụ thể - Phân tích và vận dụng được những kiến thức toàn diện, chuyên sâu về kinh tế, tiền tệ, hoạt động ngân hàng và thị trường tài chính và
+    kiến thức liên ngành có liên quan vào thực tiễn - Thể hiện được các kỹ năng phù hợp để quản lý các vấn đề thực tiễn thuộc lĩnh vực tài chính - ngân hàng hiệu quả - Thể hiện được năng lực tự chủ và trách
+    nhiệm để quản lý tốt các hoạt động chuyên môn trong tổ chức và thích ứng nhanh với sự thay đổi trong | - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế cần thiết của
+    người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học sự hiểu biết sâu sắc về những thách thức của ngân hàng hiện đại phải đối mặt. Trang bị cho sinh viên các kiến thức
+    để thành công và phát triển trong một môi trường đòi hỏi khắt khe và cạnh tranh quốc tế. Nó đặt nền tảng cho trình độ chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho người học có
+    thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người học không chỉ những kiến thức chuyên sâu về học thuật mà còn những kỹ năng
+    làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng chỉ nâng cao về Ngân hàng và Lãnh đạo trong thời đại kỹ thuật số. Do đó,
+    người học trong chương trình này sẽ được nhận Chứng chỉ này sau khi tốt nghiệp và do đó đáp ứng các yêu cầu học tập để trở thành một chuyên viên ngân hàng chuyên nghiệp. | lực tự chủ hoạt động nghiên
+    cứu và các hoạt động chuyên môn, thích ứng nhanh với những thay đổi trong môi trường hoạt động trong lĩnh vực Tài chính – Ngân hàng. | “phương pháp nghiên cứu”, “phương pháp định tính”, “phương pháp
+    định lượng”, “phân tích dữ liệu”, “các chủ đề nghiên cứu đương đại trong chuyên ngành”, “quản trị tài chính nâng cao”, “ứng dụng công nghệ”… * Mục tiêu cụ thể - Người học vận dụng được những kiến thức
+    toàn diện, chuyên sâu trong lĩnh vực Tài chính – Ngân hàng; - Thể hiện được các kỹ năng phù hợp trong nghiên cứu và quản lý các vấn đề thực tiễn thuộc lĩnh vực tài | * Mục tiêu cụ thể - Cơ bản trong
+    thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học kiến thức chuyên môn được coi là
+    tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người học không chỉ những
+    kiến thức chuyên sâu về học thuật mà còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng chỉ nâng cao |'
+  ly_do: ''
+  trang_thai: thay_the
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:54:49'
+  ghi_chu: ' [tắt: header đã được gắn tự động từ trang 70 (continued_header=true); mục này làm trùng header và sinh dòng "---" trong bảng]'
+  thay_the_boi: '2026-11-20T14:58:18'
+- doc_id: drive-1aiyo8onSpCrWgVESDG2w9Q2VKyvB9lfc
+  page_1based: 71
+  find: '|  |  | toàn cầu hoá và công nghệ thông qua các học phần về fintech, phân tích dữ liệu, ngân hàng số, chuyển đổi số doanh nghiệp… với các ứng dụng công nghệ trong lĩnh vực tài chính – ngân hàng
+    như học máy, blockchain, điện toán đám mây, công nghệ 5G … * Mục tiêu cụ thể - Phân tích và vận dụng được những kiến thức toàn diện, chuyên sâu về kinh tế, tiền tệ, hoạt động ngân hàng và thị trường
+    tài chính và kiến thức liên ngành có liên quan vào thực tiễn - Thể hiện được các kỹ năng phù hợp để quản lý các vấn đề thực tiễn thuộc lĩnh vực tài chính - ngân hàng hiệu quả - Thể hiện được năng lực
+    tự chủ và trách nhiệm để quản lý tốt các hoạt động chuyên môn trong tổ chức và thích ứng nhanh với sự thay đổi trong | - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực
+    tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học sự hiểu biết sâu sắc về những thách thức của ngân hàng hiện đại phải đối mặt. Trang bị cho sinh
+    viên các kiến thức để thành công và phát triển trong một môi trường đòi hỏi khắt khe và cạnh tranh quốc tế. Nó đặt nền tảng cho trình độ chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị
+    cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người học không chỉ những kiến thức chuyên sâu về học thuật mà
+    còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng chỉ nâng cao về Ngân hàng và Lãnh đạo trong thời đại
+    kỹ thuật số. Do đó, người học trong chương trình này sẽ được nhận Chứng chỉ này sau khi tốt nghiệp và do đó đáp ứng các yêu cầu học tập để trở thành một chuyên viên ngân hàng chuyên nghiệp. | lực tự
+    chủ hoạt động nghiên cứu và các hoạt động chuyên môn, thích ứng nhanh với những thay đổi trong môi trường hoạt động trong lĩnh vực Tài chính – Ngân hàng. | “phương pháp nghiên cứu”, “phương pháp định
+    tính”, “phương pháp định lượng”, “phân tích dữ liệu”, “các chủ đề nghiên cứu đương đại trong chuyên ngành”, “quản trị tài chính nâng cao”, “ứng dụng công nghệ”… * Mục tiêu cụ thể - Người học vận dụng
+    được những kiến thức toàn diện, chuyên sâu trong lĩnh vực Tài chính – Ngân hàng; - Thể hiện được các kỹ năng phù hợp trong nghiên cứu và quản lý các vấn đề thực tiễn thuộc lĩnh vực tài | * Mục tiêu
+    cụ thể - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học kiến thức
+    chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho
+    người học không chỉ những kiến thức chuyên sâu về học thuật mà còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan
+    đến Chứng chỉ nâng cao |'
+  replace: '| TT | Nội dung so sánh | Chương trình đào tạo Trường Đại học Thăng Long | Chương trình đào tạo Trường Keele University | Giống nhau | Khác nhau | Khác nhau |
+
+    |---|---|---|---|---|---|---|
+
+    |  |  |  |  |  | CTĐT Trường Đại học Thăng Long | CTĐT Trường Keele University |
+
+    |  |  | toàn cầu hoá và công nghệ thông qua các học phần về fintech, phân tích dữ liệu, ngân hàng số, chuyển đổi số doanh nghiệp… với các ứng dụng công nghệ trong lĩnh vực tài chính – ngân hàng như
+    học máy, blockchain, điện toán đám mây, công nghệ 5G … * Mục tiêu cụ thể - Phân tích và vận dụng được những kiến thức toàn diện, chuyên sâu về kinh tế, tiền tệ, hoạt động ngân hàng và thị trường tài
+    chính và kiến thức liên ngành có liên quan vào thực tiễn - Thể hiện được các kỹ năng phù hợp để quản lý các vấn đề thực tiễn thuộc lĩnh vực tài chính - ngân hàng hiệu quả - Thể hiện được năng lực tự
+    chủ và trách nhiệm để quản lý tốt các hoạt động chuyên môn trong tổ chức và thích ứng nhanh với sự thay đổi trong | - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế
+    cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học sự hiểu biết sâu sắc về những thách thức của ngân hàng hiện đại phải đối mặt. Trang bị cho sinh viên
+    các kiến thức để thành công và phát triển trong một môi trường đòi hỏi khắt khe và cạnh tranh quốc tế. Nó đặt nền tảng cho trình độ chuyên môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho
+    người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người học không chỉ những kiến thức chuyên sâu về học thuật mà còn
+    những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng chỉ nâng cao về Ngân hàng và Lãnh đạo trong thời đại kỹ
+    thuật số. Do đó, người học trong chương trình này sẽ được nhận Chứng chỉ này sau khi tốt nghiệp và do đó đáp ứng các yêu cầu học tập để trở thành một chuyên viên ngân hàng chuyên nghiệp. | lực tự chủ
+    hoạt động nghiên cứu và các hoạt động chuyên môn, thích ứng nhanh với những thay đổi trong môi trường hoạt động trong lĩnh vực Tài chính – Ngân hàng. | “phương pháp nghiên cứu”, “phương pháp định tính”,
+    “phương pháp định lượng”, “phân tích dữ liệu”, “các chủ đề nghiên cứu đương đại trong chuyên ngành”, “quản trị tài chính nâng cao”, “ứng dụng công nghệ”… * Mục tiêu cụ thể - Người học vận dụng được
+    những kiến thức toàn diện, chuyên sâu trong lĩnh vực Tài chính – Ngân hàng; - Thể hiện được các kỹ năng phù hợp trong nghiên cứu và quản lý các vấn đề thực tiễn thuộc lĩnh vực tài | * Mục tiêu cụ thể
+    - Cơ bản trong thiết kế của chương trình này là nhấn mạnh vào các kỹ năng thực tế cần thiết của người học để làm việc trong lĩnh vực ngân hàng. - Chương trình cung cấp cho người học kiến thức chuyên
+    môn được coi là tiêu chuẩn vàng toàn cầu và sẽ chuẩn bị cho người học có thể đóng góp vào thực tiễn qua những vai trò quản lý cấp cao trong ngành ngân hàng. - Chương trình này sẽ trang bị cho người
+    học không chỉ những kiến thức chuyên sâu về học thuật mà còn những kỹ năng làm việc được săn đón mà ngành dịch vụ tài chính đang có nhu cầu cao. - Chương trình này học các giáo trình liên quan đến Chứng
+    chỉ nâng cao |'
+  ly_do: ''
+  trang_thai: tu_choi
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T14:58:18'
+  ghi_chu: ' [tự động khôi phục xuống dòng bị ô nhập một dòng làm mất] [tắt: header đã được gắn tự động từ trang 70 (continued_header=true); mục này làm trùng header và sinh dòng "---" trong bảng]'
+  ly_do_tu_choi: trang đã continued_header=true; header bị gắn 2 lần
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 26
+  find: '| Học phí dự kiến/01 học kỳ |  |  |  |'
+  replace: '| Học phí dự kiến/01 học kỳ |'
+  ly_do: ''
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T15:06:07'
+  ghi_chu: ''
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 20
+  find: '| Học phí dự kiến/01 học kỳ |
+
+
+    | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|
+
+    | 20.700.000 | 22.800.000 | 25.100.000 | 27.600.000 |'
+  replace: '| Học phí dự kiến/01 học kỳ | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|---|
+
+    | Kinh tế quốc tế (7310106) | 20.700.000 | 22.800.000 | 25.100.000 | 27.600.000 |'
+  ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Kinh tế
+    quốc tế (7310106)'
+  trang_thai: tu_choi
+  nguoi_soat: claude (đề xuất)
+  thoi_gian: '2026-11-20T15:24:06'
+  ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
+  ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 24
+  find: '| Học phí dự kiến/01 học kỳ |
+
+    |---|---|---|---|
+
+    | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    | 21.900.000 | 24.100.000 | 26.550.000 | 29.200.000 |'
+  replace: '| Học phí dự kiến/01 học kỳ | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|---|
+
+    | Tài chính – Ngân hàng (7340201) | 21.900.000 | 24.100.000 | 26.550.000 | 29.200.000 |'
+  ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Tài chính
+    – Ngân hàng (7340201)'
+  trang_thai: tu_choi
+  nguoi_soat: claude (đề xuất)
+  thoi_gian: '2026-11-20T15:24:06'
+  ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
+  ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 26
+  find: '| Học phí dự kiến/01 học kỳ |
+
+    |---|---|---|---|
+
+    | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    | 24.450.000 | 26.900.000 | 29.600.000 | 32.600.000 |'
+  replace: '| Học phí dự kiến/01 học kỳ | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|---|
+
+    | Quản trị kinh doanh định hướng chuẩn nghề nghiệp quốc tế (7340101A) | 24.450.000 | 26.900.000 | 29.600.000 | 32.600.000 |'
+  ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Quản trị
+    kinh doanh định hướng chuẩn nghề nghiệp quốc tế (7340101A)'
+  trang_thai: tu_choi
+  nguoi_soat: claude (đề xuất)
+  thoi_gian: '2026-11-20T15:24:06'
+  ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
+  ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 41
+  find: '| Học phí dự kiến/01 học kỳ |
+
+
+    | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|
+
+    | 22.600.000 | 24.900.000 | 27.400.000 | 30.100.000 |'
+  replace: '| Học phí dự kiến/01 học kỳ | Năm 1 (kỳ 1 - 2) | Năm 2 (kỳ 3 - 4) | Năm 3 (kỳ 5 - 6) | Năm 3,5 (kỳ 7) |
+
+    |---|---|---|---|---|
+
+    | Luật kinh tế (7380107) | 22.600.000 | 24.900.000 | 27.400.000 | 30.100.000 |'
+  ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Luật kinh
+    tế (7380107)'
+  trang_thai: tu_choi
+  nguoi_soat: claude (đề xuất)
+  thoi_gian: '2026-11-20T15:24:06'
+  ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
+  ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
+force_accept:
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 44
+  ly_do: người soát đã xem ảnh và duyệt đúng
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T15:31:00'
+  ghi_chu: xác nhận theo yêu cầu của người soát; trang đã duyệt 'dung' lúc 2026-11-20T14:48:17 trong table_vlm_review_log.jsonl
+- doc_id: drive-17ALNSt37-HO-NgV3cMygvmVuK0nB0psL
+  page_1based: 58
+  ly_do: người soát đã xem ảnh và duyệt đúng
+  trang_thai: da_xac_nhan
+  nguoi_soat: duy anh
+  thoi_gian: '2026-11-20T15:31:00'
+  ghi_chu: xác nhận theo yêu cầu của người soát; trang đã duyệt 'dung' lúc 2026-11-20T14:48:42 trong table_vlm_review_log.jsonl
+- doc_id: drive-195f57wSWF1hZEwuF6BXtpVeMrw24OYYf
+  page_1based: 26
+  ly_do: 'CHƯA NÊN dùng: need_review vì bảng ''Mã xét tuyển | Thời gian đào tạo | Tổ hợp môn tuyển sinh'' có header 3 cột nhưng dòng dữ liệu 4 cột (không liên quan bảng học phí). Chỉ cân nhắc force_accept
+    sau khi sửa bảng đó.'
+  trang_thai: de_xuat
+  nguoi_soat: claude (đề xuất)
+  thoi_gian: '2026-11-20T15:24:06'
+  ghi_chu: ''
+force_reject: []

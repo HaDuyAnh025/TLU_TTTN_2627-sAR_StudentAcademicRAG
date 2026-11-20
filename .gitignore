@@ -1,0 +1,21 @@
+# Dữ liệu (nguồn thô, lớp trung gian, đầu ra chunk/embedding, cache, ảnh): KHÔNG commit. Sinh lại được từ code + configs.
+data/
+
+# Bí mật và môi trường
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Rác của Python / công cụ
+__pycache__/
+*.pyc
+.pytest_cache/
+.codegraph/
+.claude/
+
+# Sao lưu/tạm do giao diện duyệt và script ghi
+configs/*.bak
+configs/*.tmp
+*.log

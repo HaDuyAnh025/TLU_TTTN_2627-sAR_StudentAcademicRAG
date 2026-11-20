@@ -1,0 +1,13 @@
+# Tầng retrieval (module src/rag/retrieval). Chỉnh ở đây, không sửa code.
+k_candidates: 20      # mỗi retriever (dense, bm25)
+rrf_k: 60             # RRF phía client: score = sum 1/(rrf_k + rank)
+n_rerank: 20          # số ứng viên sau fusion + khử trùng lặp đưa vào reranker
+top_k: 5
+context_budget_tokens: 1500   # ngân sách token context (cl100k_base), áp dụng cho MỌI cấu hình để so sánh C1/C2/C3 công bằng
+min_truncate_tokens: 100      # mục cuối không vừa ngân sách: cắt bớt nếu còn >= ngần này token, ngược lại bỏ
+default_filters: {status: hieu_luc, in_scope: true, bac_dao_tao: dai_hoc}
+reranker: {model: BAAI/bge-reranker-v2-m3, max_length: 512, batch_size: 16, backend: torch, threads: null, grad_mode: inference_mode}
+# mode hybrid_rerank_fused (xem fusion.fuse_with_rerank): final = w*rank_score(rerank) + (1-w)*rank_score(rrf) + struct_bonus*n_match
+fusion_w: 0.7
+struct_bonus: 0.003   # cộng cho MỖI thuộc tính (học kỳ/năm học/mã HP/khóa) có trong câu hỏi và có trong tiêu đề tài liệu
+hf_cache_dir: data/cache/hf
