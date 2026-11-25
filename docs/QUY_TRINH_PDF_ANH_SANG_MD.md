@@ -9,7 +9,33 @@ Viết lại theo đúng những gì code đang làm (cập nhật 2026-11-20). 
 4. **Văn bản do mô hình sinh (LLM/VLM) chỉ được dùng sau khi qua kiểm tra**, và luôn ghi riêng nguồn, mô hình, thời điểm.
 5. Bỏ qua theo quyết định: 30 file đính kèm tải lỗi HTTP 500, và các trang crawl không có file đính kèm.
 
-## 1. Sơ đồ
+## 1. Sơ đồ tóm tắt: OCR → so sánh → đánh giá → phân nhánh → label → clean
+
+```
+PDF / ảnh
+  ├─ có lớp chữ PDF ───────────────────────────────────────────► clean (lấy nguyên văn)
+  └─ scan / ảnh
+       │  OCR 1: VietOCR (đọc chữ)
+       │  OCR 2: RapidOCR (chỉ đối chiếu số)
+       ▼
+   SO SÁNH hai OCR (chuỗi số khác nhau, độ tin cậy, DPI, bảng, ký tự lạ)
+       ▼
+   ĐÁNH GIÁ CHẤT LƯỢNG → gắn cờ
+       ├─ THẤP (có cờ, 623 trang)
+       │     LLM đối chiếu ảnh → Labelling (corrections-ui)
+       ├─ CAO (không cờ, 456 trang)
+       │     rescan: 5 luật + LLM đối chiếu ảnh → Labelling (rescan-ui)
+       └─ BẢNG chương trình đào tạo (chọn riêng, bất kể cao/thấp)
+             VLM đọc lại trang → Labelling (table-vlm-review-ui)
+       ▼
+   CLEAN (OCR gốc + sửa đã duyệt + sửa chữ/dấu an toàn) → chunk
+```
+
+**Khác với sơ đồ ban đầu ở hai điểm**, nêu rõ để bạn quyết định giữ hay đổi:
+1. Pipeline hiện **không** chuyển trang chất lượng cao sang VLM. Trang cao đi qua rescan (luật + LLM), và VLM chỉ dùng cho trang bảng của chương trình đào tạo.
+2. VLM chưa dùng cho nhóm chất lượng thấp, vì bạn đã quyết định VLM chỉ chạy sau bước đánh giá và khi bạn đồng ý.
+
+## 1b. Sơ đồ đầy đủ các bước
 
 ```
 data/raw/files (PDF, ảnh)

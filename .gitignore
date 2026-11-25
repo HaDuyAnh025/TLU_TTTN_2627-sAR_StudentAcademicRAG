@@ -19,3 +19,6 @@ __pycache__/
 configs/*.bak
 configs/*.tmp
 *.log
+
+# Word lock files
+~$*
