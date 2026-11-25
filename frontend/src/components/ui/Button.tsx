@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-export type ButtonVariant = "primary" | "secondary" | "danger" | "ghost";
+export type ButtonVariant = "primary" | "secondary" | "danger" | "danger-outline" | "ghost";
 export type ButtonSize = "md" | "sm";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,6 +21,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
   secondary:
     "bg-bg-surface text-text-secondary border border-border-strong hover:bg-bg-hover",
   danger: "bg-error text-text-on-brand border border-error hover:opacity-90",
+  "danger-outline": "bg-bg-surface text-error-text border border-error hover:bg-error-bg",
   ghost: "bg-transparent text-brand-navy border border-transparent hover:bg-bg-hover",
 };
 

@@ -40,11 +40,11 @@ function FieldShell({ id, label, error, hint, children }: FieldShellProps) {
   );
 }
 
-function controlClass(error?: string) {
+function controlClass(invalid: boolean) {
   return clsx(
     "w-full rounded-md border bg-bg-surface px-3.5 text-body text-text-primary",
     "placeholder:text-text-muted disabled:cursor-not-allowed disabled:bg-bg-subtle",
-    error ? "border-error" : "border-border-input",
+    invalid ? "border-error" : "border-border-input",
   );
 }
 
@@ -58,18 +58,20 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   hint?: string;
+  /** Viền đỏ + aria-invalid mà không hiện thông điệp riêng (lỗi đã nêu ở khối khác). */
+  invalid?: boolean;
 }
 
-export function Input({ label, error, hint, id, className, ...rest }: InputProps) {
+export function Input({ label, error, hint, invalid, id, className, ...rest }: InputProps) {
   const autoId = useId();
   const fieldId = id ?? autoId;
   return (
     <FieldShell id={fieldId} label={label} error={error} hint={hint}>
       <input
         id={fieldId}
-        aria-invalid={error ? true : undefined}
+        aria-invalid={error || invalid ? true : undefined}
         aria-describedby={describedBy(fieldId, error, hint)}
-        className={clsx(controlClass(error), "h-control", className)}
+        className={clsx(controlClass(Boolean(error) || Boolean(invalid)), "h-control", className)}
         {...rest}
       />
     </FieldShell>
@@ -100,7 +102,7 @@ export function Textarea({
         rows={rows}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(fieldId, error, hint)}
-        className={clsx(controlClass(error), "resize-y py-2.5", className)}
+        className={clsx(controlClass(Boolean(error)), "resize-y py-2.5", className)}
         {...rest}
       />
     </FieldShell>
@@ -130,7 +132,7 @@ export function Select({
         id={fieldId}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(fieldId, error, hint)}
-        className={clsx(controlClass(error), "h-control", className)}
+        className={clsx(controlClass(Boolean(error)), "h-control", className)}
         {...rest}
       >
         {children}

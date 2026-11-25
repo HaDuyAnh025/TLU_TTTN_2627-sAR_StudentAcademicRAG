@@ -5,20 +5,39 @@
 import { SUGGESTED_QUESTION_GROUPS } from "@/lib/constants";
 import { clearAllMockStorage, getMockStorage, setMockStorage } from "@/lib/storage";
 import type {
+  AddDocumentInput,
+  AdminFeedbackItem,
+  AdminFeedbackList,
+  AdminLoginRequest,
+  AdminLoginResponse,
   AnswerMessage,
+  Chunk,
+  ChunkListQuery,
+  ChunkListResponse,
   Citation,
   ConversationDetail,
   ConversationSummary,
+  DocCategory,
+  DocumentDetail,
+  DocumentListQuery,
+  DocumentListResponse,
+  DocumentRow,
+  DocumentStatusResponse,
   FeedbackIn,
   FeedbackOut,
+  FeedbackTab,
+  IndexStep,
+  RetrieveTestHit,
   SourceType,
 } from "@/lib/types";
 
 export const MOCK_DELAY_MS = 1500;
 export const CONVERSATIONS_CHANGED_EVENT = "sar:conversations-changed";
+export const ADMIN_CHANGED_EVENT = "sar:admin-changed";
 
 const CONVERSATIONS_KEY = "conversations";
-const FEEDBACK_KEY = "feedback";
+const ADMIN_DOCS_KEY = "admin_documents";
+const ADMIN_FEEDBACK_KEY = "admin_feedback";
 const FEEDBACK_DELAY_MS = 600;
 const STREAM_TICK_MS = 30;
 const WORDS_PER_TICK = 2;
@@ -591,43 +610,46 @@ export async function mockRegenerate(
   return fresh;
 }
 
-interface StoredFeedback extends FeedbackIn {
-  feedback_id: string;
-  created_at: string;
-  handled: boolean;
-  in_test_set: boolean;
-}
-
-/** Lưu/đổi đánh giá cho một câu trả lời (mỗi message_id một đánh giá). */
+/** Lưu/đổi đánh giá cho một câu trả lời (mỗi message_id một đánh giá), đồng thời đưa vào hàng đợi admin. */
 export async function mockSendFeedback(input: FeedbackIn): Promise<FeedbackOut> {
   await sleep(FEEDBACK_DELAY_MS);
   if (process.env.NEXT_PUBLIC_MOCK_ERROR === "true") {
     throw new Error(MOCK_CONNECTION_ERROR);
   }
-  const list = getMockStorage<StoredFeedback[]>(FEEDBACK_KEY, []);
+  const conversations = readAll();
+  const message = conversations
+    .flatMap((c) => c.messages)
+    .find((m) => m.message_id === input.message_id);
+
+  const list = readAdminFeedback();
   const existing = list.find((f) => f.message_id === input.message_id);
-  const record: StoredFeedback = {
-    ...input,
+  const record: AdminFeedbackItem = {
     feedback_id: existing?.feedback_id ?? newId("fb"),
+    message_id: input.message_id,
+    vote: input.vote,
+    reason: input.reason,
+    note: input.note,
+    question: message?.question ?? existing?.question ?? "",
+    answer: message?.answer ?? existing?.answer ?? "",
     created_at: new Date().toISOString(),
     handled: false,
     in_test_set: existing?.in_test_set ?? false,
+    chunks: (message?.citations ?? []).map((c) => ({
+      chunk_id: c.chunk_id,
+      doc_id: c.doc_id,
+      doc_title: c.title,
+      page: c.page ?? "—",
+      rerank_score: c.rerank_score ?? 0,
+    })),
   };
-  setMockStorage(FEEDBACK_KEY, [record, ...list.filter((f) => f.message_id !== input.message_id)]);
+  writeAdminFeedback([record, ...list.filter((f) => f.message_id !== input.message_id)]);
 
   writeAll(
-    readAll().map((c) => ({
+    conversations.map((c) => ({
       ...c,
       messages: c.messages.map((m) =>
         m.message_id === input.message_id
-          ? {
-              ...m,
-              feedback: {
-                vote: input.vote,
-                reason: input.reason,
-                note: input.note,
-              },
-            }
+          ? { ...m, feedback: { vote: input.vote, reason: input.reason, note: input.note } }
           : m,
       ),
     })),
@@ -637,8 +659,624 @@ export async function mockSendFeedback(input: FeedbackIn): Promise<FeedbackOut> 
 
 /** Xóa toàn bộ state mock (sar_mock_*); lần truy cập sau dữ liệu mẫu được tạo lại. */
 export function resetMockData(): void {
+  cancelAdminTimers();
   clearAllMockStorage();
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event(CONVERSATIONS_CHANGED_EVENT));
+    window.dispatchEvent(new Event(ADMIN_CHANGED_EVENT));
   }
+}
+
+// ===========================================================================
+// ADMIN (giai đoạn 3a) — dữ liệu và xử lý tài liệu giả lập
+// ===========================================================================
+
+/**
+ * CHỈ DÙNG CHO MOCK: tài khoản quản trị giả lập, mật khẩu nằm ngay trong mã nguồn phía trình duyệt.
+ * Khi nối FastAPI, xóa hằng số này; đăng nhập thật do backend kiểm tra và trả JWT.
+ */
+export const MOCK_ADMIN_USERNAME = "admin";
+export const MOCK_ADMIN_PASSWORD = "admin123";
+
+const LOGIN_DELAY_MS = 800;
+const UPLOAD_DELAY_MS = 1000;
+const ADMIN_STEP_MS = 1000;
+const ADMIN_FAST_DELAY_MS = 400;
+
+export class MockLoginError extends Error {
+  constructor() {
+    super("Tên đăng nhập hoặc mật khẩu không đúng.");
+    this.name = "MockLoginError";
+  }
+}
+
+export async function mockAdminLogin(req: AdminLoginRequest): Promise<AdminLoginResponse> {
+  await sleep(LOGIN_DELAY_MS);
+  if (req.username.trim() !== MOCK_ADMIN_USERNAME || req.password !== MOCK_ADMIN_PASSWORD) {
+    throw new MockLoginError();
+  }
+  return { access_token: `mock.${newId("jwt")}`, token_type: "bearer" };
+}
+
+// --- Tài liệu -------------------------------------------------------------
+
+interface StoredDocument extends DocumentDetail {
+  /** Chỉ mock: tài liệu cũ bị gỡ khi bản mới xử lý xong. */
+  replaces_doc_id?: string;
+}
+
+function emitAdminChanged(): void {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(ADMIN_CHANGED_EVENT));
+  }
+}
+
+function docId(title: string): string {
+  return `doc_${slugify(title)}`;
+}
+
+function seedDocuments(): StoredDocument[] {
+  const day = 24 * 60;
+  const base = (
+    title: string,
+    file: string,
+    category: DocCategory,
+    type: DocumentDetail["type"],
+    chunks: number,
+    pages: number,
+    minutesAgo: number,
+  ): StoredDocument => ({
+    doc_id: docId(title),
+    title,
+    file,
+    category,
+    type,
+    chunks,
+    version: 1,
+    status: "indexed",
+    updated_at: ago(minutesAgo),
+    pages,
+    indexed_at: ago(minutesAgo),
+    url: type === "Web" ? `https://${file}` : undefined,
+  });
+  return [
+    base("Quy chế đào tạo trình độ đại học", "quy-che-dao-tao-dai-hoc.pdf", "quy_che", "PDF", 142, 34, 8 * day),
+    base("Quy định chuẩn đầu ra ngoại ngữ, tin học", "chuan-dau-ra-ngoai-ngu-tin-hoc.pdf", "quy_che", "PDF", 38, 6, 8 * day),
+    base("Biểu học phí năm học [NĂM HỌC]", "bieu-hoc-phi.pdf", "hoc_phi", "PDF", 64, 5, 7 * day),
+    base("Quy định xét học bổng khuyến khích học tập", "hoc-bong-khuyen-khich.pdf", "hoc_bong", "PDF", 45, 9, 7 * day),
+    base("Hướng dẫn đăng ký học phần", "thanglong.edu.vn/huong-dan-dang-ky-hoc-phan", "quy_trinh", "Web", 21, 4, 6 * day),
+    base("Thông báo xét tốt nghiệp đợt [ĐỢT]", "thanglong.edu.vn/thong-bao/xet-tot-nghiep", "thong_bao", "Web", 6, 2, 2),
+    {
+      ...base("Mẫu đơn xin bảo lưu kết quả học tập", "don-bao-luu-scan.jpg", "quy_trinh", "Ảnh", 0, 1, 5 * day),
+      status: "error",
+      error_message: "OCR không đọc được: ảnh mờ, hãy tải lại bản rõ hơn",
+    },
+  ];
+}
+
+function readDocs(): StoredDocument[] {
+  const stored = getMockStorage<StoredDocument[] | null>(ADMIN_DOCS_KEY, null);
+  if (stored) return stored;
+  const seeded = seedDocuments();
+  setMockStorage(ADMIN_DOCS_KEY, seeded);
+  return seeded;
+}
+
+function writeDocs(list: StoredDocument[]): void {
+  setMockStorage(ADMIN_DOCS_KEY, list);
+  emitAdminChanged();
+}
+
+function toRow(doc: StoredDocument): DocumentRow {
+  return {
+    doc_id: doc.doc_id,
+    title: doc.title,
+    file: doc.file,
+    category: doc.category,
+    type: doc.type,
+    chunks: doc.chunks,
+    version: doc.version,
+    status: doc.status,
+    step: doc.step,
+    error_message: doc.error_message,
+    updated_at: doc.updated_at,
+  };
+}
+
+// --- Xử lý 4 bước giả lập -------------------------------------------------
+
+const adminTimers = new Map<string, ReturnType<typeof setTimeout>>();
+
+function cancelAdminTimers(): void {
+  adminTimers.forEach((timer) => clearTimeout(timer));
+  adminTimers.clear();
+}
+
+function hash(text: string): number {
+  let h = 0;
+  for (let i = 0; i < text.length; i += 1) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+function scheduleStep(id: string): void {
+  if (adminTimers.has(id)) return;
+  adminTimers.set(
+    id,
+    setTimeout(() => advanceDocument(id), ADMIN_STEP_MS),
+  );
+}
+
+function advanceDocument(id: string): void {
+  adminTimers.delete(id);
+  const docs = readDocs();
+  const doc = docs.find((d) => d.doc_id === id);
+  if (!doc || doc.status !== "processing") return;
+
+  const step = doc.step ?? 1;
+  const now = new Date().toISOString();
+
+  if (process.env.NEXT_PUBLIC_MOCK_ERROR === "true" && step === 3) {
+    writeDocs(
+      docs.map((d) =>
+        d.doc_id === id
+          ? {
+              ...d,
+              status: "error",
+              step: undefined,
+              chunks: 0,
+              updated_at: now,
+              error_message: "Không tạo được embedding: mất kết nối tới dịch vụ mô hình.",
+            }
+          : d,
+      ),
+    );
+    return;
+  }
+
+  if (step < 4) {
+    writeDocs(docs.map((d) => (d.doc_id === id ? { ...d, step: (step + 1) as IndexStep } : d)));
+    scheduleStep(id);
+    return;
+  }
+
+  const chunks = doc.chunks > 0 ? doc.chunks : 8 + (hash(doc.title) % 53);
+  writeDocs(
+    docs
+      .filter((d) => d.doc_id !== doc.replaces_doc_id)
+      .map((d) =>
+        d.doc_id === id
+          ? {
+              ...d,
+              status: "indexed",
+              step: undefined,
+              error_message: undefined,
+              replaces_doc_id: undefined,
+              chunks,
+              pages: d.pages || 1 + (hash(d.title) % 12),
+              indexed_at: now,
+              updated_at: now,
+            }
+          : d,
+      ),
+  );
+}
+
+/** Sau khi tải lại trang, các tài liệu đang xử lý mất bộ đếm giờ → khởi động lại từ bước hiện tại. */
+function resumeProcessing(docs: StoredDocument[]): void {
+  for (const doc of docs) {
+    if (doc.status === "processing") scheduleStep(doc.doc_id);
+  }
+}
+
+function computeStats(docs: StoredDocument[]) {
+  return {
+    indexed_count: docs.filter((d) => d.status === "indexed").length,
+    total_chunks: docs.reduce((sum, d) => sum + d.chunks, 0),
+    processing_count: docs.filter((d) => d.status === "processing").length,
+    error_count: docs.filter((d) => d.status === "error").length,
+  };
+}
+
+export async function mockListDocuments(query: DocumentListQuery = {}): Promise<DocumentListResponse> {
+  const docs = readDocs();
+  resumeProcessing(docs);
+  const q = normalize(query.q?.trim() ?? "");
+  const items = docs
+    .filter((d) => !query.category || d.category === query.category)
+    .filter((d) => !query.status || d.status === query.status)
+    .filter((d) => !q || normalize(`${d.title} ${d.file}`).includes(q))
+    .map(toRow);
+  return { items, stats: computeStats(docs), total: docs.length };
+}
+
+export async function mockGetDocument(id: string): Promise<DocumentDetail | null> {
+  const doc = readDocs().find((d) => d.doc_id === id);
+  if (!doc) return null;
+  resumeProcessing([doc]);
+  const { replaces_doc_id, ...detail } = doc;
+  void replaces_doc_id;
+  return detail;
+}
+
+export async function mockAddDocument(input: AddDocumentInput): Promise<DocumentRow> {
+  await sleep(UPLOAD_DELAY_MS);
+  const docs = readDocs();
+  const file =
+    input.source === "url"
+      ? (input.url ?? "").replace(/^https?:\/\//i, "")
+      : (input.file_name ?? "tai-lieu.pdf");
+  const ext = file.split(".").pop()?.toLowerCase();
+  const type: DocumentDetail["type"] =
+    input.source === "url" ? "Web" : ext === "pdf" ? "PDF" : "Ảnh";
+
+  const replaced = input.replace_existing
+    ? docs.find((d) => normalize(d.title) === normalize(input.title))
+    : undefined;
+  let id = docId(input.title);
+  if (docs.some((d) => d.doc_id === id)) id = `${id}_v${(replaced?.version ?? 1) + 1}`;
+
+  const now = new Date().toISOString();
+  const doc: StoredDocument = {
+    doc_id: id,
+    title: input.title.trim(),
+    file,
+    category: input.category,
+    type,
+    chunks: 0,
+    version: replaced ? replaced.version + 1 : 1,
+    replaces_version: replaced?.version,
+    replaces_doc_id: replaced?.doc_id,
+    status: "processing",
+    step: 1,
+    updated_at: now,
+    pages: 0,
+    indexed_at: now,
+    effective_date: input.effective_date || undefined,
+    url: input.source === "url" ? input.url : undefined,
+  };
+  writeDocs([doc, ...docs]);
+  scheduleStep(id);
+  return toRow(doc);
+}
+
+export async function mockReindexDocument(
+  id: string,
+): Promise<{ doc_id: string; status: "processing"; step: 1 }> {
+  await sleep(ADMIN_FAST_DELAY_MS);
+  const docs = readDocs();
+  if (!docs.some((d) => d.doc_id === id)) throw new Error("Không tìm thấy tài liệu.");
+  writeDocs(
+    docs.map((d) =>
+      d.doc_id === id
+        ? {
+            ...d,
+            status: "processing",
+            step: 1,
+            error_message: undefined,
+            updated_at: new Date().toISOString(),
+          }
+        : d,
+    ),
+  );
+  scheduleStep(id);
+  return { doc_id: id, status: "processing", step: 1 };
+}
+
+export async function mockDeleteDocument(id: string): Promise<{ ok: true; deleted_chunks: number }> {
+  await sleep(ADMIN_FAST_DELAY_MS);
+  const docs = readDocs();
+  const doc = docs.find((d) => d.doc_id === id);
+  if (!doc) throw new Error("Không tìm thấy tài liệu.");
+  const timer = adminTimers.get(id);
+  if (timer) clearTimeout(timer);
+  adminTimers.delete(id);
+  writeDocs(docs.filter((d) => d.doc_id !== id));
+  return { ok: true, deleted_chunks: doc.chunks };
+}
+
+export async function mockDocumentStatus(id: string): Promise<DocumentStatusResponse> {
+  const docs = readDocs();
+  resumeProcessing(docs);
+  const doc = docs.find((d) => d.doc_id === id);
+  if (!doc) throw new Error("Không tìm thấy tài liệu.");
+  return {
+    doc_id: doc.doc_id,
+    status: doc.status,
+    step: doc.step,
+    error_message: doc.error_message,
+    chunks: doc.chunks,
+  };
+}
+
+// --- Chunk & thử truy xuất ------------------------------------------------
+
+const QUY_CHE_DOC = docId("Quy chế đào tạo trình độ đại học");
+const CHUAN_DAU_RA_DOC = docId("Quy định chuẩn đầu ra ngoại ngữ, tin học");
+
+type ChunkSeed = Pick<Chunk, "page" | "loc" | "text"> & { is_table?: boolean };
+
+const SAMPLE_CHUNKS: Record<string, ChunkSeed[]> = {
+  [QUY_CHE_DOC]: [
+    { page: 1, loc: "Chương 1 › Điều 1", text: "Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng\nQuy chế này quy định về tổ chức đào tạo trình độ đại học, bao gồm tổ chức giảng dạy, đánh giá kết quả học tập và công nhận tốt nghiệp." },
+    { page: 8, loc: "Chương 2 › Điều 7", text: "Điều 7. Đăng ký học phần\nSinh viên đăng ký học phần theo kế hoạch và thời hạn do nhà trường công bố trước mỗi học kỳ." },
+    { page: 9, loc: "Chương 2 › Điều 8", text: "Điều 8. Khối lượng học tập\nKhối lượng học tập tối thiểu và tối đa sinh viên được đăng ký trong mỗi học kỳ chính được quy định theo học lực của học kỳ trước." },
+    { page: 11, loc: "Chương 2 › Điều 9", text: "Điều 9. Rút bớt học phần đã đăng ký\nSinh viên được rút bớt học phần trong thời hạn quy định, với điều kiện khối lượng học tập còn lại không thấp hơn mức tối thiểu." },
+    { page: 15, loc: "Chương 3 › Điều 12", text: "Điều 12. Cách tính điểm\nĐiểm trung bình tích lũy được tính theo công thức trung bình có trọng số của điểm học phần với số tín chỉ tương ứng." },
+    { page: 16, loc: "Chương 3 › Điều 12 › Bảng quy đổi", is_table: true, text: "Điểm chữ | Điểm số | Thang điểm 4\nA | 8,5 – 10 | 4,0\nB | 7,0 – 8,4 | 3,0\nC | 5,5 – 6,9 | 2,0\nD | 4,0 – 5,4 | 1,0\nF | dưới 4,0 | 0" },
+    { page: 18, loc: "Chương 3 › Điều 14", text: "Điều 14. Xét và công nhận tốt nghiệp\nSinh viên được xét và công nhận tốt nghiệp khi tích lũy đủ học phần, điểm trung bình tích lũy toàn khóa đạt từ trung bình trở lên và không đang bị kỷ luật đình chỉ học tập." },
+    { page: 21, loc: "Chương 3 › Điều 16", text: "Điều 16. Cảnh báo học tập\nCảnh báo học tập được thực hiện sau mỗi học kỳ đối với sinh viên có kết quả học tập thấp hơn ngưỡng quy định." },
+  ],
+  [CHUAN_DAU_RA_DOC]: [
+    { page: 2, loc: "Mục 1", text: "Mục 1. Phạm vi áp dụng\nQuy định này áp dụng cho sinh viên đại học hệ chính quy khi xét công nhận tốt nghiệp." },
+    { page: 3, loc: "Mục 2", text: "Mục 2. Chuẩn đầu ra ngoại ngữ\nSinh viên phải đạt chuẩn đầu ra ngoại ngữ và tin học theo quy định của trường trước khi được xét công nhận tốt nghiệp." },
+    { page: 4, loc: "Mục 3 › Bảng quy đổi chứng chỉ", is_table: true, text: "Chứng chỉ | Mức tối thiểu\nIELTS | 5.0\nTOEIC | 500\nVSTEP | Bậc 3" },
+  ],
+};
+
+function chunksFor(doc: StoredDocument): Chunk[] {
+  const seeds =
+    SAMPLE_CHUNKS[doc.doc_id] ??
+    Array.from({ length: Math.min(doc.chunks, 4) }, (_, i): ChunkSeed => ({
+      page: i + 1,
+      loc: `Mục ${i + 1}`,
+      text: `Nội dung đoạn ${i + 1} của “${doc.title}” (dữ liệu mẫu).`,
+    }));
+  return seeds.map((seed, i) => ({
+    chunk_id: `chunk_${String(i + 1).padStart(3, "0")}`,
+    doc_id: doc.doc_id,
+    page: seed.page,
+    loc: seed.loc,
+    tokens: Math.max(20, Math.round(seed.text.length / 3.2)),
+    is_table: seed.is_table ?? false,
+    text: seed.text,
+  }));
+}
+
+const CHUNK_PAGE_SIZE = 5;
+
+export async function mockListChunks(
+  id: string,
+  query: ChunkListQuery = {},
+): Promise<ChunkListResponse> {
+  await sleep(ADMIN_FAST_DELAY_MS);
+  const doc = readDocs().find((d) => d.doc_id === id);
+  if (!doc) throw new Error("Không tìm thấy tài liệu.");
+  const q = normalize(query.q?.trim() ?? "");
+  const all = chunksFor(doc)
+    .filter((c) => (query.type === "table" ? c.is_table : query.type === "text" ? !c.is_table : true))
+    .filter((c) => !query.page || c.page === query.page)
+    .filter((c) => !q || normalize(c.text).includes(q));
+  const start = Number(query.cursor ?? 0) || 0;
+  const items = all.slice(start, start + CHUNK_PAGE_SIZE);
+  const next = start + CHUNK_PAGE_SIZE;
+  return { items, total: all.length, next_cursor: next < all.length ? String(next) : undefined };
+}
+
+export async function mockRetrieveTest(req: {
+  question: string;
+  doc_id?: string;
+}): Promise<{ items: RetrieveTestHit[] }> {
+  await sleep(UPLOAD_DELAY_MS);
+  if (process.env.NEXT_PUBLIC_MOCK_ERROR === "true") {
+    throw new Error("Không kết nối được tới Qdrant (localhost:6333). Kiểm tra dịch vụ rồi thử lại.");
+  }
+  const words = normalize(req.question)
+    .split(" ")
+    .filter((w) => w.length > 1);
+  const docs = readDocs().filter(
+    (d) => d.status === "indexed" && (!req.doc_id || d.doc_id === req.doc_id),
+  );
+  const scored = docs.flatMap((doc) =>
+    chunksFor(doc).map((chunk) => {
+      const text = normalize(chunk.text);
+      const hits = words.filter((w) => text.includes(w)).length;
+      const ratio = words.length ? hits / words.length : 0;
+      return { doc, chunk, score: Math.min(0.97, 0.2 + ratio * 0.75) };
+    }),
+  );
+  scored.sort((a, b) => b.score - a.score);
+  return {
+    items: scored.slice(0, 5).map(({ doc, chunk, score }, i) => ({
+      rank: i + 1,
+      chunk_id: chunk.chunk_id,
+      doc_id: doc.doc_id,
+      doc_title: doc.title,
+      page: chunk.page,
+      loc: chunk.loc,
+      excerpt: chunk.text.length > 220 ? `${chunk.text.slice(0, 219)}…` : chunk.text,
+      rerank_score: Number(score.toFixed(2)),
+    })),
+  };
+}
+
+// --- Phản hồi -------------------------------------------------------------
+
+function seedFeedback(): AdminFeedbackItem[] {
+  const day = 24 * 60;
+  const chunk = (doc: string, n: number, page: number, score: number) => ({
+    chunk_id: `chunk_${String(n).padStart(3, "0")}`,
+    doc_id: docId(doc),
+    doc_title: doc,
+    page,
+    rerank_score: score,
+  });
+  return [
+    {
+      feedback_id: "fb_seed_1",
+      message_id: "msg_8f21",
+      vote: "down",
+      reason: "missing_info",
+      note: "Không nêu mức cụ thể cho ngành KHMT.",
+      question: "Chuẩn đầu ra tiếng Anh của ngành KHMT là gì?",
+      answer:
+        "Sinh viên phải đạt chuẩn đầu ra ngoại ngữ theo quy định của chương trình đào tạo trước khi được xét tốt nghiệp. [2]",
+      created_at: ago(15),
+      handled: false,
+      in_test_set: false,
+      chunks: [chunk("Quy định chuẩn đầu ra ngoại ngữ, tin học", 7, 3, 0.81)],
+    },
+    {
+      feedback_id: "fb_seed_2",
+      message_id: "msg_7c10",
+      vote: "down",
+      reason: "outdated",
+      question: "Học phí một tín chỉ năm học này là bao nhiêu?",
+      answer:
+        "Học phí được tính theo số tín chỉ sinh viên đăng ký và áp dụng theo thông báo học phí của từng năm học. [1]",
+      created_at: ago(50),
+      handled: false,
+      in_test_set: false,
+      chunks: [chunk("Biểu học phí năm học [NĂM HỌC]", 2, 1, 0.77)],
+    },
+    {
+      feedback_id: "fb_seed_3",
+      message_id: "msg_6a02",
+      vote: "up",
+      question: "Điều kiện để được xét tốt nghiệp là gì?",
+      answer:
+        "Sinh viên được xét tốt nghiệp khi tích lũy đủ học phần, đạt điểm trung bình tích lũy toàn khóa từ mức trung bình trở lên, đạt chuẩn đầu ra và không bị kỷ luật đình chỉ học tập. [1][2]",
+      created_at: ago(1 * day + 120),
+      handled: false,
+      in_test_set: false,
+      chunks: [
+        chunk("Quy chế đào tạo trình độ đại học", 14, 18, 0.92),
+        chunk("Quy định chuẩn đầu ra ngoại ngữ, tin học", 7, 3, 0.81),
+      ],
+    },
+    {
+      feedback_id: "fb_seed_4",
+      message_id: "msg_5d33",
+      vote: "down",
+      reason: "other",
+      note: "Mẫu đơn trong câu trả lời đã cũ, em thấy khác với mẫu đang dùng.",
+      question: "Thủ tục xin bảo lưu kết quả học tập?",
+      answer:
+        "Sinh viên nộp đơn xin bảo lưu tại Phòng Đào tạo trong thời hạn quy định và chờ quyết định của nhà trường. [1]",
+      created_at: ago(1 * day + 400),
+      handled: false,
+      in_test_set: false,
+      chunks: [chunk("Quy chế đào tạo trình độ đại học", 5, 9, 0.64)],
+    },
+    {
+      feedback_id: "fb_seed_5",
+      message_id: "msg_4b77",
+      vote: "up",
+      question: "Mỗi kỳ được đăng ký tối đa bao nhiêu tín chỉ?",
+      answer: "Mức tối đa phụ thuộc vào học lực của sinh viên ở học kỳ liền trước. [1]",
+      created_at: ago(7 * day),
+      handled: false,
+      in_test_set: false,
+      chunks: [chunk("Quy chế đào tạo trình độ đại học", 3, 9, 0.88)],
+    },
+    {
+      feedback_id: "fb_seed_6",
+      message_id: "msg_3e19",
+      vote: "down",
+      reason: "wrong_info",
+      question: "Khi nào sinh viên bị cảnh báo học tập?",
+      answer:
+        "Sinh viên bị cảnh báo học tập khi điểm trung bình học kỳ hoặc điểm trung bình tích lũy thấp hơn ngưỡng cảnh báo của trường. [1]",
+      created_at: ago(8 * day),
+      handled: true,
+      in_test_set: true,
+      chunks: [chunk("Quy chế đào tạo trình độ đại học", 8, 21, 0.79)],
+    },
+  ];
+}
+
+function readAdminFeedback(): AdminFeedbackItem[] {
+  const stored = getMockStorage<AdminFeedbackItem[] | null>(ADMIN_FEEDBACK_KEY, null);
+  if (stored) return stored;
+  const seeded = seedFeedback();
+  setMockStorage(ADMIN_FEEDBACK_KEY, seeded);
+  return seeded;
+}
+
+function writeAdminFeedback(list: AdminFeedbackItem[]): void {
+  setMockStorage(ADMIN_FEEDBACK_KEY, list);
+  emitAdminChanged();
+}
+
+export async function mockListFeedback(tab: FeedbackTab = "all"): Promise<AdminFeedbackList> {
+  const all = [...readAdminFeedback()].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  );
+  const unhandled = all.filter((f) => f.vote === "down" && !f.handled).length;
+  const items = all.filter((f) => {
+    if (tab === "down") return f.vote === "down";
+    if (tab === "up") return f.vote === "up";
+    if (tab === "unhandled") return f.vote === "down" && !f.handled;
+    return true;
+  });
+  return {
+    items,
+    stats: {
+      total: all.length,
+      up_count: all.filter((f) => f.vote === "up").length,
+      down_count: all.filter((f) => f.vote === "down").length,
+      unhandled_wrong_count: unhandled,
+    },
+    unhandled_wrong_count: unhandled,
+  };
+}
+
+export async function mockUpdateFeedback(
+  id: string,
+  patch: { handled?: boolean; in_test_set?: boolean },
+): Promise<AdminFeedbackItem> {
+  await sleep(ADMIN_FAST_DELAY_MS);
+  if (process.env.NEXT_PUBLIC_MOCK_ERROR === "true") {
+    throw new Error(MOCK_CONNECTION_ERROR);
+  }
+  const list = readAdminFeedback();
+  const found = list.find((f) => f.feedback_id === id);
+  if (!found) throw new Error("Không tìm thấy phản hồi.");
+  const updated = { ...found, ...patch };
+  writeAdminFeedback(list.map((f) => (f.feedback_id === id ? updated : f)));
+  return updated;
+}
+
+function csvCell(value: string | number | undefined): string {
+  const text = String(value ?? "");
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+/** Xuất toàn bộ phản hồi thành CSV UTF-8 có BOM (để Excel đọc đúng tiếng Việt). */
+export async function mockExportFeedbackCsv(): Promise<string> {
+  await sleep(UPLOAD_DELAY_MS);
+  if (process.env.NEXT_PUBLIC_MOCK_ERROR === "true") {
+    throw new Error(MOCK_CONNECTION_ERROR);
+  }
+  const header = [
+    "feedback_id",
+    "message_id",
+    "danh_gia",
+    "ly_do",
+    "ghi_chu",
+    "cau_hoi",
+    "cau_tra_loi",
+    "thoi_gian",
+    "da_xu_ly",
+    "trong_bo_test",
+    "chunk_da_dung",
+  ];
+  const rows = readAdminFeedback().map((f) =>
+    [
+      f.feedback_id,
+      f.message_id,
+      f.vote === "up" ? "Đúng" : "Sai",
+      f.reason ?? "",
+      f.note ?? "",
+      f.question,
+      f.answer,
+      f.created_at,
+      f.handled ? "Có" : "Không",
+      f.in_test_set ? "Có" : "Không",
+      f.chunks.map((c) => `${c.doc_title} / ${c.chunk_id} / trang ${c.page} / rerank ${c.rerank_score}`).join("; "),
+    ]
+      .map(csvCell)
+      .join(","),
+  );
+  const csv = [header.map(csvCell).join(","), ...rows].join("\r\n");
+  return `\uFEFF${csv}`;
 }

@@ -61,3 +61,39 @@ export function formatDateTime(iso: string): string {
     minute: "2-digit",
   });
 }
+
+/** "Vừa xong" nếu dưới 10 phút, ngược lại dd/mm/yyyy. */
+export function formatUpdatedAt(iso: string, now: Date = new Date()): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  if (now.getTime() - date.getTime() < 10 * 60 * 1000) return "Vừa xong";
+  return date.toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+export function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function pad(n: number): string {
+  return String(n).padStart(2, "0");
+}
+
+/** "18/11/2026 · 21:05" */
+export function formatIndexedAt(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+/** "Hôm nay · 09:12" / "Hôm qua · 21:03" / "19/11 · 10:15" */
+export function formatFeedbackTime(iso: string, now: Date = new Date()): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const time = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const today = startOfDay(now);
+  if (d.getTime() >= today) return `Hôm nay · ${time}`;
+  if (d.getTime() >= today - DAY_MS) return `Hôm qua · ${time}`;
+  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} · ${time}`;
+}

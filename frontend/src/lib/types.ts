@@ -196,3 +196,51 @@ export interface AdminLoginResponse {
   access_token: string;
   token_type: string;
 }
+
+export interface DocumentListQuery {
+  q?: string;
+  category?: DocCategory | "";
+  status?: DocumentStatus | "";
+}
+
+export interface DocumentListResponse {
+  items: DocumentRow[];
+  /** Số liệu tính trên toàn bộ tài liệu, không phụ thuộc bộ lọc. */
+  stats: DocumentStats;
+  /** Tổng số tài liệu (không lọc), dùng cho "Hiển thị x / tổng". */
+  total: number;
+}
+
+export interface AddDocumentInput {
+  source: "file" | "url";
+  file_name?: string;
+  file_size?: number;
+  url?: string;
+  title: string;
+  category: DocCategory;
+  effective_date?: string;
+  replace_existing: boolean;
+}
+
+export type ChunkTypeFilter = "all" | "text" | "table";
+
+export interface ChunkListQuery {
+  type?: ChunkTypeFilter;
+  q?: string;
+  /** Lọc theo số trang. */
+  page?: number;
+  /** Vị trí bắt đầu của trang kết quả tiếp theo. */
+  cursor?: string;
+}
+
+export interface ChunkListResponse {
+  items: Chunk[];
+  total: number;
+  next_cursor?: string;
+}
+
+export interface AdminFeedbackList {
+  items: AdminFeedbackItem[];
+  stats: FeedbackStats;
+  unhandled_wrong_count: number;
+}
