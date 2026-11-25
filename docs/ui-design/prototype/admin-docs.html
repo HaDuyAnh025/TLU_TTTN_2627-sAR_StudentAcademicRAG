@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Quản trị — Tài liệu</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>window.DC_ROUTES = {"Welcome.dc.html": "welcome.html", "Main.dc.html": "main.html", "AdminLogin.dc.html": "admin-login.html", "AdminDocs.dc.html": "admin-docs.html", "AdminDocDetail.dc.html": "admin-doc-detail.html", "AdminFeedback.dc.html": "admin-feedback.html"};</script>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#F5F6F8}
+*{box-sizing:border-box}
+a{color:#000066}a:hover{color:#C81E0A}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.6}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #000066;outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hist:not([aria-current="page"]):hover{background:#F1F3F6 !important}
+.chip:hover{border-color:#9AA3B2 !important}
+.ghost:hover:not(:disabled){background:#F1F3F6 !important}
+.nav:hover{background:#F1F3F6 !important}
+.row:hover{background:#FAFBFC}
+.drop:hover{border-color:#000066 !important;background:#F5F5FB !important}
+select:focus-visible{outline:2px solid #000066;outline-offset:2px}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #111827; background: #F5F6F8; font-size: 15px; line-height: 1.6">
+
+  <!-- ADMIN SIDEBAR -->
+  <aside style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 20px; padding: 20px 16px; background: #FFFFFF; border-right: 1px solid #E3E6EB">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 4px 8px">
+      <svg width="40" height="40" viewBox="0 0 48 48" role="img" aria-label="Biểu tượng Trợ lý Học vụ" style="flex: none; display: block"><rect width="48" height="48" rx="12" fill="#000066"></rect><g fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"><path d="M9 13h9a5 5 0 0 1 5 5v18a3.5 3.5 0 0 0-3.5-3.5H9z"></path><path d="M37 13h-9a5 5 0 0 0-5 5"></path></g><circle cx="32.5" cy="29" r="6.2" fill="#000066" stroke="#F5250C" stroke-width="3"></circle><line x1="37" y1="33.5" x2="40.5" y2="37" stroke="#F5250C" stroke-width="3.2" stroke-linecap="round"></line></svg>
+      <div style="display: flex; flex-direction: column; line-height: 1.3">
+        <span style="font-weight: 700; font-size: 16px">Trợ lý Học vụ</span>
+        <span style="font-size: 13px; color: #5B6472">Quản trị</span>
+      </div>
+    </div>
+    <nav aria-label="Quản trị" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="AdminDocs.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; background: {{accentSoft}}; color: {{accent}}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Tài liệu
+      </a>
+      <a href="AdminFeedback.dc.html" class="nav" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Phản hồi
+        <span style="margin-left: auto; min-width: 24px; height: 22px; padding: 0 7px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #FEEDEB; color: #B01C08">3</span>
+      </a>
+    </nav>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid #E3E6EB">
+      <a href="Welcome.dc.html" class="nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        Mở trang sinh viên
+      </a>
+      <button type="button" class="nav" onClick="{{ askLogout }}" style="border: none; background: transparent; text-align: left; width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main style="flex: 999 1 600px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700">Tài liệu</h1>
+        <p style="margin: 0; color: #4B5563; font-size: 14px">Văn bản trong kho tri thức mà trợ lý dùng để trả lời sinh viên.</p>
+      </div>
+      <button type="button" onClick="{{ openUpload }}" aria-expanded="{{ up.open }}" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border: none; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 600">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Thêm tài liệu
+      </button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+        <span style="font-size: 13px; color: #5B6472">Tài liệu đã index</span>
+        <span style="font-size: 28px; font-weight: 700; line-height: 1.2">{{ stats.ok }}</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+        <span style="font-size: 13px; color: #5B6472">Tổng số chunk trong Qdrant</span>
+        <span style="font-size: 28px; font-weight: 700; line-height: 1.2">{{ stats.chunks }}</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+        <span style="font-size: 13px; color: #5B6472">Đang xử lý</span>
+        <span style="font-size: 28px; font-weight: 700; line-height: 1.2; color: #000066">{{ stats.proc }}</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+        <span style="font-size: 13px; color: #5B6472">Lỗi xử lý</span>
+        <span style="font-size: 28px; font-weight: 700; line-height: 1.2; color: #B01C08">{{ stats.err }}</span>
+      </div>
+    </div>
+
+    <!-- upload panel -->
+    <sc-if value="{{ up.open }}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="up-h" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 16px; background: #FFFFFF; border: 1px solid {{accent}}">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <h2 id="up-h" style="margin: 0; font-size: 18px; font-weight: 700">Thêm tài liệu mới</h2>
+          <button type="button" class="ghost" onClick="{{ closeUpload }}" disabled="{{ up.sending }}" aria-label="Đóng form thêm tài liệu" style="width: 40px; height: 40px; border: none; border-radius: 10px; background: transparent; color: #374151; display: flex; align-items: center; justify-content: center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #F1F3F6; align-self: flex-start">
+          <button type="button" onClick="{{ tabFile }}" aria-pressed="{{ up.isFile }}" style="height: 36px; padding: 0 14px; border: none; border-radius: 9px; font-size: 14px; font-weight: 600; background: {{up.fileBg}}; color: {{up.fileFg}}">Tải file lên</button>
+          <button type="button" onClick="{{ tabUrl }}" aria-pressed="{{ up.isUrl }}" style="height: 36px; padding: 0 14px; border: none; border-radius: 9px; font-size: 14px; font-weight: 600; background: {{up.urlBg}}; color: {{up.urlFg}}">Từ đường link web</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-if value="{{ up.isFile }}" hint-placeholder-val="{{ true }}">
+              <label for="upfile" class="drop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 168px; padding: 24px; border: 2px dashed {{up.fileBorder}}; border-radius: 14px; background: #FAFBFC; text-align: center; cursor: pointer">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5B6472" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span style="font-size: 15px; font-weight: 600">Kéo thả file vào đây hoặc <span style="color: {{accent}}; text-decoration: underline">chọn file</span></span>
+                <span style="font-size: 13px; color: #5B6472">PDF, PNG, JPG · ảnh ngang hoặc dọc đều được</span>
+              </label>
+              <input id="upfile" type="file" accept=".pdf,.png,.jpg,.jpeg" multiple="" onChange="{{ onFiles }}" class="sr-only">
+              <sc-for list="{{ up.files }}" as="f" hint-placeholder-count="1">
+                <span style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; font-size: 13px; background: {{f.bg}}; color: {{f.fg}}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  <span style="flex: 1 1 auto; min-width: 0; word-break: break-all">{{ f.name }}</span>
+                  <span style="font-weight: 600">{{ f.state }}</span>
+                </span>
+              </sc-for>
+              <sc-if value="{{ up.hasFileErr }}" hint-placeholder-val="{{ false }}">
+                <p role="alert" style="margin: 0; font-size: 13px; font-weight: 600; color: #B01C08">{{ up.errs.file }}</p>
+              </sc-if>
+            </sc-if>
+            <sc-if value="{{ up.isUrl }}" hint-placeholder-val="{{ false }}">
+              <label for="upurl" style="font-size: 14px; font-weight: 600">Đường link trang web</label>
+              <input id="upurl" type="url" value="{{ up.url }}" onChange="{{ onUrl }}" placeholder="https://thanglong.edu.vn/..." style="height: 44px; padding: 0 12px; border: 1px solid {{up.urlBorder}}; border-radius: 10px; font-size: 15px">
+              <sc-if value="{{ up.hasUrlErr }}" hint-placeholder-val="{{ false }}">
+                <p role="alert" style="margin: 0; font-size: 13px; font-weight: 600; color: #B01C08">{{ up.errs.url }}</p>
+              </sc-if>
+              <span style="font-size: 13px; color: #5B6472">Hệ thống tải nội dung chính của trang, bỏ menu và chân trang, rồi chia chunk như với PDF.</span>
+            </sc-if>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="dname" style="font-size: 14px; font-weight: 600">Tên hiển thị trong trích dẫn</label>
+              <input id="dname" type="text" value="{{ up.name }}" onChange="{{ onName }}" placeholder="Ví dụ: Quy chế đào tạo trình độ đại học" style="height: 44px; padding: 0 12px; border: 1px solid {{up.nameBorder}}; border-radius: 10px; font-size: 15px">
+              <sc-if value="{{ up.hasNameErr }}" hint-placeholder-val="{{ false }}">
+                <p role="alert" style="margin: 0; font-size: 13px; font-weight: 600; color: #B01C08">{{ up.errs.name }}</p>
+              </sc-if>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label for="dcat" style="font-size: 14px; font-weight: 600">Danh mục</label>
+                <select id="dcat" value="{{ up.cat }}" onChange="{{ onCat }}" style="height: 44px; padding: 0 10px; border: 1px solid #C9CED6; border-radius: 10px; font-size: 15px; background: #FFFFFF; color: #111827">
+                  <option>Quy chế đào tạo</option>
+                  <option>Học phí &amp; học bổng</option>
+                  <option>Đăng ký học phần</option>
+                  <option>Thủ tục hành chính</option>
+                  <option>Thông báo</option>
+                </select>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label for="ddate" style="font-size: 14px; font-weight: 600">Ngày hiệu lực</label>
+                <input id="ddate" type="date" style="height: 44px; padding: 0 10px; border: 1px solid #C9CED6; border-radius: 10px; font-size: 15px; color: #111827">
+              </div>
+            </div>
+            <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #374151">
+              <input type="checkbox" checked="{{ up.replace }}" onChange="{{ onReplace }}" style="width: 18px; height: 18px; margin-top: 3px; accent-color: #000066">
+              <span>Đây là bản mới thay thế cho một tài liệu đã có. Các chunk của bản cũ sẽ bị gỡ khỏi index sau khi bản mới xử lý xong.</span>
+            </label>
+          </div>
+        </div>
+
+        <ol aria-label="Các bước xử lý" style="margin: 0; padding: 14px 16px; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px; border-radius: 12px; background: #F5F6F8; font-size: 13px; color: #374151">
+          <li style="display: flex; align-items: center; gap: 8px"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9CED6; font-size: 12px; font-weight: 700">1</span>Trích xuất văn bản (PDF / OCR)</li>
+          <li style="display: flex; align-items: center; gap: 8px"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9CED6; font-size: 12px; font-weight: 700">2</span>Chia chunk (bảng lớn: lặp header theo dòng)</li>
+          <li style="display: flex; align-items: center; gap: 8px"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9CED6; font-size: 12px; font-weight: 700">3</span>Tạo embedding</li>
+          <li style="display: flex; align-items: center; gap: 8px"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9CED6; font-size: 12px; font-weight: 700">4</span>Lưu vào Qdrant kèm doc_id, version</li>
+        </ol>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeUpload }}" disabled="{{ up.sending }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Hủy</button>
+          <button type="button" onClick="{{ submitUpload }}" disabled="{{ up.sending }}" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border: none; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 600">
+            <sc-if value="{{ up.sending }}" hint-placeholder-val="{{ false }}">
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg>
+            </sc-if>
+            {{ up.submitLabel }}
+          </button>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- filters -->
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+      <div style="position: relative; flex: 1 1 280px">
+        <label for="dsearch" class="sr-only">Tìm tài liệu</label>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 12px; top: 14px"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input id="dsearch" type="search" value="{{ f.q }}" onChange="{{ onQ }}" placeholder="Tìm theo tên tài liệu hoặc tên file" style="width: 100%; height: 44px; padding: 0 12px 0 36px; border: 1px solid #D5D9E0; border-radius: 10px; font-size: 14px; background: #FFFFFF">
+      </div>
+      <label for="fcat" class="sr-only">Lọc theo danh mục</label>
+      <select id="fcat" value="{{ f.cat }}" onChange="{{ onFCat }}" style="height: 44px; padding: 0 10px; border: 1px solid #D5D9E0; border-radius: 10px; font-size: 14px; background: #FFFFFF; color: #111827">
+        <option>Tất cả danh mục</option><option>Quy chế đào tạo</option><option>Học phí &amp; học bổng</option><option>Đăng ký học phần</option><option>Thủ tục hành chính</option><option>Thông báo</option>
+      </select>
+      <label for="fstat" class="sr-only">Lọc theo trạng thái</label>
+      <select id="fstat" value="{{ f.status }}" onChange="{{ onFStatus }}" style="height: 44px; padding: 0 10px; border: 1px solid #D5D9E0; border-radius: 10px; font-size: 14px; background: #FFFFFF; color: #111827">
+        <option>Mọi trạng thái</option><option>Đã index</option><option>Đang xử lý</option><option>Lỗi</option>
+      </select>
+    </div>
+
+    <!-- table -->
+    <div style="overflow-x: auto; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+      <div style="min-width: 940px; font-size: 14px">
+        <div style="display: grid; grid-template-columns: minmax(240px, 2.4fr) minmax(130px, 1.2fr) 72px 72px minmax(190px, 1.5fr) 110px 96px; text-align: left; color: #5B5A96; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #E3E6EB">
+          <span style="padding: 12px 16px">Tài liệu</span>
+          <span style="padding: 12px 16px">Danh mục</span>
+          <span style="padding: 12px 16px">Loại</span>
+          <span style="padding: 12px 16px; text-align: right">Chunk</span>
+          <span style="padding: 12px 16px">Trạng thái</span>
+          <span style="padding: 12px 16px">Cập nhật</span>
+          <span style="padding: 12px 16px; text-align: right">Thao tác</span>
+        </div>
+        <sc-for list="{{ docs }}" as="d" hint-placeholder-count="7">
+          <div class="row" style="display: grid; grid-template-columns: minmax(240px, 2.4fr) minmax(130px, 1.2fr) 72px 72px minmax(190px, 1.5fr) 110px 96px; align-items: center; border-bottom: 1px solid #EEF0F3">
+            <div style="padding: 12px 16px; min-width: 0">
+              <div style="display: flex; flex-direction: column; line-height: 1.4">
+                <a href="AdminDocDetail.dc.html" style="font-weight: 600; color: #111827">{{ d.title }}</a>
+                <span style="font-size: 12px; color: #5B6472; word-break: break-all">{{ d.file }}</span>
+              </div>
+            </div>
+            <div style="padding: 12px 16px; color: #374151">{{ d.cat }}</div>
+            <div style="padding: 12px 16px"><span style="font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #EEF1F5; color: #374151; white-space: nowrap">{{ d.type }}</span></div>
+            <div style="padding: 12px 16px; text-align: right; font-variant-numeric: tabular-nums">{{ d.chunks }}</div>
+            <div style="padding: 12px 16px">
+              <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+                <span style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: {{d.sBg}}; color: {{d.sFg}}">
+                  <sc-if value="{{ d.isOk }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
+                  <sc-if value="{{ d.isProc }}" hint-placeholder-val="{{ false }}"><svg class="spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg></sc-if>
+                  <sc-if value="{{ d.isErr }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                  {{ d.sLabel }}
+                </span>
+                <sc-if value="{{ d.hasSub }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12px; color: {{d.subFg}}">{{ d.sub }}</span>
+                </sc-if>
+              </div>
+            </div>
+            <div style="padding: 12px 16px; color: #374151; white-space: nowrap">{{ d.updated }}</div>
+            <div style="padding: 12px 16px">
+              <div style="display: flex; gap: 4px; justify-content: flex-end">
+                <button type="button" class="ghost" onClick="{{ d.reidx }}" disabled="{{ d.isProc }}" aria-label="Re-index {{ d.title }}" title="Re-index" style="width: 40px; height: 40px; border: none; border-radius: 10px; background: transparent; color: #374151; display: flex; align-items: center; justify-content: center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                </button>
+                <button type="button" class="ghost" onClick="{{ d.del }}" disabled="{{ d.isProc }}" aria-label="Xóa {{ d.title }}" title="Xóa" style="width: 40px; height: 40px; border: none; border-radius: 10px; background: transparent; color: #B01C08; display: flex; align-items: center; justify-content: center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ noDocs }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 40px 16px; text-align: center; color: #374151">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B6472" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span style="font-weight: 600">Không có tài liệu phù hợp với bộ lọc.</span>
+            <button type="button" class="ghost" onClick="{{ clearFilters }}" style="height: 40px; padding: 0 16px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 14px">Xóa bộ lọc</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: #5B6472">Hiển thị {{ stats.shown }} / {{ stats.total }} tài liệu</p>
+  </main>
+
+  <!-- DIALOG: delete document -->
+  <sc-if value="{{ dlg.del }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 40, 0.45)">
+      <div role="dialog" aria-modal="true" aria-labelledby="del-h" style="width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; background: #FFFFFF">
+        <h2 id="del-h" style="margin: 0; font-size: 18px; font-weight: 700">Xóa “{{ delDoc.title }}”?</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #374151">{{ delDoc.chunks }} chunk của tài liệu này sẽ bị xóa khỏi Qdrant. Trợ lý sẽ không còn dùng tài liệu này để trả lời sinh viên. Không thể hoàn tác.</p>
+        <div style="display: flex; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeDlg }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Hủy</button>
+          <button type="button" onClick="{{ confirmDel }}" style="height: 44px; padding: 0 18px; border: none; border-radius: 10px; background: #C81E0A; color: #FFFFFF; font-size: 15px; font-weight: 600">Xóa tài liệu</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- DIALOG: logout -->
+  <sc-if value="{{ dlg.logout }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 40, 0.45)">
+      <div role="dialog" aria-modal="true" aria-labelledby="lo-h" style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; background: #FFFFFF">
+        <h2 id="lo-h" style="margin: 0; font-size: 18px; font-weight: 700">Đăng xuất khỏi trang quản trị?</h2>
+        <p style="margin: 0; font-size: 14px; color: #374151">Các tác vụ đang xử lý vẫn tiếp tục chạy trên máy chủ. Bạn sẽ cần đăng nhập lại để quản lý tài liệu.</p>
+        <div style="display: flex; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeDlg }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Ở lại</button>
+          <a href="AdminLogin.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 10px; background: #000066; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- TOAST -->
+  <sc-if value="{{ toast.show }}" hint-placeholder-val="{{ false }}">
+    <div role="status" aria-live="polite" style="position: fixed; right: 24px; bottom: 24px; z-index: 60; width: min(400px, calc(100vw - 48px)); display: flex; align-items: flex-start; gap: 12px; padding: 14px 14px 14px 16px; border-radius: 12px; background: {{toast.bg}}; color: #FFFFFF; box-shadow: 0 10px 30px rgba(0, 0, 40, 0.25); font-size: 14px; line-height: 1.5">
+      <sc-if value="{{ toast.isOk }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
+      <sc-if value="{{ toast.isErr }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></sc-if>
+      <sc-if value="{{ toast.isInfo }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></sc-if>
+      <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+        <strong style="font-weight: 700">{{ toast.title }}</strong>
+        <span>{{ toast.text }}</span>
+      </div>
+      <button type="button" onClick="{{ closeToast }}" aria-label="Đóng thông báo" style="flex: none; width: 32px; height: 32px; border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.16); color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#000066","options":["#000066","#1D4ED8","#0F766E","#7C3AED"]},"errorDemo":{"editor":"enum","options":["Không lỗi","Lỗi tải lên","Lỗi xử lý","Lỗi xóa"],"default":"Không lỗi","section":"Mô phỏng"},"$preview":{"width":1440,"height":1160}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    // d6 is mid-processing when the page opens: let it finish so the status changes live.
+    this.runProc('d6', 'Thông báo xét tốt nghiệp đợt [ĐỢT]', 2, 6);
+  }
+  componentWillUnmount() {
+    (this._timers || []).forEach(function (t) { clearTimeout(t); });
+    clearTimeout(this._toastT);
+  }
+  later(fn, ms) {
+    this._timers = this._timers || [];
+    this._timers.push(setTimeout(fn, ms));
+  }
+  notify(type, title, text) {
+    var self = this;
+    clearTimeout(this._toastT);
+    this.setState({ toast: { type: type, title: title, text: text } });
+    this._toastT = setTimeout(function () { self.setState({ toast: null }); }, 5000);
+  }
+  errMode() { return this.props.errorDemo || 'Không lỗi'; }
+  patch(id, p) {
+    var o = Object.assign({}, (this.state || {}).over);
+    o[id] = Object.assign({}, o[id], p);
+    this.setState({ over: o });
+  }
+  runProc(id, title, fromStep, chunksWhenDone) {
+    var self = this;
+    var steps = ['Trích xuất văn bản', 'Chia chunk', 'Tạo embedding', 'Lưu vào Qdrant'];
+    var i = fromStep || 0;
+    var tick = function () {
+      if (i < 4) {
+        self.patch(id, { status: 'proc', sub: 'Bước ' + (i + 1) + '/4 · ' + steps[i], updated: 'Vừa xong' });
+        i++;
+        self.later(tick, 1000);
+      } else if (self.errMode() === 'Lỗi xử lý') {
+        self.patch(id, { status: 'err', sub: 'Lỗi ở bước 3/4 · Tạo embedding: hết thời gian chờ API' });
+        self.notify('err', 'Xử lý thất bại', '“' + title + '” bị lỗi ở bước tạo embedding. Bấm Re-index để thử lại.');
+      } else {
+        self.patch(id, { status: 'ok', sub: '', chunks: chunksWhenDone });
+        self.notify('ok', 'Đã index xong', '“' + title + '” đã sẵn sàng để trợ lý sử dụng.');
+      }
+    };
+    tick();
+  }
+  renderVals() {
+    var st = this.state || {};
+    var self = this;
+    var accent = this.props.accent ?? '#000066';
+    var soft = accent + '1A';
+    var mode = this.errMode();
+    var over = st.over || {};
+    var removed = st.removed || {};
+    var dlg = st.dlg || null;
+
+    var base = [
+      { id: 'd1', title: 'Quy chế đào tạo trình độ đại học', file: 'quy-che-dao-tao-dai-hoc.pdf', cat: 'Quy chế đào tạo', type: 'PDF', chunks: 142, status: 'ok', updated: '18/11/2026' },
+      { id: 'd2', title: 'Quy định chuẩn đầu ra ngoại ngữ, tin học', file: 'chuan-dau-ra-ngoai-ngu-tin-hoc.pdf', cat: 'Quy chế đào tạo', type: 'PDF', chunks: 38, status: 'ok', updated: '18/11/2026' },
+      { id: 'd3', title: 'Biểu học phí năm học [NĂM HỌC]', file: 'bieu-hoc-phi.pdf', cat: 'Học phí & học bổng', type: 'PDF', chunks: 64, status: 'ok', updated: '19/11/2026' },
+      { id: 'd4', title: 'Quy định xét học bổng khuyến khích học tập', file: 'hoc-bong-khuyen-khich.pdf', cat: 'Học phí & học bổng', type: 'PDF', chunks: 45, status: 'ok', updated: '19/11/2026' },
+      { id: 'd5', title: 'Hướng dẫn đăng ký học phần', file: 'thanglong.edu.vn/huong-dan-dang-ky-hoc-phan', cat: 'Đăng ký học phần', type: 'Web', chunks: 21, status: 'ok', updated: '20/11/2026' },
+      { id: 'd6', title: 'Thông báo xét tốt nghiệp đợt [ĐỢT]', file: 'thanglong.edu.vn/thong-bao/xet-tot-nghiep', cat: 'Thông báo', type: 'Web', chunks: 0, status: 'proc', sub: 'Bước 3/4 · Tạo embedding', updated: 'Vừa xong' },
+      { id: 'd7', title: 'Mẫu đơn xin bảo lưu kết quả học tập', file: 'don-bao-luu-scan.jpg', cat: 'Thủ tục hành chính', type: 'Ảnh', chunks: 0, status: 'err', sub: 'OCR không đọc được: ảnh mờ, hãy tải lại bản rõ hơn', updated: '21/11/2026' }
+    ];
+    var STY = {
+      ok: { sLabel: 'Đã index', sBg: '#E7F5EE', sFg: '#166534', subFg: '#5B6472' },
+      proc: { sLabel: 'Đang xử lý', sBg: '#E8E8F5', sFg: '#000066', subFg: '#5B6472' },
+      err: { sLabel: 'Lỗi', sBg: '#FEEDEB', sFg: '#B01C08', subFg: '#B01C08' }
+    };
+
+    var all = (st.added || []).concat(base).filter(function (d) { return !removed[d.id]; }).map(function (d0) {
+      var d = Object.assign({}, d0, over[d0.id]);
+      return Object.assign(d, STY[d.status], {
+        isOk: d.status === 'ok', isProc: d.status === 'proc', isErr: d.status === 'err',
+        sub: d.sub || '', hasSub: !!d.sub,
+        reidx: function () {
+          self.notify('info', 'Bắt đầu re-index', '“' + d.title + '” đang được xử lý lại từ đầu.');
+          self.runProc(d.id, d.title, 0, d.chunks || 24);
+        },
+        del: function () { self.setState({ dlg: 'del', delId: d.id }); }
+      });
+    });
+
+    var stats = { total: all.length, ok: 0, proc: 0, err: 0, chunks: 0, shown: 0 };
+    all.forEach(function (d) {
+      if (d.isOk) { stats.ok++; stats.chunks += d.chunks; }
+      if (d.isProc) stats.proc++;
+      if (d.isErr) stats.err++;
+    });
+
+    var f = st.f || { q: '', cat: 'Tất cả danh mục', status: 'Mọi trạng thái' };
+    var STATUS = { 'Đã index': 'ok', 'Đang xử lý': 'proc', 'Lỗi': 'err' };
+    var fq = f.q.trim().toLowerCase();
+    var docs = all.filter(function (d) {
+      if (fq && (d.title + ' ' + d.file).toLowerCase().indexOf(fq) < 0) return false;
+      if (f.cat !== 'Tất cả danh mục' && d.cat !== f.cat) return false;
+      if (f.status !== 'Mọi trạng thái' && d.status !== STATUS[f.status]) return false;
+      return true;
+    });
+    stats.shown = docs.length;
+    var setF = function (k) { return function (e) { var n = Object.assign({}, f); n[k] = e.target.value; self.setState({ f: n }); }; };
+
+    /* ---------- upload ---------- */
+    var up = st.up || {};
+    var isFile = (up.tab || 'file') === 'file';
+    var errs = up.errs || {};
+    var setUp = function (p) { self.setState({ up: Object.assign({}, (self.state || {}).up, p) }); };
+    var files = (up.files || []).map(function (x) {
+      return { name: x.name, state: x.ok ? 'Hợp lệ' : 'Sai định dạng', bg: x.ok ? '#E7F5EE' : '#FEEDEB', fg: x.ok ? '#166534' : '#B01C08' };
+    });
+    var resetUp = { open: false, tab: 'file', files: [], url: '', name: '', cat: 'Quy chế đào tạo', replace: false, errs: {}, sending: false };
+
+    var TOAST_BG = { ok: '#0E5132', err: '#B01C08', info: '#000066' };
+    var t = st.toast;
+    var delDoc = all.filter(function (d) { return d.id === st.delId; })[0] || { title: '', chunks: 0 };
+
+    return {
+      accent: accent, accentSoft: soft,
+      stats: stats, docs: docs, noDocs: docs.length === 0,
+      f: f, onQ: setF('q'), onFCat: setF('cat'), onFStatus: setF('status'),
+      clearFilters: function () { self.setState({ f: { q: '', cat: 'Tất cả danh mục', status: 'Mọi trạng thái' } }); },
+
+      up: {
+        open: !!up.open, isFile: isFile, isUrl: !isFile,
+        fileBg: isFile ? '#FFFFFF' : 'transparent', fileFg: isFile ? '#111827' : '#4B5563',
+        urlBg: !isFile ? '#FFFFFF' : 'transparent', urlFg: !isFile ? '#111827' : '#4B5563',
+        files: files, url: up.url || '', name: up.name || '', cat: up.cat || 'Quy chế đào tạo', replace: !!up.replace,
+        errs: { file: errs.file || '', url: errs.url || '', name: errs.name || '' },
+        hasFileErr: !!errs.file, hasUrlErr: !!errs.url, hasNameErr: !!errs.name,
+        fileBorder: errs.file ? '#C81E0A' : '#C9CED6',
+        urlBorder: errs.url ? '#C81E0A' : '#C9CED6',
+        nameBorder: errs.name ? '#C81E0A' : '#C9CED6',
+        sending: !!up.sending,
+        submitLabel: up.sending ? 'Đang tải lên…' : 'Xử lý & đưa vào index'
+      },
+      openUpload: function () { if (!up.open) self.setState({ up: Object.assign({}, resetUp, { open: true }) }); },
+      closeUpload: function () { self.setState({ up: resetUp }); },
+      tabFile: function () { setUp({ tab: 'file', errs: {} }); },
+      tabUrl: function () { setUp({ tab: 'url', errs: {} }); },
+      onFiles: function (e) {
+        var list = [].slice.call(e.target.files || []).map(function (x) { return { name: x.name, ok: /\.(pdf|png|jpe?g)$/i.test(x.name) }; });
+        var p = { files: list, errs: Object.assign({}, errs, { file: '' }) };
+        if (!up.name && list.length) p.name = list[0].name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+        setUp(p);
+      },
+      onUrl: function (e) { setUp({ url: e.target.value, errs: Object.assign({}, errs, { url: '' }) }); },
+      onName: function (e) { setUp({ name: e.target.value, errs: Object.assign({}, errs, { name: '' }) }); },
+      onCat: function (e) { setUp({ cat: e.target.value }); },
+      onReplace: function (e) { setUp({ replace: e.target.checked }); },
+      submitUpload: function () {
+        var e2 = {};
+        var fl = up.files || [];
+        var url = (up.url || '').trim();
+        var name = (up.name || '').trim();
+        if (isFile) {
+          var bad = fl.filter(function (x) { return !x.ok; })[0];
+          if (!fl.length) e2.file = 'Chưa chọn file. Hãy chọn ít nhất một file PDF hoặc ảnh.';
+          else if (bad) e2.file = 'File “' + bad.name + '” không đúng định dạng (chỉ nhận PDF, PNG, JPG).';
+        } else {
+          if (!url) e2.url = 'Vui lòng nhập đường link.';
+          else if (!/^https?:\/\//i.test(url)) e2.url = 'Đường link phải bắt đầu bằng http:// hoặc https://';
+        }
+        if (!name) e2.name = 'Vui lòng nhập tên hiển thị.';
+        if (Object.keys(e2).length) {
+          setUp({ errs: e2 });
+          self.notify('err', 'Chưa thể thêm tài liệu', 'Vui lòng sửa các ô được đánh dấu đỏ.');
+          return;
+        }
+        setUp({ sending: true, errs: {} });
+        self.later(function () {
+          if (mode === 'Lỗi tải lên') {
+            setUp({ sending: false });
+            self.notify('err', 'Tải lên thất bại', 'Máy chủ không phản hồi. Thông tin trong form vẫn được giữ, hãy thử lại.');
+            return;
+          }
+          var id = 'n' + Date.now();
+          var src = isFile ? fl[0].name : url;
+          var doc = { id: id, title: name, file: src, cat: up.cat || 'Quy chế đào tạo',
+            type: isFile ? (/\.pdf$/i.test(src) ? 'PDF' : 'Ảnh') : 'Web', chunks: 0, status: 'proc',
+            sub: 'Bước 1/4 · Trích xuất văn bản', updated: 'Vừa xong' };
+          self.setState({ added: [doc].concat((self.state || {}).added || []), up: resetUp });
+          self.notify('info', 'Đã tải lên “' + name + '”', up.replace
+            ? 'Đang xử lý 4 bước. Bản cũ sẽ được gỡ khỏi index khi bản mới xử lý xong.'
+            : 'Đang xử lý 4 bước, trạng thái cập nhật ngay trong bảng.');
+          self.runProc(id, name, 0, 24);
+        }, 1000);
+      },
+
+      dlg: { del: dlg === 'del', logout: dlg === 'logout' },
+      delDoc: delDoc,
+      closeDlg: function () { self.setState({ dlg: null }); },
+      confirmDel: function () {
+        self.setState({ dlg: null });
+        if (mode === 'Lỗi xóa') {
+          self.notify('err', 'Không xóa được tài liệu', 'Không kết nối được Qdrant. Tài liệu vẫn được giữ nguyên, hãy thử lại.');
+          return;
+        }
+        var r = Object.assign({}, removed); r[delDoc.id] = true;
+        self.setState({ removed: r });
+        self.notify('ok', 'Đã xóa tài liệu', 'Đã gỡ “' + delDoc.title + '” và ' + delDoc.chunks + ' chunk khỏi Qdrant.');
+      },
+      askLogout: function () { self.setState({ dlg: 'logout' }); },
+
+      toast: { show: !!t, isOk: !!t && t.type === 'ok', isErr: !!t && t.type === 'err', isInfo: !!t && t.type === 'info',
+        bg: t ? TOAST_BG[t.type] : '#000066', title: t ? t.title : '', text: t ? t.text : '' },
+      closeToast: function () { clearTimeout(self._toastT); self.setState({ toast: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

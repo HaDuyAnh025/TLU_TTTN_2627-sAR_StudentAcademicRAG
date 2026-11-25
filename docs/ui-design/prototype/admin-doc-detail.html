@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Quản trị — Chi tiết tài liệu</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>window.DC_ROUTES = {"Welcome.dc.html": "welcome.html", "Main.dc.html": "main.html", "AdminLogin.dc.html": "admin-login.html", "AdminDocs.dc.html": "admin-docs.html", "AdminDocDetail.dc.html": "admin-doc-detail.html", "AdminFeedback.dc.html": "admin-feedback.html"};</script>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#F5F6F8}
+*{box-sizing:border-box}
+a{color:#000066}a:hover{color:#C81E0A}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.6}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #000066;outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hist:not([aria-current="page"]):hover{background:#F1F3F6 !important}
+.chip:hover{border-color:#9AA3B2 !important}
+.ghost:hover:not(:disabled){background:#F1F3F6 !important}
+.nav:hover{background:#F1F3F6 !important}
+.row:hover{background:#FAFBFC}
+.drop:hover{border-color:#000066 !important;background:#F5F5FB !important}
+select:focus-visible{outline:2px solid #000066;outline-offset:2px}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #111827; background: #F5F6F8; font-size: 15px; line-height: 1.6">
+
+  <!-- ADMIN SIDEBAR -->
+  <aside style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 20px; padding: 20px 16px; background: #FFFFFF; border-right: 1px solid #E3E6EB">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 4px 8px">
+      <svg width="40" height="40" viewBox="0 0 48 48" role="img" aria-label="Biểu tượng Trợ lý Học vụ" style="flex: none; display: block"><rect width="48" height="48" rx="12" fill="#000066"></rect><g fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"><path d="M9 13h9a5 5 0 0 1 5 5v18a3.5 3.5 0 0 0-3.5-3.5H9z"></path><path d="M37 13h-9a5 5 0 0 0-5 5"></path></g><circle cx="32.5" cy="29" r="6.2" fill="#000066" stroke="#F5250C" stroke-width="3"></circle><line x1="37" y1="33.5" x2="40.5" y2="37" stroke="#F5250C" stroke-width="3.2" stroke-linecap="round"></line></svg>
+      <div style="display: flex; flex-direction: column; line-height: 1.3">
+        <span style="font-weight: 700; font-size: 16px">Trợ lý Học vụ</span>
+        <span style="font-size: 13px; color: #5B6472">Quản trị</span>
+      </div>
+    </div>
+    <nav aria-label="Quản trị" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="AdminDocs.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; background: {{accentSoft}}; color: {{accent}}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Tài liệu
+      </a>
+      <a href="AdminFeedback.dc.html" class="nav" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Phản hồi
+        <span style="margin-left: auto; min-width: 24px; height: 22px; padding: 0 7px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #FEEDEB; color: #B01C08">3</span>
+      </a>
+    </nav>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid #E3E6EB">
+      <a href="Welcome.dc.html" class="nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        Mở trang sinh viên
+      </a>
+      <button type="button" class="nav" onClick="{{ askLogout }}" style="border: none; background: transparent; text-align: left; width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 12px; border-radius: 10px; font-size: 14px; text-decoration: none; color: #374151">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main style="flex: 999 1 600px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <nav aria-label="Đường dẫn" style="font-size: 14px; color: #5B6472; display: flex; gap: 8px; align-items: center; flex-wrap: wrap">
+      <a href="AdminDocs.dc.html" style="color: #374151">Tài liệu</a>
+      <span aria-hidden="true">›</span>
+      <span>Quy chế đào tạo trình độ đại học</span>
+    </nav>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.3">Quy chế đào tạo trình độ đại học</h1>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: #5B6472">
+          <span style="font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #EEF1F5; color: #374151">PDF</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{status.bg}}; color: {{status.fg}}">
+            <sc-if value="{{ status.isProc }}" hint-placeholder-val="{{ false }}"><svg class="spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg></sc-if>
+            <sc-if value="{{ status.isOk }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
+            <sc-if value="{{ status.isErr }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></sc-if>
+            {{ status.label }}
+          </span>
+          <sc-if value="{{ status.hasSub }}" hint-placeholder-val="{{ false }}">
+            <span style="color: {{status.subFg}}">{{ status.sub }}</span>
+          </sc-if>
+          <span>quy-che-dao-tao-dai-hoc.pdf</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <button type="button" class="ghost" onClick="{{ download }}" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Tải file gốc
+        </button>
+        <button type="button" class="ghost" onClick="{{ askReidx }}" disabled="{{ status.isProc }}" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          Re-index
+        </button>
+        <button type="button" class="ghost" onClick="{{ askDel }}" disabled="{{ status.isProc }}" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border: 1px solid #F7C4BC; border-radius: 10px; background: #FFFFFF; color: #B01C08; font-size: 14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path></svg>
+          Xóa
+        </button>
+      </div>
+    </div>
+
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; border-radius: 14px; overflow: hidden; background: #E3E6EB; border: 1px solid #E3E6EB">
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">doc_id</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600; font-family: ui-monospace, Menlo, monospace">quy_che_dtdh</dd>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">Phiên bản</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600">v2 · thay thế v1</dd>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">Danh mục</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600">Quy chế đào tạo</dd>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">Số trang</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600">46</dd>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">Số chunk</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600">142</dd>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: #FFFFFF">
+        <dt style="font-size: 12px; color: #5B6472">Index lúc</dt>
+        <dd style="margin: 0; font-size: 14px; font-weight: 600">{{ indexedAt }}</dd>
+      </div>
+    </dl>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <!-- chunks -->
+      <section aria-labelledby="chunk-h" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px">
+          <h2 id="chunk-h" style="margin: 0; font-size: 18px; font-weight: 700">Chunk của tài liệu</h2>
+          <div style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #E9ECF0">
+            <sc-for list="{{ pills }}" as="p" hint-placeholder-count="3">
+              <button type="button" onClick="{{ p.pick }}" aria-pressed="{{ p.on }}" style="height: 34px; padding: 0 12px; border: none; border-radius: 9px; font-size: 13px; font-weight: 600; background: {{p.bg}}; color: {{p.fg}}">{{ p.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <div style="position: relative; flex: 1 1 240px">
+            <label for="csearch" class="sr-only">Tìm trong chunk</label>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 12px; top: 14px"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input id="csearch" type="search" value="{{ cq }}" onChange="{{ onCq }}" placeholder="Tìm nội dung trong chunk" style="width: 100%; height: 44px; padding: 0 12px 0 36px; border: 1px solid #D5D9E0; border-radius: 10px; font-size: 14px; background: #FFFFFF">
+          </div>
+          <label for="cpage" class="sr-only">Lọc theo trang</label>
+          <input id="cpage" type="number" min="1" value="{{ cpage }}" onChange="{{ onCpage }}" placeholder="Trang" style="width: 110px; height: 44px; padding: 0 12px; border: 1px solid #D5D9E0; border-radius: 10px; font-size: 14px; background: #FFFFFF">
+        </div>
+
+        <sc-for list="{{ chunks }}" as="c" hint-placeholder-count="5">
+          <article style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E3E6EB">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: #5B6472">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-weight: 700; color: #111827; font-size: 13px">{{ c.id }}</span>
+              <span>·</span>
+              <span>{{ c.pageLabel }}</span>
+              <span>·</span>
+              <span>{{ c.loc }}</span>
+              <sc-if value="{{ c.isTable }}" hint-placeholder-val="{{ false }}">
+                <span style="font-weight: 700; padding: 1px 8px; border-radius: 6px; background: #ECEBF6; color: #4B4A86">Bảng · 1 dòng = 1 câu</span>
+              </sc-if>
+              <span style="margin-left: auto">{{ c.tokens }} token</span>
+            </div>
+            <p style="margin: 0; font-size: 14px; line-height: 1.65; color: #374151; white-space: pre-line">{{ c.text }}</p>
+          </article>
+        </sc-for>
+        <sc-if value="{{ noChunks }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 32px 16px; border-radius: 14px; background: #FFFFFF; border: 1px dashed #C9CED6; text-align: center; color: #374151">
+            <span style="font-weight: 600">Không có chunk nào khớp bộ lọc.</span>
+            <button type="button" class="ghost" onClick="{{ clearChunkFilters }}" style="height: 40px; padding: 0 16px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 14px">Xóa bộ lọc</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasChunks }}" hint-placeholder-val="{{ true }}">
+          <button type="button" class="ghost" onClick="{{ loadMore }}" disabled="{{ loadingMore }}" style="align-self: center; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 14px">
+            <sc-if value="{{ loadingMore }}" hint-placeholder-val="{{ false }}">
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg>
+            </sc-if>
+            {{ moreLabel }}
+          </button>
+        </sc-if>
+      </section>
+
+      <!-- retrieval test -->
+      <section aria-labelledby="rt-h" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E3E6EB">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h2 id="rt-h" style="margin: 0; font-size: 18px; font-weight: 700">Thử truy xuất</h2>
+          <p style="margin: 0; font-size: 13px; color: #4B5563">Nhập một câu hỏi để xem chunk nào được tìm thấy và xếp hạng lại.</p>
+        </div>
+        <label for="rtq" class="sr-only">Câu hỏi thử</label>
+        <textarea id="rtq" rows="2" value="{{ rq }}" onChange="{{ onRq }}" aria-invalid="{{ rqErr }}" style="width: 100%; padding: 10px 12px; border: 1px solid {{rqBorder}}; border-radius: 10px; font-size: 14px; color: #111827; resize: vertical"></textarea>
+        <sc-if value="{{ rqErr }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="margin: 0; font-size: 13px; font-weight: 600; color: #B01C08">Vui lòng nhập câu hỏi để chạy thử.</p>
+        </sc-if>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #374151">
+          <input type="checkbox" checked="{{ onlyThis }}" onChange="{{ onOnlyThis }}" style="width: 18px; height: 18px; accent-color: #000066">
+          Chỉ tìm trong tài liệu này
+        </label>
+        <button type="button" onClick="{{ run }}" disabled="{{ rt.loading }}" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border: none; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 600">
+          <sc-if value="{{ rt.loading }}" hint-placeholder-val="{{ false }}">
+            <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg>
+          </sc-if>
+          <sc-if value="{{ rt.notLoading }}" hint-placeholder-val="{{ true }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </sc-if>
+          {{ rt.label }}
+        </button>
+
+        <sc-if value="{{ rt.error }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="margin: 0; padding: 12px 14px; border-radius: 12px; background: #FEEDEB; border: 1px solid #F7C4BC; font-size: 13px; color: #B01C08; font-weight: 600">Không kết nối được Qdrant. Kiểm tra dịch vụ vector DB rồi chạy lại.</p>
+        </sc-if>
+        <sc-if value="{{ rt.done }}" hint-placeholder-val="{{ true }}">
+          <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{ results }}" as="r" hint-placeholder-count="3">
+              <li style="display: flex; gap: 12px; padding: 12px; border-radius: 12px; background: #F5F6F8">
+                <span style="flex: none; width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: {{accent}}; color: #FFFFFF">{{ r.rank }}</span>
+                <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 auto">
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: #5B6472">
+                    <span style="font-family: ui-monospace, Menlo, monospace; font-weight: 700; color: #111827">{{ r.id }}</span>
+                    <span>· {{ r.page }}</span>
+                  </div>
+                  <span style="font-size: 13px; line-height: 1.5; color: #374151">{{ r.snippet }}</span>
+                  <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5B6472">
+                    <span>Rerank</span>
+                    <span style="flex: 1 1 auto; height: 6px; border-radius: 999px; background: #E3E6EB; overflow: hidden"><span style="display: block; height: 6px; border-radius: 999px; width: {{r.bar}}; background: {{accent}}"></span></span>
+                    <span style="font-variant-numeric: tabular-nums; font-weight: 600; color: #111827">{{ r.score }}</span>
+                  </div>
+                </div>
+              </li>
+            </sc-for>
+          </ol>
+          <p style="margin: 0; font-size: 12px; color: #5B6472">Lấy top-10 từ Qdrant, rerank bằng bge-reranker-v2-m3, giữ lại 3 chunk đầu để đưa vào LLM.</p>
+        </sc-if>
+      </section>
+    </div>
+  </main>
+
+  <!-- DIALOG: re-index -->
+  <sc-if value="{{ dlg.reidx }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 40, 0.45)">
+      <div role="dialog" aria-modal="true" aria-labelledby="rx-h" style="width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; background: #FFFFFF">
+        <h2 id="rx-h" style="margin: 0; font-size: 18px; font-weight: 700">Re-index tài liệu này?</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #374151">142 chunk sẽ được tạo lại từ file gốc. Trong lúc xử lý, trợ lý vẫn dùng bản index hiện tại.</p>
+        <div style="display: flex; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeDlg }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Hủy</button>
+          <button type="button" onClick="{{ confirmReidx }}" style="height: 44px; padding: 0 18px; border: none; border-radius: 10px; background: #000066; color: #FFFFFF; font-size: 15px; font-weight: 600">Bắt đầu re-index</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- DIALOG: delete -->
+  <sc-if value="{{ dlg.del }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 40, 0.45)">
+      <div role="dialog" aria-modal="true" aria-labelledby="dd-h" style="width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; background: #FFFFFF">
+        <h2 id="dd-h" style="margin: 0; font-size: 18px; font-weight: 700">Xóa “Quy chế đào tạo trình độ đại học”?</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #374151">142 chunk sẽ bị xóa khỏi Qdrant và trợ lý không còn dùng tài liệu này. Không thể hoàn tác. Sau khi xóa, bạn sẽ quay lại danh sách tài liệu.</p>
+        <div style="display: flex; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeDlg }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Hủy</button>
+          <sc-if value="{{ canDelete }}" hint-placeholder-val="{{ true }}">
+            <a href="AdminDocs.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 10px; background: #C81E0A; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">Xóa tài liệu</a>
+          </sc-if>
+          <sc-if value="{{ cannotDelete }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ failDelete }}" style="height: 44px; padding: 0 18px; border: none; border-radius: 10px; background: #C81E0A; color: #FFFFFF; font-size: 15px; font-weight: 600">Xóa tài liệu</button>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- DIALOG: logout -->
+  <sc-if value="{{ dlg.logout }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 40, 0.45)">
+      <div role="dialog" aria-modal="true" aria-labelledby="lo-h" style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; background: #FFFFFF">
+        <h2 id="lo-h" style="margin: 0; font-size: 18px; font-weight: 700">Đăng xuất khỏi trang quản trị?</h2>
+        <p style="margin: 0; font-size: 14px; color: #374151">Các tác vụ đang xử lý vẫn tiếp tục chạy trên máy chủ. Bạn sẽ cần đăng nhập lại để quản lý tài liệu.</p>
+        <div style="display: flex; gap: 8px; justify-content: flex-end">
+          <button type="button" class="ghost" onClick="{{ closeDlg }}" style="height: 44px; padding: 0 18px; border: 1px solid #D5D9E0; border-radius: 10px; background: #FFFFFF; color: #374151; font-size: 15px">Ở lại</button>
+          <a href="AdminLogin.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 10px; background: #000066; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- TOAST -->
+  <sc-if value="{{ toast.show }}" hint-placeholder-val="{{ false }}">
+    <div role="status" aria-live="polite" style="position: fixed; right: 24px; bottom: 24px; z-index: 60; width: min(400px, calc(100vw - 48px)); display: flex; align-items: flex-start; gap: 12px; padding: 14px 14px 14px 16px; border-radius: 12px; background: {{toast.bg}}; color: #FFFFFF; box-shadow: 0 10px 30px rgba(0, 0, 40, 0.25); font-size: 14px; line-height: 1.5">
+      <sc-if value="{{ toast.isOk }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
+      <sc-if value="{{ toast.isErr }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></sc-if>
+      <sc-if value="{{ toast.isInfo }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></sc-if>
+      <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+        <strong style="font-weight: 700">{{ toast.title }}</strong>
+        <span>{{ toast.text }}</span>
+      </div>
+      <button type="button" onClick="{{ closeToast }}" aria-label="Đóng thông báo" style="flex: none; width: 32px; height: 32px; border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.16); color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#000066","options":["#000066","#1D4ED8","#0F766E","#7C3AED"]},"simulateError":{"editor":"boolean","default":false,"section":"Mô phỏng"},"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  componentWillUnmount() {
+    (this._timers || []).forEach(function (t) { clearTimeout(t); });
+    clearTimeout(this._toastT);
+  }
+  later(fn, ms) {
+    this._timers = this._timers || [];
+    this._timers.push(setTimeout(fn, ms));
+  }
+  notify(type, title, text) {
+    var self = this;
+    clearTimeout(this._toastT);
+    this.setState({ toast: { type: type, title: title, text: text } });
+    this._toastT = setTimeout(function () { self.setState({ toast: null }); }, 5000);
+  }
+  renderVals() {
+    var st = this.state || {};
+    var self = this;
+    var accent = this.props.accent ?? '#000066';
+    var soft = accent + '1A';
+    var fail = !!this.props.simulateError;
+    var dlg = st.dlg || null;
+
+    /* ---------- status / re-index ---------- */
+    var docStatus = st.docStatus || 'ok';
+    var STEPS = ['Trích xuất văn bản', 'Chia chunk', 'Tạo embedding', 'Lưu vào Qdrant'];
+    var runReidx = function () {
+      var i = 0;
+      var tick = function () {
+        if (i < 4) { self.setState({ docStatus: 'proc', docSub: 'Bước ' + (i + 1) + '/4 · ' + STEPS[i] }); i++; self.later(tick, 1000); }
+        else if (fail) {
+          self.setState({ docStatus: 'err', docSub: 'Lỗi ở bước 3/4 · Tạo embedding: hết thời gian chờ API' });
+          self.notify('err', 'Re-index thất bại', 'Bản index cũ vẫn được giữ, trợ lý vẫn trả lời bình thường. Hãy thử lại sau.');
+        } else {
+          self.setState({ docStatus: 'ok', docSub: '', indexedAt: 'Vừa xong' });
+          self.notify('ok', 'Re-index hoàn tất', '142 chunk đã được tạo lại và lưu vào Qdrant.');
+        }
+      };
+      tick();
+    };
+    var SS = {
+      ok: { label: 'Đã index', bg: '#E7F5EE', fg: '#166534', subFg: '#5B6472' },
+      proc: { label: 'Đang re-index', bg: '#E8E8F5', fg: '#000066', subFg: '#5B6472' },
+      err: { label: 'Lỗi', bg: '#FEEDEB', fg: '#B01C08', subFg: '#B01C08' }
+    };
+
+    /* ---------- chunks ---------- */
+    var all = [
+      { id: 'chunk_001', page: 1, pageLabel: 'Trang 1', loc: 'Chương 1 › Điều 1', tokens: 212, isTable: false,
+        text: 'Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng. Văn bản này quy định chung về tổ chức và quản lý đào tạo trình độ đại học, áp dụng đối với sinh viên các khóa đào tạo chính quy của trường.' },
+      { id: 'chunk_013', page: 17, pageLabel: 'Trang 17', loc: 'Chương 3 › Điều 13', tokens: 318, isTable: false,
+        text: 'Điều 13. Xử lý kết quả học tập. Cuối mỗi học kỳ, sinh viên bị cảnh báo kết quả học tập nếu [ĐIỀU KIỆN CẢNH BÁO THEO QUY CHẾ CỦA TRƯỜNG]…' },
+      { id: 'chunk_014', page: 18, pageLabel: 'Trang 18', loc: 'Chương 3 › Điều 14 › Khoản 1', tokens: 286, isTable: false,
+        text: 'Điều 14. Xét và công nhận tốt nghiệp. 1. Sinh viên được xét và công nhận tốt nghiệp khi có đủ các điều kiện sau: a) Tích lũy đủ học phần, số tín chỉ và hoàn thành các nội dung bắt buộc khác theo yêu cầu của chương trình đào tạo; b) Điểm trung bình tích lũy của toàn khóa học đạt từ trung bình trở lên; c) Tại thời điểm xét tốt nghiệp không bị truy cứu trách nhiệm hình sự hoặc không đang trong thời gian bị kỷ luật ở mức đình chỉ học tập.' },
+      { id: 'chunk_015', page: 18, pageLabel: 'Trang 18–19', loc: 'Chương 3 › Điều 14 › Khoản 2', tokens: 241, isTable: false,
+        text: '2. Hằng năm, trường tổ chức xét tốt nghiệp theo các đợt. Lịch xét và hồ sơ cần nộp được thông báo trước cho sinh viên trên website của trường.' },
+      { id: 'chunk_088', page: 40, pageLabel: 'Trang 40', loc: 'Phụ lục 1 › Bảng quy đổi điểm', tokens: 96, isTable: true,
+        text: 'Bảng quy đổi điểm — Điểm chữ: A | Thang điểm 10: từ 8,5 đến 10 | Thang điểm 4: 4,0.\nBảng quy đổi điểm — Điểm chữ: B+ | Thang điểm 10: từ 8,0 đến 8,4 | Thang điểm 4: 3,5.' },
+      { id: 'chunk_016', page: 19, pageLabel: 'Trang 19', loc: 'Chương 3 › Điều 15', tokens: 264, isTable: false,
+        text: 'Điều 15. Cấp bằng tốt nghiệp. Bằng tốt nghiệp được cấp cho sinh viên đã được công nhận tốt nghiệp theo quy định của trường.' },
+      { id: 'chunk_002', page: 1, pageLabel: 'Trang 1–2', loc: 'Chương 1 › Điều 2', tokens: 198, isTable: false,
+        text: 'Điều 2. Chương trình đào tạo và thời gian học tập. Chương trình đào tạo được xây dựng theo đơn vị tín chỉ, cấu trúc từ các học phần…' },
+      { id: 'chunk_089', page: 40, pageLabel: 'Trang 40', loc: 'Phụ lục 1 › Bảng quy đổi điểm', tokens: 94, isTable: true,
+        text: 'Bảng quy đổi điểm — Điểm chữ: B | Thang điểm 10: từ 7,0 đến 7,9 | Thang điểm 4: 3,0.' }
+    ];
+    var filter = st.filter || 'all';
+    var cq = (st.cq || '').trim().toLowerCase();
+    var cpage = st.cpage || '';
+    var matched = all.filter(function (c) {
+      if (filter === 'table' && !c.isTable) return false;
+      if (filter === 'text' && c.isTable) return false;
+      if (cq && c.text.toLowerCase().indexOf(cq) < 0 && c.loc.toLowerCase().indexOf(cq) < 0) return false;
+      if (cpage && String(c.page) !== String(cpage).trim()) return false;
+      return true;
+    });
+    var limit = st.limit || 5;
+    var chunks = matched.slice(0, limit);
+    var pills = [['all', 'Tất cả'], ['text', 'Văn bản'], ['table', 'Bảng']].map(function (p) {
+      var on = filter === p[0];
+      return { label: p[1], on: on, bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#111827' : '#4B5563',
+        pick: function () { self.setState({ filter: p[0], limit: 5 }); } };
+    });
+
+    /* ---------- retrieval test ---------- */
+    var rq = st.rq === undefined ? 'Điều kiện để được xét tốt nghiệp là gì?' : st.rq;
+    var rtState = st.rt || 'done';
+    var raw = [
+      { id: 'chunk_014', page: 'Trang 18', score: 0.94, snippet: 'Điều 14. Xét và công nhận tốt nghiệp. 1. Sinh viên được xét và công nhận tốt nghiệp khi có đủ các điều kiện sau…' },
+      { id: 'chunk_015', page: 'Trang 18–19', score: 0.71, snippet: '2. Hằng năm, trường tổ chức xét tốt nghiệp theo các đợt…' },
+      { id: 'chunk_016', page: 'Trang 19', score: 0.52, snippet: 'Điều 15. Cấp bằng tốt nghiệp…' }
+    ];
+    var results = raw.map(function (r, i) { return Object.assign({}, r, { rank: i + 1, score: r.score.toFixed(2), bar: Math.round(r.score * 100) + '%' }); });
+
+    var TOAST_BG = { ok: '#0E5132', err: '#B01C08', info: '#000066' };
+    var t = st.toast;
+
+    return {
+      accent: accent, accentSoft: soft,
+      status: Object.assign({}, SS[docStatus], { isOk: docStatus === 'ok', isProc: docStatus === 'proc', isErr: docStatus === 'err',
+        sub: st.docSub || '', hasSub: !!st.docSub }),
+      indexedAt: st.indexedAt || '18/11/2026 · 21:05',
+      download: function () {
+        if (fail) { self.notify('err', 'Không tải được file', 'Không tìm thấy file gốc trên kho lưu trữ. Hãy tải lại tài liệu.'); return; }
+        self.notify('ok', 'Đang tải xuống', 'quy-che-dao-tao-dai-hoc.pdf sẽ được lưu vào thư mục Tải xuống.');
+      },
+      askReidx: function () { self.setState({ dlg: 'reidx' }); },
+      confirmReidx: function () {
+        self.setState({ dlg: null });
+        self.notify('info', 'Bắt đầu re-index', 'Tiến trình hiển thị cạnh trạng thái tài liệu.');
+        runReidx();
+      },
+      askDel: function () { self.setState({ dlg: 'del' }); },
+      canDelete: !fail, cannotDelete: fail,
+      failDelete: function () {
+        self.setState({ dlg: null });
+        self.notify('err', 'Không xóa được tài liệu', 'Không kết nối được Qdrant. Tài liệu vẫn được giữ nguyên, hãy thử lại.');
+      },
+      dlg: { reidx: dlg === 'reidx', del: dlg === 'del', logout: dlg === 'logout' },
+      closeDlg: function () { self.setState({ dlg: null }); },
+      askLogout: function () { self.setState({ dlg: 'logout' }); },
+
+      pills: pills,
+      cq: st.cq || '', onCq: function (e) { self.setState({ cq: e.target.value, limit: 5 }); },
+      cpage: cpage, onCpage: function (e) { self.setState({ cpage: e.target.value, limit: 5 }); },
+      chunks: chunks, noChunks: chunks.length === 0, hasChunks: chunks.length > 0,
+      clearChunkFilters: function () { self.setState({ filter: 'all', cq: '', cpage: '', limit: 5 }); },
+      loadingMore: !!st.loadingMore,
+      moreLabel: st.loadingMore ? 'Đang tải…' : 'Xem thêm chunk (đang hiện ' + chunks.length + ' / ' + (filter === 'all' && !cq && !cpage ? 142 : matched.length) + ')',
+      loadMore: function () {
+        if (limit >= matched.length) {
+          self.notify('info', 'Đã hiển thị hết chunk khớp bộ lọc', 'Dùng ô tìm kiếm hoặc lọc theo trang để xem chunk cụ thể.');
+          return;
+        }
+        self.setState({ loadingMore: true });
+        self.later(function () {
+          if (fail) { self.setState({ loadingMore: false }); self.notify('err', 'Không tải được thêm chunk', 'Lỗi kết nối tới máy chủ. Vui lòng thử lại.'); return; }
+          self.setState({ loadingMore: false, limit: limit + 3 });
+        }, 700);
+      },
+
+      rq: rq,
+      onRq: function (e) { self.setState({ rq: e.target.value, rqErr: false }); },
+      rqErr: !!st.rqErr,
+      rqBorder: st.rqErr ? '#C81E0A' : '#C9CED6',
+      onlyThis: st.onlyThis !== false,
+      onOnlyThis: function (e) { self.setState({ onlyThis: e.target.checked }); },
+      rt: { loading: rtState === 'loading', notLoading: rtState !== 'loading', done: rtState === 'done', error: rtState === 'error',
+        label: rtState === 'loading' ? 'Đang truy xuất…' : 'Chạy thử' },
+      run: function () {
+        if (!rq.trim()) { self.setState({ rqErr: true }); return; }
+        self.setState({ rt: 'loading', rqErr: false });
+        self.later(function () {
+          if (fail) { self.setState({ rt: 'error' }); self.notify('err', 'Truy xuất thất bại', 'Không kết nối được Qdrant.'); }
+          else { self.setState({ rt: 'done' }); self.notify('ok', 'Đã truy xuất xong', 'Tìm thấy 3 chunk phù hợp nhất sau khi rerank.'); }
+        }, 1000);
+      },
+      results: results,
+
+      toast: { show: !!t, isOk: !!t && t.type === 'ok', isErr: !!t && t.type === 'err', isInfo: !!t && t.type === 'info',
+        bg: t ? TOAST_BG[t.type] : '#000066', title: t ? t.title : '', text: t ? t.text : '' },
+      closeToast: function () { clearTimeout(self._toastT); self.setState({ toast: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

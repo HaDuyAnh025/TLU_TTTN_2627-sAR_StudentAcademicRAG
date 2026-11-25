@@ -1,0 +1,80 @@
+/* Trợ lý Học vụ — design tokens (tông màu Đại học Thăng Long). Dùng làm CSS variables hoặc map sang Tailwind theme. */
+:root {
+  /* Brand */
+  --color-brand-navy: #000066;        /* màu chính: nút chính, link, bong bóng câu hỏi, mục đang chọn */
+  --color-brand-navy-soft: #0000661A; /* navy 10% — nền mục đang chọn, nền số trích dẫn */
+  --color-brand-red: #F5250C;         /* chỉ dùng cho điểm nhấn của logo, KHÔNG dùng cho chữ nhỏ (tương phản 4.1:1) */
+
+  /* Text */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #4B5563;
+  --color-text-muted: #5B6472;
+  --color-text-label: #5B5A96;        /* nhãn nhỏ viết hoa (overline) */
+  --color-text-on-brand: #FFFFFF;
+
+  /* Surfaces */
+  --color-bg-page: #F5F6F8;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #EEF1F5;
+  --color-bg-hover: #F1F3F6;
+  --color-bg-highlight: #E6E5F4;      /* tô sáng đoạn trích nguồn */
+
+  /* Borders */
+  --color-border-default: #E3E6EB;
+  --color-border-strong: #D5D9E0;
+  --color-border-input: #C9CED6;
+  --color-border-divider: #EEF0F3;
+
+  /* Status */
+  --color-error: #C81E0A;             /* nền nút xóa, viền ô lỗi */
+  --color-error-text: #B01C08;        /* chữ lỗi, nền toast lỗi */
+  --color-error-bg: #FEEDEB;
+  --color-error-border: #F7C4BC;
+  --color-success: #166534;
+  --color-success-bg: #E7F5EE;
+  --color-success-strong: #0E5132;    /* nền toast thành công */
+  --color-info-bg: #E8E8F5;
+  --color-scrim: rgba(0, 0, 40, 0.45);
+
+  /* Typography */
+  --font-sans: 'Be Vietnam Pro', system-ui, sans-serif;
+  --text-display: 700 32px/1.25 var(--font-sans);
+  --text-h1: 700 26px/1.3 var(--font-sans);
+  --text-h2: 700 18px/1.35 var(--font-sans);
+  --text-h3: 600 16px/1.4 var(--font-sans);
+  --text-body-lg: 400 16px/1.6 var(--font-sans);
+  --text-body: 400 15px/1.6 var(--font-sans);
+  --text-body-sm: 400 14px/1.55 var(--font-sans);
+  --text-label: 600 14px/1.4 var(--font-sans);
+  --text-caption: 400 13px/1.5 var(--font-sans);
+  --text-caption-sm: 400 12px/1.5 var(--font-sans);
+  --text-overline: 600 12px/1.4 var(--font-sans); /* + uppercase, letter-spacing 0.04em */
+  --text-stat: 700 28px/1.2 var(--font-sans);
+
+  /* Radius */
+  --radius-xs: 6px;   /* số trích dẫn, badge loại file */
+  --radius-sm: 8px;   /* mục sidebar */
+  --radius-md: 10px;  /* nút, ô nhập */
+  --radius-lg: 12px;  /* thẻ nguồn, toast, form */
+  --radius-xl: 16px;  /* thẻ câu trả lời, hộp thoại, ô hỏi */
+  --radius-full: 999px;
+
+  /* Spacing (bội số của 4) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-14: 56px;
+
+  /* Sizes */
+  --control-height: 44px;   /* nút, ô nhập — vùng chạm tối thiểu */
+  --control-height-sm: 40px;
+  --sidebar-student: 260px;
+  --sidebar-admin: 240px;
+  --source-panel: 340px;
+  --chat-max-width: 760px;
+  --welcome-max-width: 960px;
+
+  /* Effects */
+  --shadow-toast: 0 10px 30px rgba(0, 0, 40, 0.25);
+  --shadow-dialog: 0 16px 40px rgba(0, 0, 40, 0.22);
+  --focus-ring: 2px solid #000066; /* outline-offset: 2px */
+}
