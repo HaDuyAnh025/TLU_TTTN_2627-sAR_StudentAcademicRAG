@@ -13,7 +13,7 @@ import { Input, Select, Textarea } from "@/components/ui/Input";
 import { StatCard } from "@/components/ui/StatCard";
 import { useToast } from "@/components/ui/Toast";
 import { DOC_CATEGORIES, FEEDBACK_REASONS } from "@/lib/constants";
-import { clearAllMockStorage } from "@/lib/storage";
+import { resetMockData } from "@/services/mock";
 
 const VARIANTS: ButtonVariant[] = ["primary", "secondary", "danger", "ghost"];
 
@@ -33,7 +33,7 @@ export default function DevComponentsPage() {
   const [showErrors, setShowErrors] = useState(true);
 
   function handleReset() {
-    clearAllMockStorage();
+    resetMockData();
     toast.success("Đã reset dữ liệu mẫu", "Toàn bộ khóa sar_mock_* trong localStorage đã được xóa.");
   }
 
@@ -148,8 +148,8 @@ export default function DevComponentsPage() {
         <Badge tone="file">PDF</Badge>
         <Badge tone="file">Web</Badge>
         <Badge tone="file">Ảnh</Badge>
-        <Badge tone="success">Đúng</Badge>
-        <Badge tone="error">Sai</Badge>
+        <Badge tone="success" icon={false}>Đúng</Badge>
+        <Badge tone="error" icon={false}>Sai</Badge>
         <Badge tone="neutral">Bảng · 1 dòng = 1 câu</Badge>
       </Section>
 

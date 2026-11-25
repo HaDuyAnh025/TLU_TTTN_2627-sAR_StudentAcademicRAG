@@ -52,6 +52,8 @@ export interface ConversationDetail {
   conversation_id: string;
   title: string;
   messages: AnswerMessage[];
+  /** Chỉ mock: câu hỏi đầu tiên vừa tạo từ màn 1, màn 2 sẽ gửi đi khi mở. */
+  pending_question?: string;
 }
 
 export interface FeedbackIn {
