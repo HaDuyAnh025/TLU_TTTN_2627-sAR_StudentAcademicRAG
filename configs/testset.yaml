@@ -1,0 +1,51 @@
+# Bộ câu hỏi đánh giá retrieval (scripts/gen_testset.py, giao diện duyệt, scripts/eval_retrieval.py). Chỉnh ở đây, không sửa code.
+seed: 42
+dev_frac: 0.3                 # 30% dev (chỉnh tham số), 70% test (CHỈ chạy cuối để báo cáo)
+overgen: 0.4                  # sinh dư 40% để còn loại
+
+generation:
+  model: null                 # null = lấy configs/ocr.yaml: vlm.openai.model (cùng cấu hình OpenAI đang dùng trong repo)
+  temperature: 0
+  max_completion_tokens: 1500
+  # USD / 1 triệu token. TỰ ĐIỀN theo bảng giá OpenAI hiện tại; null thì dry-run chỉ báo token, không quy ra tiền.
+  price_per_1m_tokens: {input: null, output: null}
+  max_cost_usd: null          # vượt thì dừng trước khi gọi API (chỉ kiểm được khi đã điền giá)
+  unit_chars: [250, 2800]     # độ dài đơn vị sinh (ký tự): ngắn hơn bị bỏ, dài hơn thì tách theo Khoản/nhóm dòng
+  table_rows: [5, 10]         # số dòng dữ liệu của một đơn vị bảng
+  expected_output_tokens: 260 # dùng để ước tính dry-run
+
+auto_reject:
+  copy_run_words: 8           # câu hỏi chép nguyên cụm >= ngần này từ liên tiếp của span thì loại
+  dup_ratio: 90               # rapidfuzz token_sort_ratio >= ngần này (cùng doc_type) thì coi là trùng
+  fuzzy_locate_min: 0.9       # khớp mờ quote >= ngưỡng này mới nhận
+
+# Mục tiêu sau khi duyệt (phần A). Số câu = tổng của các loại; khau_ngu tính trong tổng. Phân bổ loại đều trong từng nhóm.
+plan:
+  quy_che:   {total: 25, types: [factoid, dieu_kien, thu_tuc, nhieu_doan, khau_ngu]}
+  ctdt:      {total: 15, types: [tra_bang, factoid, dieu_kien, nhieu_doan, khau_ngu], min_tra_bang_vlm: 8}
+  hoc_phi:   {total: 15, types: [tra_bang, factoid, dieu_kien, khau_ngu]}
+  lich_thi:  {total: 5,  types: [tra_bang, factoid, khau_ngu]}
+  tkb:       {total: 5,  types: [tra_bang, factoid, khau_ngu]}
+  ke_hoach:  {total: 10, types: [factoid, tra_bang, thu_tuc, khau_ngu]}
+  thong_bao: {total: 15, types: [thu_tuc, dieu_kien, factoid, khau_ngu]}
+  khac:      {total: 10, types: [thu_tuc, dieu_kien, factoid, khau_ngu]}   # gộp quy_trinh, hoc_bong, khac
+  khau_ngu_share: 0.15        # ~15% tổng số câu là khau_ngu (đã nằm trong các types trên)
+
+version_dependent:            # phần C
+  n_with_khoa: 12             # sinh 12 để còn >= 10 sau khi duyệt
+  n_without_khoa: 6           # >= 5 câu cùng nội dung KHÔNG có khóa (ask_clarify_or_multi_version)
+  khoa_by_version: {"2024": 36, "2025": 38, "2026": 40}   # khóa đại diện đặt vào user_ctx
+
+out_of_scope:                 # phần B (sinh dư 40%)
+  khong_lien_quan: 6
+  cung_linh_vuc: 6
+  ca_nhan: 4
+  de_nham: 4
+
+human_questions: 20           # phần D
+
+paths:
+  questions: data/eval/questions.jsonl
+  gen_dir: data/eval/testset_gen         # kế hoạch, log gọi API, usage
+  review_log: data/eval/questions_review_log.jsonl
+  results: data/eval/results
