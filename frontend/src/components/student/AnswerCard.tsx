@@ -123,7 +123,7 @@ export function AnswerCard({
         <span className="flex size-8 items-center justify-center rounded-sm bg-info-bg text-brand-navy">
           <BookOpen size={18} aria-hidden="true" />
         </span>
-        <p className="text-label text-text-primary">Trợ lý Học vụ</p>
+        <p className="text-body font-semibold text-text-primary">Trợ lý Học vụ</p>
         {regenerating ? (
           <span role="status" className="ml-auto flex items-center gap-2 text-caption text-text-muted">
             <Loader2 size={14} className="animate-spin" aria-hidden="true" />

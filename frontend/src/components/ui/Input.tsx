@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import { AlertCircle } from "lucide-react";
 import { useId } from "react";
 import type {
   InputHTMLAttributes,
@@ -14,10 +15,12 @@ interface FieldShellProps {
   label?: string;
   error?: string;
   hint?: string;
+  /** Hiện biểu tượng cảnh báo trước thông báo lỗi. */
+  errorIcon?: boolean;
   children: ReactNode;
 }
 
-function FieldShell({ id, label, error, hint, children }: FieldShellProps) {
+function FieldShell({ id, label, error, hint, errorIcon, children }: FieldShellProps) {
   return (
     <div className="flex flex-col gap-1.5">
       {label ? (
@@ -32,7 +35,12 @@ function FieldShell({ id, label, error, hint, children }: FieldShellProps) {
         </p>
       ) : null}
       {error ? (
-        <p id={`${id}-error`} role="alert" className="text-caption text-error-text">
+        <p
+          id={`${id}-error`}
+          role="alert"
+          className={clsx("text-caption text-error-text", errorIcon && "flex items-start gap-1.5 font-semibold")}
+        >
+          {errorIcon ? <AlertCircle size={14} aria-hidden="true" className="mt-0.5 shrink-0" /> : null}
           {error}
         </p>
       ) : null}
@@ -82,12 +90,14 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   label?: string;
   error?: string;
   hint?: string;
+  errorIcon?: boolean;
 }
 
 export function Textarea({
   label,
   error,
   hint,
+  errorIcon,
   id,
   className,
   rows = 3,
@@ -96,7 +106,7 @@ export function Textarea({
   const autoId = useId();
   const fieldId = id ?? autoId;
   return (
-    <FieldShell id={fieldId} label={label} error={error} hint={hint}>
+    <FieldShell id={fieldId} label={label} error={error} hint={hint} errorIcon={errorIcon}>
       <textarea
         id={fieldId}
         rows={rows}

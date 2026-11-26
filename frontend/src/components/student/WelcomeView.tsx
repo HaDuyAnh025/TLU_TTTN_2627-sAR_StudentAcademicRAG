@@ -55,7 +55,7 @@ export function WelcomeView() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-welcome px-6 pb-12 pt-10 md:px-0 md:pt-14">
+    <div className="mx-auto w-full max-w-welcome px-6 pb-12 pt-10 lg:px-0 lg:pt-14">
       <header className="text-center">
         <h1 className="text-display text-text-primary">Bạn cần tra cứu thông tin học vụ gì?</h1>
         <p className="mx-auto mt-3 max-w-[620px] text-body-lg text-text-tertiary">

@@ -13,7 +13,7 @@ export interface SourcePanelProps {
 }
 
 const PANEL_CLASS =
-  "w-full border-t border-border-default bg-bg-surface p-6 lg:h-screen lg:w-source-panel lg:shrink-0 lg:overflow-y-auto lg:border-l lg:border-t-0";
+  "w-full border-t border-border-default bg-bg-surface p-6 xl:h-screen xl:w-source-panel xl:shrink-0 xl:overflow-y-auto xl:border-l xl:border-t-0";
 
 export function SourcePanel({ citation, total }: SourcePanelProps) {
   const [pdfOpen, setPdfOpen] = useState(false);

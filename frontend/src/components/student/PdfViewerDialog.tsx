@@ -5,6 +5,7 @@ import { Download, File as FileIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/ui/Toast";
 import type { Citation } from "@/lib/types";
+import { useReturnFocus } from "@/lib/use-return-focus";
 import { USE_MOCK } from "@/services/api";
 import { fileUrl } from "@/services/chat.service";
 
@@ -17,6 +18,7 @@ export interface PdfViewerDialogProps {
 /** Xem nội dung text của trang PDF có đoạn trích được tô sáng (chưa dùng pdf.js/iframe). */
 export function PdfViewerDialog({ open, onOpenChange, citation }: PdfViewerDialogProps) {
   const toast = useToast();
+  const { onOpenAutoFocus, onCloseAutoFocus } = useReturnFocus();
   const page = citation.page ?? "—";
   const fileName = citation.file ?? citation.title;
 
@@ -36,7 +38,10 @@ export function PdfViewerDialog({ open, onOpenChange, citation }: PdfViewerDialo
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 z-40 bg-scrim" />
-        <RadixDialog.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100vh-32px)] w-[calc(100vw-32px)] max-w-[760px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl bg-bg-surface shadow-dialog">
+        <RadixDialog.Content
+          onOpenAutoFocus={onOpenAutoFocus}
+          onCloseAutoFocus={onCloseAutoFocus}
+          className="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100vh-32px)] w-[calc(100vw-32px)] max-w-[760px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl bg-bg-surface shadow-dialog">
           <header className="flex items-center gap-3 px-5 py-4">
             <FileIcon size={22} aria-hidden="true" className="shrink-0 text-text-tertiary" />
             <div className="min-w-0 flex-1">

@@ -92,7 +92,7 @@ export function SidebarStudent() {
       aria-label="Lịch sử trò chuyện"
       className={clsx(
         "flex w-full shrink-0 flex-col border-b border-border-default bg-bg-surface",
-        "md:sticky md:top-0 md:h-screen md:w-sidebar-student md:border-b-0 md:border-r",
+        "lg:sticky lg:top-0 lg:h-screen lg:w-sidebar-student lg:border-b-0 lg:border-r",
       )}
     >
       <div className="flex flex-col gap-4 p-4 pb-3">
@@ -125,7 +125,7 @@ export function SidebarStudent() {
 
       <nav
         aria-label="Danh sách cuộc trò chuyện"
-        className="min-h-0 max-h-[40vh] flex-1 overflow-y-auto px-4 pb-4 md:max-h-none"
+        className="min-h-0 max-h-[40vh] flex-1 overflow-y-auto px-4 pb-4 lg:max-h-none"
       >
         {loaded && conversations.length === 0 ? (
           <p className="px-2 py-3 text-body-sm text-text-muted">Chưa có cuộc trò chuyện nào.</p>

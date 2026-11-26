@@ -51,7 +51,7 @@ export function SidebarAdmin() {
   return (
     <aside
       aria-label="Menu quản trị"
-      className="flex w-full shrink-0 flex-col border-b border-border-default bg-bg-surface p-4 md:sticky md:top-0 md:h-screen md:w-sidebar-admin md:border-b-0 md:border-r"
+      className="flex w-full shrink-0 flex-col border-b border-border-default bg-bg-surface p-4 lg:sticky lg:top-0 lg:h-screen lg:w-sidebar-admin lg:border-b-0 lg:border-r"
     >
       <Link href="/admin/documents" aria-label="Trợ lý Học vụ — Quản trị" className="rounded-md">
         <BrandLogo subtitle="Quản trị" />
@@ -87,7 +87,7 @@ export function SidebarAdmin() {
         })}
       </nav>
 
-      <div className="mt-6 flex flex-col gap-1 border-t border-border-divider pt-4 md:mt-auto">
+      <div className="mt-6 flex flex-col gap-1 border-t border-border-divider pt-4 lg:mt-auto">
         <Link
           href="/"
           target="_blank"

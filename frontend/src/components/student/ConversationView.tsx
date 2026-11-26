@@ -191,9 +191,9 @@ export function ConversationView({ conversationId }: { conversationId: string })
   }
 
   return (
-    <div className="flex flex-col lg:h-screen lg:flex-row">
-      <section aria-label="Cuộc trò chuyện" className="flex min-w-0 flex-1 flex-col lg:h-screen">
-        <header className="flex items-center justify-between gap-4 border-b border-border-default bg-bg-surface px-6 py-3 md:px-8">
+    <div className="flex flex-col xl:h-screen xl:flex-row">
+      <section aria-label="Cuộc trò chuyện" className="flex min-w-0 flex-1 flex-col xl:h-screen">
+        <header className="flex items-center justify-between gap-4 border-b border-border-default bg-bg-surface px-6 py-4 lg:px-8">
           <div className="min-w-0">
             <h1 className="truncate text-h2 text-text-primary">{title}</h1>
             <p className="truncate text-caption text-text-muted">
@@ -213,7 +213,7 @@ export function ConversationView({ conversationId }: { conversationId: string })
           </Button>
         </header>
 
-        <div className="px-6 py-6 lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
+        <div className="px-6 py-6 xl:min-h-0 xl:flex-1 xl:overflow-y-auto">
           <div className="mx-auto w-full max-w-chat">
             <ChatThread
               messages={messages}

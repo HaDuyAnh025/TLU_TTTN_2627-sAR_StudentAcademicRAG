@@ -188,7 +188,7 @@ export function FeedbackManager() {
           ) : null}
         </div>
       ) : (
-        <div className="grid items-start gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="grid items-start gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
           <ul aria-label="Danh sách phản hồi" className="flex flex-col gap-2">
             {items.map((item) => {
               const active = item.feedback_id === selected.feedback_id;

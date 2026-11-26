@@ -71,6 +71,7 @@ export function FeedbackWrongForm({ loading = false, onCancel, onSubmit }: Feedb
           placeholder="Mô tả cụ thể câu trả lời sai ở điểm nào…"
           value={note}
           error={noteError}
+          errorIcon
           onChange={(e) => {
             setNote(e.target.value);
             if (noteError) setNoteError(undefined);

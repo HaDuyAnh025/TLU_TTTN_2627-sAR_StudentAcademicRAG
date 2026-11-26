@@ -222,7 +222,7 @@ export function DocumentsView() {
         open={deleteTarget !== null}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
         title={`Xóa “${deleteTarget?.title ?? ""}”?`}
-        description={`${(deleteTarget?.chunks ?? 0).toLocaleString("vi-VN")} chunk sẽ bị xóa khỏi Qdrant và trợ lý sẽ không còn dùng tài liệu này để trả lời. Không thể hoàn tác.`}
+        description={`${(deleteTarget?.chunks ?? 0).toLocaleString("vi-VN")} chunk sẽ bị xóa khỏi Qdrant và trợ lý sẽ không còn dùng tài liệu này để trả lời sinh viên. Không thể hoàn tác.`}
         footer={
           <>
             <Button variant="secondary" disabled={busy} onClick={() => setDeleteTarget(null)}>

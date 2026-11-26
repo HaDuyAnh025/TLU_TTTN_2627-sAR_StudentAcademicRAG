@@ -995,16 +995,33 @@ const CHUAN_DAU_RA_DOC = docId("Quy định chuẩn đầu ra ngoại ngữ, tin
 
 type ChunkSeed = Pick<Chunk, "page" | "loc" | "text"> & { is_table?: boolean };
 
+/** Chunk viết tay (nội dung minh họa). Các chunk còn lại của tài liệu được sinh tự động cho đủ `doc.chunks`. */
 const SAMPLE_CHUNKS: Record<string, ChunkSeed[]> = {
   [QUY_CHE_DOC]: [
     { page: 1, loc: "Chương 1 › Điều 1", text: "Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng\nQuy chế này quy định về tổ chức đào tạo trình độ đại học, bao gồm tổ chức giảng dạy, đánh giá kết quả học tập và công nhận tốt nghiệp." },
+    { page: 2, loc: "Chương 1 › Điều 2", text: "Điều 2. Giải thích từ ngữ\nHọc phần là khối lượng kiến thức tương đối trọn vẹn; tín chỉ là đơn vị đo khối lượng học tập; chương trình đào tạo là văn bản xác định mục tiêu, nội dung và kế hoạch học tập." },
+    { page: 3, loc: "Chương 1 › Điều 3", text: "Điều 3. Chương trình đào tạo và thời gian học tập\nThời gian thiết kế của chương trình đào tạo được nêu trong chương trình; sinh viên có thể rút ngắn hoặc kéo dài thời gian học trong giới hạn cho phép." },
+    { page: 5, loc: "Chương 1 › Điều 5", text: "Điều 5. Tổ chức lớp học phần\nLớp học phần được tổ chức theo đăng ký của sinh viên và kế hoạch giảng dạy của khoa; lớp có thể bị hủy nếu số sinh viên đăng ký thấp hơn mức tối thiểu." },
+    { page: 7, loc: "Chương 2 › Điều 6", text: "Điều 6. Đăng ký nhập học\nSinh viên trúng tuyển hoàn thành thủ tục nhập học theo thông báo; trường hợp chưa kịp nhập học có thể xin bảo lưu kết quả tuyển sinh theo quy định." },
     { page: 8, loc: "Chương 2 › Điều 7", text: "Điều 7. Đăng ký học phần\nSinh viên đăng ký học phần theo kế hoạch và thời hạn do nhà trường công bố trước mỗi học kỳ." },
     { page: 9, loc: "Chương 2 › Điều 8", text: "Điều 8. Khối lượng học tập\nKhối lượng học tập tối thiểu và tối đa sinh viên được đăng ký trong mỗi học kỳ chính được quy định theo học lực của học kỳ trước." },
     { page: 11, loc: "Chương 2 › Điều 9", text: "Điều 9. Rút bớt học phần đã đăng ký\nSinh viên được rút bớt học phần trong thời hạn quy định, với điều kiện khối lượng học tập còn lại không thấp hơn mức tối thiểu." },
+    { page: 12, loc: "Chương 2 › Điều 10", text: "Điều 10. Nghỉ học tạm thời và bảo lưu kết quả\nSinh viên có thể xin nghỉ học tạm thời vì lý do sức khỏe hoặc hoàn cảnh cá nhân; kết quả đã tích lũy được bảo lưu theo quyết định của nhà trường." },
+    { page: 14, loc: "Chương 3 › Điều 11", text: "Điều 11. Đánh giá học phần\nĐiểm học phần gồm điểm quá trình và điểm thi kết thúc học phần; tỷ trọng từng thành phần được nêu trong đề cương học phần." },
     { page: 15, loc: "Chương 3 › Điều 12", text: "Điều 12. Cách tính điểm\nĐiểm trung bình tích lũy được tính theo công thức trung bình có trọng số của điểm học phần với số tín chỉ tương ứng." },
     { page: 16, loc: "Chương 3 › Điều 12 › Bảng quy đổi", is_table: true, text: "Điểm chữ | Điểm số | Thang điểm 4\nA | 8,5 – 10 | 4,0\nB | 7,0 – 8,4 | 3,0\nC | 5,5 – 6,9 | 2,0\nD | 4,0 – 5,4 | 1,0\nF | dưới 4,0 | 0" },
+    { page: 17, loc: "Chương 3 › Điều 13", text: "Điều 13. Học lại và học cải thiện điểm\nHọc phần có điểm F phải học lại; sinh viên có thể đăng ký học cải thiện điểm, kết quả cao nhất được dùng để tính điểm trung bình tích lũy." },
     { page: 18, loc: "Chương 3 › Điều 14", text: "Điều 14. Xét và công nhận tốt nghiệp\nSinh viên được xét và công nhận tốt nghiệp khi tích lũy đủ học phần, điểm trung bình tích lũy toàn khóa đạt từ trung bình trở lên và không đang bị kỷ luật đình chỉ học tập." },
+    { page: 19, loc: "Chương 3 › Điều 14 › Khoản 2", text: "Hằng năm, trường tổ chức xét tốt nghiệp theo các đợt. Lịch xét và hồ sơ cần nộp được thông báo trước cho sinh viên trên website của trường." },
+    { page: 20, loc: "Chương 3 › Điều 15", text: "Điều 15. Cấp bằng tốt nghiệp\nBằng tốt nghiệp được cấp sau khi có quyết định công nhận tốt nghiệp; hạng tốt nghiệp xác định theo điểm trung bình tích lũy toàn khóa." },
     { page: 21, loc: "Chương 3 › Điều 16", text: "Điều 16. Cảnh báo học tập\nCảnh báo học tập được thực hiện sau mỗi học kỳ đối với sinh viên có kết quả học tập thấp hơn ngưỡng quy định." },
+    { page: 23, loc: "Chương 4 › Điều 17", text: "Điều 17. Thôi học và buộc thôi học\nSinh viên có thể xin thôi học; sinh viên bị cảnh báo học tập nhiều lần liên tiếp có thể bị buộc thôi học theo quy định." },
+    { page: 25, loc: "Chương 4 › Điều 19", text: "Điều 19. Chuyển ngành, chuyển cơ sở đào tạo\nSinh viên được xét chuyển ngành khi đáp ứng điều kiện về kết quả học tập và còn chỉ tiêu; hồ sơ nộp tại khoa tiếp nhận." },
+    { page: 27, loc: "Chương 4 › Điều 21", text: "Điều 21. Học cùng lúc hai chương trình\nSinh viên có học lực khá trở lên có thể đăng ký học thêm chương trình thứ hai theo điều kiện của trường." },
+    { page: 29, loc: "Chương 5 › Điều 23", text: "Điều 23. Khen thưởng\nSinh viên có thành tích học tập, rèn luyện xuất sắc được khen thưởng và xét học bổng theo quy định riêng." },
+    { page: 30, loc: "Chương 5 › Điều 24", text: "Điều 24. Xử lý vi phạm\nSinh viên vi phạm quy chế thi, quy chế học tập bị xử lý theo mức độ từ nhắc nhở, cảnh cáo đến đình chỉ học tập." },
+    { page: 32, loc: "Chương 6 › Điều 26", text: "Điều 26. Trách nhiệm của các đơn vị\nPhòng Đào tạo chủ trì tổ chức thực hiện quy chế; các khoa phối hợp triển khai và giải đáp thắc mắc cho sinh viên." },
+    { page: 34, loc: "Phụ lục 1 › Bảng quy đổi điểm", is_table: true, text: "Bảng quy đổi điểm — Điểm chữ: A | Thang điểm 10: từ 8,5 đến 10 | Thang điểm 4: 4,0\nBảng quy đổi điểm — Điểm chữ: B+ | Thang điểm 10: từ 8,0 đến 8,4 | Thang điểm 4: 3,5" },
   ],
   [CHUAN_DAU_RA_DOC]: [
     { page: 2, loc: "Mục 1", text: "Mục 1. Phạm vi áp dụng\nQuy định này áp dụng cho sinh viên đại học hệ chính quy khi xét công nhận tốt nghiệp." },
@@ -1013,26 +1030,57 @@ const SAMPLE_CHUNKS: Record<string, ChunkSeed[]> = {
   ],
 };
 
-function chunksFor(doc: StoredDocument): Chunk[] {
-  const seeds =
-    SAMPLE_CHUNKS[doc.doc_id] ??
-    Array.from({ length: Math.min(doc.chunks, 4) }, (_, i): ChunkSeed => ({
-      page: i + 1,
-      loc: `Mục ${i + 1}`,
-      text: `Nội dung đoạn ${i + 1} của “${doc.title}” (dữ liệu mẫu).`,
-    }));
-  return seeds.map((seed, i) => ({
-    chunk_id: `chunk_${String(i + 1).padStart(3, "0")}`,
+const MAX_GENERATED_CHUNKS = 200;
+
+function toChunk(doc: StoredDocument, n: number, seed: ChunkSeed): Chunk {
+  return {
+    chunk_id: `chunk_${String(n).padStart(3, "0")}`,
     doc_id: doc.doc_id,
     page: seed.page,
     loc: seed.loc,
     tokens: Math.max(20, Math.round(seed.text.length / 3.2)),
     is_table: seed.is_table ?? false,
     text: seed.text,
-  }));
+  };
 }
 
-const CHUNK_PAGE_SIZE = 5;
+/** Chunk viết tay, đánh số rải theo trang để thứ tự khớp với tổng số chunk của tài liệu. */
+function sampleChunksFor(doc: StoredDocument): Chunk[] {
+  const seeds = SAMPLE_CHUNKS[doc.doc_id] ?? [];
+  const total = Math.max(doc.chunks, seeds.length);
+  const pages = Math.max(doc.pages, 1);
+  let previous = 0;
+  return seeds.map((seed) => {
+    const n = Math.min(total, Math.max(previous + 1, Math.round(((seed.page - 1) * total) / pages) + 1));
+    previous = n;
+    return toChunk(doc, n, seed);
+  });
+}
+
+/** Toàn bộ chunk của tài liệu: chunk viết tay + chunk sinh tự động cho đủ `doc.chunks`. */
+function chunksFor(doc: StoredDocument): Chunk[] {
+  const total = Math.min(doc.chunks, MAX_GENERATED_CHUNKS);
+  if (total <= 0) return [];
+  const samples = sampleChunksFor(doc);
+  const used = new Set(samples.map((c) => c.chunk_id));
+  const pages = Math.max(doc.pages, 1);
+  const generated: Chunk[] = [];
+  for (let n = 1; n <= total; n += 1) {
+    const id = `chunk_${String(n).padStart(3, "0")}`;
+    if (used.has(id)) continue;
+    generated.push(
+      toChunk(doc, n, {
+        page: Math.min(pages, Math.ceil((n * pages) / total)),
+        loc: `Mục ${n}`,
+        text: `Nội dung đoạn ${n} của “${doc.title}” (dữ liệu mẫu).`,
+      }),
+    );
+  }
+  return [...samples, ...generated].sort((a, b) => a.chunk_id.localeCompare(b.chunk_id));
+}
+
+const CHUNK_FIRST_PAGE_SIZE = 5;
+const CHUNK_NEXT_PAGE_SIZE = 10;
 
 export async function mockListChunks(
   id: string,
@@ -1047,8 +1095,9 @@ export async function mockListChunks(
     .filter((c) => !query.page || c.page === query.page)
     .filter((c) => !q || normalize(c.text).includes(q));
   const start = Number(query.cursor ?? 0) || 0;
-  const items = all.slice(start, start + CHUNK_PAGE_SIZE);
-  const next = start + CHUNK_PAGE_SIZE;
+  const size = start === 0 ? CHUNK_FIRST_PAGE_SIZE : CHUNK_NEXT_PAGE_SIZE;
+  const items = all.slice(start, start + size);
+  const next = start + size;
   return { items, total: all.length, next_cursor: next < all.length ? String(next) : undefined };
 }
 
@@ -1067,7 +1116,7 @@ export async function mockRetrieveTest(req: {
     (d) => d.status === "indexed" && (!req.doc_id || d.doc_id === req.doc_id),
   );
   const scored = docs.flatMap((doc) =>
-    chunksFor(doc).map((chunk) => {
+    (SAMPLE_CHUNKS[doc.doc_id] ? sampleChunksFor(doc) : chunksFor(doc).slice(0, 10)).map((chunk) => {
       const text = normalize(chunk.text);
       const hits = words.filter((w) => text.includes(w)).length;
       const ratio = words.length ? hits / words.length : 0;

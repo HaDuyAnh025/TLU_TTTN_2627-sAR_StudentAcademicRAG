@@ -68,7 +68,7 @@ export function DocumentsTable({ items, onReindex, onDelete }: DocumentsTablePro
                   >
                     {doc.title}
                   </Link>
-                  <p className="mt-0.5 break-all font-mono text-caption-sm text-text-muted">{doc.file}</p>
+                  <p className="mt-0.5 break-all text-caption-sm text-text-muted">{doc.file}</p>
                 </td>
                 <td className="px-4 py-4 align-middle text-body-sm text-text-secondary">
                   {getDocCategoryLabel(doc.category)}

@@ -7,7 +7,7 @@ function SidebarFallback() {
   return (
     <aside
       aria-hidden="true"
-      className="hidden w-sidebar-admin shrink-0 border-r border-border-default bg-bg-surface md:block"
+      className="hidden w-sidebar-admin shrink-0 border-r border-border-default bg-bg-surface lg:block"
     />
   );
 }
@@ -20,11 +20,11 @@ export const instant = false;
 export default function AdminProtectedLayout({ children }: LayoutProps<"/admin">) {
   return (
     <AdminAuthGuard>
-      <div className="flex flex-1 flex-col md:flex-row">
+      <div className="flex flex-1 flex-col lg:flex-row">
         <Suspense fallback={<SidebarFallback />}>
           <SidebarAdmin />
         </Suspense>
-        <main className="min-w-0 flex-1 p-6 md:p-8">{children}</main>
+        <main className="min-w-0 flex-1 p-6 lg:p-8">{children}</main>
       </div>
       <DocumentStatusToaster />
     </AdminAuthGuard>

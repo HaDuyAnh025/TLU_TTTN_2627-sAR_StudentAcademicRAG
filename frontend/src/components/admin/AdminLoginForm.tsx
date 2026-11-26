@@ -47,8 +47,8 @@ export function AdminLoginForm() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-4 py-10">
-      <div className="flex w-full max-w-[420px] flex-col items-stretch gap-5">
-        <BrandLogo subtitle="Khu vực quản trị dữ liệu" className="justify-center" />
+      <div className="flex w-full max-w-[420px] flex-col items-stretch gap-6">
+        <BrandLogo subtitle="Khu vực quản trị dữ liệu" size={44} className="justify-center" />
 
         <div className="rounded-xl border border-border-default bg-bg-surface p-8">
           <h1 className="text-h1 text-text-primary">Đăng nhập quản trị</h1>

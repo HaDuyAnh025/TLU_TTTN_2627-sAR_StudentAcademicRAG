@@ -169,7 +169,7 @@ export function DocumentDetailView({ docId }: { docId: string }) {
               ) : (
                 <Badge tone="success">Đã index</Badge>
               )}
-              <span className="break-all font-mono text-caption text-text-muted">{doc.file}</span>
+              <span className="break-all text-caption text-text-muted">{doc.file}</span>
             </div>
           </div>
 
@@ -217,7 +217,7 @@ export function DocumentDetailView({ docId }: { docId: string }) {
         <InfoCell label="Index lúc">{formatIndexedAt(doc.indexed_at)}</InfoCell>
       </dl>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
         <ChunkListPanel docId={doc.doc_id} refreshKey={`${doc.status}-${doc.indexed_at}`} />
         <RetrieveTestPanel docId={doc.doc_id} />
       </div>
@@ -243,7 +243,7 @@ export function DocumentDetailView({ docId }: { docId: string }) {
         open={deleteOpen}
         onOpenChange={setDeleteOpen}
         title={`Xóa “${doc.title}”?`}
-        description={`${doc.chunks.toLocaleString("vi-VN")} chunk sẽ bị xóa khỏi Qdrant và trợ lý sẽ không còn dùng tài liệu này để trả lời. Không thể hoàn tác.`}
+        description={`${doc.chunks.toLocaleString("vi-VN")} chunk sẽ bị xóa khỏi Qdrant và trợ lý sẽ không còn dùng tài liệu này để trả lời sinh viên. Không thể hoàn tác.`}
         footer={
           <>
             <Button variant="secondary" disabled={busy} onClick={() => setDeleteOpen(false)}>
