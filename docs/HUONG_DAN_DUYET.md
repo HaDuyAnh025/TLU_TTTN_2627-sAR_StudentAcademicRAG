@@ -184,3 +184,77 @@ python scripts/ingest.py --stage chunk --config all
 ```
 
 Loader chỉ áp dụng mục `da_xac_nhan` (sửa chuỗi, `force_accept`, `force_reject`); mục `de_xuat` bị bỏ qua. Nếu một mục sửa không còn khớp đúng 1 lần, chunking dừng và báo lỗi.
+
+
+## 9. Duyệt bộ câu hỏi đánh giá retrieval — `scripts/review_testset.py`
+
+Bộ câu hỏi (`data/eval/questions.jsonl`) dùng để **chốt cấu hình retrieval** (có rerank không, `fusion_w`, `n_rerank`, ngưỡng từ chối). Câu sai đáp án làm sai cả kết luận,
+nên mỗi câu cần một người đọc kỹ. Đáp án của mỗi câu là **đoạn văn bản (span)** trong tài liệu, không phải chunk.
+
+### 9.1 Mở giao diện
+
+```powershell
+python scripts/review_testset.py --reviewer "Tên bạn"
+```
+
+- Mở `http://127.0.0.1:8770` (bận thì tự đổi cổng). Chỉ máy bạn truy cập được; không cần khóa API. Dừng: `Ctrl+C`.
+- **Nhiều người**: mỗi người một bản sao repo và một hàng đợi riêng, ví dụ người thứ 2 trong 3 người: `--shard 2/3`. Câu được chia theo thứ tự id nên không trùng giữa các người.
+  Duyệt xong gửi file `data/eval/questions.jsonl` của bạn; người phụ trách gộp bằng `python scripts/gen_testset.py --merge <file của từng người>`
+  (mỗi câu lấy bản đã duyệt mới nhất; câu bạn tự thêm có id `qh_<tên>_NNN` nên không đụng id người khác).
+- Mọi thay đổi được ghi ngay (atomic) vào `questions.jsonl`, bản cũ lưu thành `questions.jsonl.<thời gian>.bak`; nhật ký từng thao tác ở `data/eval/questions_review_log.jsonl` (**không xóa**).
+
+### 9.2 Tab "Duyệt câu"
+
+Bên trái là hàng đợi (lọc theo `doc_type` và trạng thái, mặc định "chưa duyệt"). Bên phải: câu hỏi, câu trả lời tham chiếu, các span đáp án, và **văn bản tài liệu quanh span** (span tô vàng).
+
+Với mỗi câu, tự hỏi:
+1. Câu hỏi có **tự đứng được** (không cần xem tài liệu mới hiểu) và giống cách sinh viên thật hỏi không?
+2. Đáp án tham chiếu có **đúng** theo văn bản không? Các span có **đủ** để trả lời, không thừa không thiếu?
+3. Câu có trả lời được bằng **kiến thức chung** không cần tài liệu không? (Nếu LLM đã đánh dấu, phải tích xác nhận mới chấp nhận được.)
+4. Có **tên người thật** không? (Có thì sửa thành tên giả hoặc Loại.)
+5. Câu phụ thuộc khóa: `user_ctx.khoa` và phiên bản (hiện ở nhãn vàng) có khớp với tài liệu không?
+6. Độ trùng từ cao (nhãn đỏ > 0,7): câu hỏi chép gần nguyên văn tài liệu, kết quả sẽ thiên về BM25 — nên viết lại cho tự nhiên hơn hoặc Loại.
+
+Thao tác (có phím tắt khi con trỏ không nằm trong ô nhập):
+- **Chấp nhận** `A`: giữ nguyên. Nếu bạn đã sửa chữ/span/loại trước đó thì trạng thái tự thành `edited`.
+- **Lưu bản sửa** `E`: sửa câu hỏi, câu trả lời, loại, khóa, hành vi, rồi lưu.
+- **Chọn lại span**: kéo chuột chọn đoạn trên văn bản → bấm *+ Thêm vùng chọn làm span mới*, hoặc bấm *chọn* ở một span rồi *Thay span đang chọn bằng vùng chọn*. Chọn **ngắn nhất có thể** nhưng đủ ý
+  (một câu, một Khoản, hoặc một dòng bảng). Câu loại `nhieu_doan` cần ≥ 2 span. *Mở rộng ±* / *Toàn văn* để xem thêm ngữ cảnh.
+- **Loại** `R`: chọn lý do (sai đáp án, mơ hồ, chép nguyên văn, kiến thức chung, trùng, có tên thật, không thực tế…).
+- **Không chắc** `U`: câu vẫn nằm trong hàng đợi chưa duyệt, để hỏi người khác. Nhớ ghi chú.
+- `J`/`K` (hoặc ←/→): câu sau / câu trước.
+
+### 9.3 Tab "Ngoài phạm vi"
+
+Duyệt các câu mà hệ thống **phải từ chối** (không liên quan; cùng lĩnh vực nhưng kho không có; hỏi thông tin cá nhân sinh viên với tên giả; dễ gây nhầm). Bấm **Chạy thử retrieval** để xem 5 đoạn hybrid trả về:
+- Nếu kho **thực sự có** câu trả lời → *Loại* với lý do "kho có câu trả lời" (câu đó không còn là câu ngoài phạm vi).
+- Nếu các đoạn trả về chỉ gần chủ đề nhưng không nói điều được hỏi → *Chấp nhận*.
+- Câu hỏi thông tin cá nhân phải dùng tên giả rõ ràng (Nguyễn Văn A, Trần Thị B…); **không đưa tên thật** vào bất kỳ câu nào.
+
+Nút chạy thử cần Qdrant đang chạy và khóa OpenAI (để embedding câu hỏi). Không có thì UI báo lỗi, các chức năng khác vẫn dùng được.
+
+### 9.4 Tab "Thêm câu người viết" (20 câu / cả nhóm)
+
+Viết câu hỏi **như sinh viên thật hỏi** (lấy ý từ câu hỏi thường gặp, nhóm Facebook lớp; có thể viết tắt K38, HK1, TC, CTĐT, hoặc không dấu):
+1. Gõ câu hỏi và câu trả lời ngắn; chọn loại; nhập khóa nếu câu phụ thuộc khóa.
+2. Tìm tài liệu (lọc theo loại, gõ một phần tiêu đề), bấm vào để mở toàn văn.
+3. **Kéo chuột chọn đoạn đáp án**, bấm *+ Thêm vùng chọn làm span*; câu cần 2 chỗ thì thêm 2 span.
+4. *Lưu câu hỏi*. UI báo độ trùng từ; nếu > 0,7 nên diễn đạt lại.
+
+Câu người viết được ghi `created_by: human`, trạng thái `accepted`. Cần cả người đọc lại thì nhờ người khác mở lại câu đó trong tab *Duyệt câu* (bộ lọc "tất cả").
+
+### 9.5 Tab "Tổng kết"
+
+Số câu theo trạng thái × `doc_type` × `type`, phân bố độ trùng từ, số câu dev/test, số câu phụ thuộc khóa và câu người viết. Nút *Xuất* ghi `data/eval/questions_summary.md`.
+Mục tiêu sau duyệt: ~100 câu có đáp án (quy chế 25, CTĐT 15, học phí 15, lịch thi + TKB 10, kế hoạch 10, thông báo 15, còn lại 10), ~20 câu ngoài phạm vi, ≥ 10 câu phụ thuộc khóa
+kèm 5 câu cùng nội dung không có khóa, 20 câu người viết.
+
+### 9.6 Sau khi duyệt xong (người phụ trách)
+
+```powershell
+python scripts/gen_testset.py --merge <các file questions.jsonl của từng người>    # nếu nhiều người
+python scripts/gen_testset.py --split                                              # chia 30% dev / 70% test, phân tầng theo type và doc_type, seed 42
+python scripts/eval_retrieval.py                                                   # chấm trên DEV
+```
+
+**Không chỉnh tham số theo kết quả trên tập test**; tập test chỉ chạy một lần cuối (`--split test --final`).
