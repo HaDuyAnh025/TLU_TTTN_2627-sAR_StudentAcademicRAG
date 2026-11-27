@@ -5,8 +5,8 @@ Next.js 16 (App Router, Cache Components) + TypeScript + Tailwind CSS v4. Giai �
 toàn bộ dữ liệu lấy từ `src/services/mock.ts`, chưa gọi FastAPI.
 
 Thiết kế chuẩn: [`../docs/ui-design/SPEC.md`](../docs/ui-design/SPEC.md), ảnh trong `../docs/ui-design/screenshots/`,
-kế hoạch kiến trúc [`../docs/ui-design/PLAN.md`](../docs/ui-design/PLAN.md). Quy tắc cho agent: [`AGENTS.md`](./AGENTS.md)
-(Next.js 16 khác bản cũ — đọc `node_modules/next/dist/docs/` trước khi viết code).
+kế hoạch kiến trúc [`../docs/ui-design/PLAN.md`](../docs/ui-design/PLAN.md). Lưu ý:
+Next.js 16 khác bản cũ — đọc `node_modules/next/dist/docs/` trước khi viết code).
 
 ## Cài đặt và chạy
 

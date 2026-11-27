@@ -25,7 +25,7 @@ Cách dùng:
     python scripts/ingest.py --stage rescan-ui                    # duyệt kết quả rescan
     python scripts/ingest.py --stage clean                        # văn bản sạch = OCR gốc + sửa đã duyệt (+ sửa chữ/dấu LLM chưa duyệt) → data/interim/clean
     python scripts/ingest.py --stage clean-verify                 # dựng lại và so với data/interim/clean
-    python scripts/ingest.py --stage relabel-build                # đưa chỗ đã duyệt nhưng chưa áp được ra duyệt lại theo cả dòng (--dry-run để đếm)
+    python scripts/ingest.py --stage relabel-build                # (không xóa thư mục tạm khi còn mục chưa merge; --force để xóa) đưa chỗ đã duyệt nhưng chưa áp được ra duyệt lại theo cả dòng (--dry-run để đếm)
     python scripts/ingest.py --stage relabel-ui                   # duyệt các mục đó
     python scripts/ingest.py --stage relabel-merge                # đưa quyết định về các lớp hiệu chỉnh
     python scripts/ingest.py --stage corrections-verify           # kiểm chứng lớp hiệu chỉnh
@@ -51,7 +51,7 @@ from rag.config import load_config  # noqa: E402
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--force", action="store_true", help="crawl lại cả trang đã có trong manifest")
+    ap.add_argument("--force", action="store_true", help="(crawl) crawl lại cả trang đã có trong manifest; (relabel-build) xóa và dựng lại thư mục tạm dù còn mục chưa merge")
     ap.add_argument("--since", type=int, help="chỉ lấy thông báo từ năm này (ghi đè configs)")
     ap.add_argument("--no-files", action="store_true", help="không tải file đính kèm")
     ap.add_argument("--show-browser", action="store_true")
@@ -122,12 +122,12 @@ def main() -> None:
     if args.stage.startswith("relabel-"):
         from rag.ingestion import relabel
         if args.stage == "relabel-build":
-            print(json.dumps(relabel.build(dry_run=args.dry_run), ensure_ascii=False, indent=1))
+            print(json.dumps(relabel.build(dry_run=args.dry_run, force=args.force), ensure_ascii=False, indent=1))
         elif args.stage == "relabel-ui":
             from rag.ingestion.corrections_ui import serve
             serve(port=args.port, open_browser=not args.no_browser, corr_dir=relabel.STAGE_DIR, ui_dir=relabel.UI_DIR)
         else:
-            print(json.dumps(relabel.merge_back(), ensure_ascii=False, indent=1))
+            print(json.dumps(relabel.merge_back(dry_run=args.dry_run), ensure_ascii=False, indent=1))
         return
     if args.stage in ("clean", "clean-verify"):
         from rag.ingestion import cleaner

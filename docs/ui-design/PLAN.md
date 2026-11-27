@@ -4,7 +4,7 @@ Tài liệu chốt kiến trúc, cấu trúc thư mục, hợp đồng dữ li�
 
 - **Stack:** Next.js 16 App Router (`cacheComponents: true`, `partialPrefetching: true`) + TypeScript + Tailwind CSS v4 + `lucide-react` + `@radix-ui/react-dialog` + `clsx` + `next/font/google` (`Be_Vietnam_Pro` weights 400/500/600/700, subsets `vietnamese`, `latin`).
 - **Tài liệu chuẩn đối chiếu:** [SPEC.md](./SPEC.md), [tokens.css](./design-tokens/tokens.css), ảnh trong [screenshots/](./screenshots/), bản chạy thử [prototype/](./prototype/).
-- **Ràng buộc:** Tuân thủ [.agent/rules/frontend.md](../../.agent/rules/frontend.md) và [frontend/AGENTS.md](../../frontend/AGENTS.md).
+- **Ràng buộc:** Tuân thủ quy ước giao diện của dự án (token màu, font, thư viện như trên).
 
 ---
 
@@ -179,7 +179,7 @@ frontend/src/
 }
 
 @theme {
-  /* Chặn bảng màu Tailwind mặc định (blue-500, gray-500...) theo .agent/rules/frontend.md */
+  /* Chặn bảng màu Tailwind mặc định (blue-500, gray-500...) theo quy ước dự án */
   --color-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;

@@ -130,7 +130,30 @@ def plan(cfg: dict | None = None) -> list[dict]:
     return out
 
 
-def build(cfg: dict | None = None, dry_run: bool = False) -> dict:
+def staged_unmerged(stage_dir: Path | None = None, layers: dict[str, Path] | None = None) -> list[str]:
+    """Mục trong thư mục tạm duyệt (corrected_relabel) CHƯA được đưa về lớp hiệu chỉnh: chưa duyệt, hoặc quyết định của người
+    khác với bản trong lớp. Thư mục tạm còn mục như vậy thì xóa/dựng lại sẽ làm mất công duyệt (xem build)."""
+    stage_dir = STAGE_DIR if stage_dir is None else stage_dir
+    layers = cleaner.LAYERS if layers is None else layers
+    mine: dict[str, dict] = {}
+    for d in layers.values():
+        for rec in _load(d).values():
+            mine.update({it["item_id"]: it for it in rec["items"]})
+    out = []
+    for rec in _load(stage_dir).values():
+        for it in rec["items"]:
+            cur = mine.get(it["item_id"])
+            if not it.get("human_checked") or cur is None or cur != it:
+                out.append(it["item_id"])
+    return out
+
+
+def build(cfg: dict | None = None, dry_run: bool = False, force: bool = False) -> dict:
+    if not dry_run and not force:
+        pending = staged_unmerged()
+        if pending:  # KHÔNG xóa thư mục tạm khi còn quyết định chưa merge (chạy relabel-merge trước, hoặc dùng --force nếu thật sự muốn bỏ)
+            raise SystemExit(f"Thư mục {STAGE_DIR} còn {len(pending)} mục chưa merge/chưa duyệt (ví dụ {pending[0]}): chạy relabel-merge trước; "
+                             "chỉ dùng --force khi chắc chắn muốn xóa và dựng lại.")
     items = plan(cfg)
     st = {"muc_moi": 0, "khong_dung_duoc": []}
     pages: dict[tuple, dict] = {}
@@ -157,8 +180,16 @@ def build(cfg: dict | None = None, dry_run: bool = False) -> dict:
     return st
 
 
-def merge_back() -> dict:
+def merge_back(dry_run: bool = False) -> dict:
+    """Đưa quyết định trong thư mục tạm về đúng lớp hiệu chỉnh. dry_run: chạy trên BẢN SAO của từng lớp (không ghi lớp thật) và trả cùng thống kê."""
     out = {}
     for layer, d in cleaner.LAYERS.items():
-        out[layer] = merge_from(STAGE_DIR, d)
+        if dry_run:
+            import tempfile
+            with tempfile.TemporaryDirectory() as tmp:
+                copy = Path(tmp) / layer
+                shutil.copytree(d, copy)
+                out[layer] = {**merge_from(STAGE_DIR, copy), "dry_run": True}
+        else:
+            out[layer] = merge_from(STAGE_DIR, d)
     return out

@@ -79,8 +79,7 @@ flags:
   garble_ratio: 0.25            # tỷ lệ ký tự lạ → garbled
 
 vlm:
-  provider: openai              # anthropic (khóa ANTHROPIC_API_KEY) | openai (khóa OPENAI_API_KEY); khóa đặt trong môi trường hoặc file .env, KHÔNG ghi vào code/config
-  model: claude-sonnet-5-5      # mô hình dùng khi provider = anthropic
+  provider: openai              # openai (khóa OPENAI_API_KEY); khóa đặt trong môi trường hoặc file .env, KHÔNG ghi vào code/config
   openai:
     model: "gpt-5.4-mini"                   # ĐIỀN tên mô hình OpenAI có hỗ trợ ảnh mà bạn muốn dùng (bắt buộc khi provider = openai)
     detail: high                # high = đọc chữ nhỏ tốt hơn nhưng tốn token ảnh hơn; low = rẻ hơn

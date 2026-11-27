@@ -5,7 +5,7 @@
 }
 
 @theme {
-  /* Chặn bảng màu Tailwind mặc định (blue-500, gray-500...) theo .agent/rules/frontend.md */
+  /* Chặn bảng màu Tailwind mặc định (blue-500, gray-500...) theo quy ước dự án */
   --color-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;

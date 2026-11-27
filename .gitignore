@@ -22,3 +22,25 @@ configs/*.tmp
 
 # Word lock files
 ~$*
+
+# Sao lưu/tạm khác của cấu hình
+configs/*.bak*
+
+# Cache công cụ, IDE, hệ điều hành
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build/giao diện (đã có trong frontend/.gitignore, thêm ở gốc cho chắc)
+frontend/node_modules/
+frontend/.next/
+frontend/.env*.local
+frontend/next-env.d.ts
+
+
+CLAUDE.md
+.agent/
+frontend/AGENTS.md

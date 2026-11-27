@@ -176,7 +176,7 @@ fixes:
   ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Kinh tế
     quốc tế (7310106)'
   trang_thai: tu_choi
-  nguoi_soat: claude (đề xuất)
+  nguoi_soat: (Đề xuất)
   thoi_gian: '2026-11-20T15:24:06'
   ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
   ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
@@ -197,7 +197,7 @@ fixes:
   ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Tài chính
     – Ngân hàng (7340201)'
   trang_thai: tu_choi
-  nguoi_soat: claude (đề xuất)
+  nguoi_soat: (Đề xuất)
   thoi_gian: '2026-11-20T15:24:06'
   ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
   ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
@@ -218,7 +218,7 @@ fixes:
   ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Quản trị
     kinh doanh định hướng chuẩn nghề nghiệp quốc tế (7340101A)'
   trang_thai: tu_choi
-  nguoi_soat: claude (đề xuất)
+  nguoi_soat: (Đề xuất)
   thoi_gian: '2026-11-20T15:24:06'
   ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
   ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
@@ -240,7 +240,7 @@ fixes:
   ly_do: 'dòng 1 ô ''| Học phí dự kiến/01 học kỳ |'' làm lệch cột: chuẩn hóa thành bảng đủ 5 cột (ô đầu = nhãn, các ô sau = giá trị từng cột); ô đầu của dòng số tiền ghi ngành lấy từ đầu trang: Luật kinh
     tế (7380107)'
   trang_thai: tu_choi
-  nguoi_soat: claude (đề xuất)
+  nguoi_soat: (Đề xuất)
   thoi_gian: '2026-11-20T15:24:06'
   ghi_chu: cần người duyệt bằng mắt; áp dụng SAU các mục da_xac_nhan hiện có của trang
   ly_do_tu_choi: thay bằng quy tắc table_title + brochure_by_page
@@ -264,7 +264,7 @@ force_accept:
   ly_do: 'CHƯA NÊN dùng: need_review vì bảng ''Mã xét tuyển | Thời gian đào tạo | Tổ hợp môn tuyển sinh'' có header 3 cột nhưng dòng dữ liệu 4 cột (không liên quan bảng học phí). Chỉ cân nhắc force_accept
     sau khi sửa bảng đó.'
   trang_thai: de_xuat
-  nguoi_soat: claude (đề xuất)
+  nguoi_soat: (Đề xuất)
   thoi_gian: '2026-11-20T15:24:06'
   ghi_chu: ''
 force_reject: []
